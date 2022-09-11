@@ -436,11 +436,9 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 11:35:59'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:57:48'!
 * aMultiplier 
-	(aMultiplier isKindOf: self class) ifTrue:[^self class with: value * aMultiplier integerValue]
-	ifFalse: [^aMultiplier * self]
-	
+	^aMultiplier multiplyByInteger: self
 		
 	! !
 
@@ -486,10 +484,25 @@ greatestCommonDivisorWith: anEntero
 	
 	^self class with: (value gcd: anEntero integerValue)! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'NR 9/8/2019 23:07:58'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:43:58'!
+multiplyByFraction: aFraction 
+	^Fraccion with: (self * (aFraction numerator)) over: (aFraction denominator)
+	
+		
+	! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:42:57'!
+multiplyByInteger: anInteger 
+
+	^self class with: value * (anInteger integerValue)
+	
+		
+	! !
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 18:02:31'!
 negated
 	
-	^self * (self class with: -1)
+	^self class with: -1 * self integerValue 
 	! !
 
 
@@ -574,13 +587,10 @@ Numero subclass: #Fraccion
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 16:16:44'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:57:56'!
 * aMultiplier 
-	(aMultiplier isKindOf: self class) ifTrue: [
-			^self class with: (numerator * aMultiplier numerator) over: (denominator * aMultiplier denominator)
-			]
-	
-	ifFalse: [^Fraccion with: aMultiplier * self numerator over: self denominator]
+	^aMultiplier multiplyByFraction: self
+		
 	! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 11:27:26'!
@@ -612,6 +622,16 @@ Numero subclass: #Fraccion
 	
 	ifFalse: [^Fraccion with: self numerator over: self denominator * aDivisor]
 	
+	! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:44:27'!
+multiplyByFraction: aFraction 
+	^self class with: (numerator * (aFraction numerator)) over: (denominator * (aFraction denominator))
+	! !
+
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/11/2022 17:44:15'!
+multiplyByInteger: anInteger 
+	^Fraccion with: (anInteger * (self numerator)) over: (self denominator)
 	! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'NR 9/8/2019 23:08:35'!
