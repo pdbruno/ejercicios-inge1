@@ -421,6 +421,15 @@ throwDivisionErrorIfZero! !
 Numero class
 	instanceVariableNames: ''!
 
+!Numero class methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:04:27'!
+addInteger: anInteger withFraction: aFraction
+	^Fraccion with: anInteger * aFraction denominator + aFraction numerator over: aFraction denominator! !
+
+!Numero class methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:10:01'!
+multiplyInteger: anInteger byFraction: aFraction
+	^Fraccion with: anInteger * aFraction numerator over: aFraction denominator! !
+
+
 !Numero class methodsFor: 'error descriptions' stamp: 'NR 4/15/2021 17:02:08'!
 canNotDivideByZeroErrorDescription
 
@@ -467,9 +476,9 @@ Numero subclass: #Entero
 
 	 ^self class with: value // aDivisor integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/12/2022 20:06:13'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:06:02'!
 addWithFraction: aFraction 
-	^Fraccion with: self * aFraction denominator + aFraction numerator over: aFraction denominator
+	^Numero addInteger: self withFraction: aFraction
 	
 		
 	! !
@@ -511,10 +520,10 @@ greatestCommonDivisorWith: anEntero
 	
 	^self class with: (value gcd: anEntero integerValue)! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'pdb 9/12/2022 20:42:33'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:10:53'!
 multiplyByFraction: aFraction 
 
-	^Fraccion with: (self * (aFraction numerator)) over: (aFraction denominator)
+	^Numero multiplyInteger: self byFraction: aFraction
 	
 		
 	! !
@@ -804,9 +813,9 @@ addWithFraction: aFraction
 	^self class with: newNumerator over: newDenominator.
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/12/2022 20:41:06'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:06:54'!
 addWithInteger: anInteger 	
-	^self class with: numerator + (anInteger * denominator) over: denominator.
+	^Numero addInteger: anInteger withFraction: self
 	! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/12/2022 21:15:22'!
@@ -824,9 +833,9 @@ multiplyByFraction: aFraction
 	^self class with: (numerator * (aFraction numerator)) over: (denominator * (aFraction denominator))
 	! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'pdb 9/14/2022 15:28:04'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'ms 9/15/2022 15:11:12'!
 multiplyByInteger: anInteger 
-	^Fraccion with: anInteger * self numerator over: self denominator
+	^Numero multiplyInteger: anInteger byFraction: self
 	! !
 
 !Fraccion methodsFor: 'arithmetic operations' stamp: 'NR 9/8/2019 23:08:35'!
