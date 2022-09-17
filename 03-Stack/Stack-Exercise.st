@@ -1,3 +1,4 @@
+
 !classDefinition: #OOStackTest category: 'Stack-Exercise'!
 TestCase subclass: #OOStackTest
 	instanceVariableNames: ''
@@ -143,6 +144,159 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:01:19'!
+test01ShouldReturnOrderedCollection
+
+	| stack finder |
+	
+	stack := OOStack new.
+	stack push: 'Hola'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	
+	self assert: ((finder find: 'Hola') class isKindOf: OrderedCollection)
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:02:15'!
+test02FindReturnsEmptyWhenNoMatch
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'Hola'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'Chau'.
+	
+	self assert: matches isEmpty
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:02:35'!
+test03FindReturnsCorrectWithExactMatch
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'Hola'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'Hola'.
+	
+	self assert: matches size = 1
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:06:30'!
+test04FindReturnsMultipleMatches
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'Hola como estas'.
+	stack push: 'Hola mucho gusto'.
+	stack push: 'Holanda'.
+	stack push: 'Patricio Bruno'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'Hol'.
+	
+	self assert: matches size = 3.
+	self assert: (matches at: 1) = 'Holanda'.
+	self assert: (matches at: 1) = 'Hola mucho gusto'.
+	self assert: (matches at: 1) = 'Hola como estas'.
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:05:32'!
+test06FindIsCaseSensitive
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'Hola como estas'.
+	stack push: 'hola mucho gusto'.
+	stack push: 'holanda'.
+	stack push: 'Patricio Bruno'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'hol'.
+	
+	self assert: matches size = 2.
+	self assert: (matches at: 1) = 'holanda'.
+	self assert: (matches at: 2) = 'hola mucho gusto'.
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:07:49'!
+test07FindReturnsTwiceIfFoundTwice
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'hola mucho gusto'.
+	stack push: 'hola mucho gusto'.
+	stack push: 'holanda'.
+	stack push: 'Patricio Bruno'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'hola '.
+	
+	self assert: matches size = 2.
+	self assert: (matches at: 1) = 'hola mucho gusto'.
+	self assert: (matches at: 2) = 'hola mucho gusto'.
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:17:19'!
+test08StackShouldBeSameAsBefore
+
+	| stack finder matches |
+	
+	stack := OOStack new.
+	stack push: 'hola mucho susto'.
+	stack push: 'hola mucho gusto'.
+	stack push: 'holanda'.
+	stack push: 'Patricio Bruno'.
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	matches := finder find: 'hola '.
+	
+	self assert: finder pop = 'Patricio Bruno'.
+	self assert: finder pop = 'holanda'.
+	self assert: finder pop = 'hola mucho gusto'.
+	self assert: finder pop = 'hola mucho susto'.
+	
+
+
+
+! !
 
 
 !classDefinition: #OOContainer category: 'Stack-Exercise'!
