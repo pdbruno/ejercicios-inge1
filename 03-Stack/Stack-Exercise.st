@@ -1,4 +1,3 @@
-
 !classDefinition: #OOStackTest category: 'Stack-Exercise'!
 TestCase subclass: #OOStackTest
 	instanceVariableNames: ''
@@ -140,22 +139,67 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack finder'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:01:19'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:37'!
+inSentences: anArray findPrefix: aPrefix
+
+	anArray do: [ :phrase | stack push: phrase].
+	
+	finder := SentenceFinderByPrefix withStack: stack.
+	
+	^finder find: aPrefix
+	
+	
+	
+	
+
+
+	
+
+
+	
+
+
+
+	
+
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:34'!
+setUp
+	
+	stack := OOStack new.
+
+
+	
+
+
+	
+
+
+
+	
+
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 16:56:47'!
 test01ShouldReturnOrderedCollection
-
-	| stack finder |
 	
-	stack := OOStack new.
-	stack push: 'Hola'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	
-	self assert: ((finder find: 'Hola') class isKindOf: OrderedCollection)
+	self assert: ((self inSentences: #('Hola') findPrefix: 'Hola') class = OrderedCollection)
 	
 	
 
@@ -163,18 +207,12 @@ test01ShouldReturnOrderedCollection
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:02:15'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 16:57:22'!
 test02FindReturnsEmptyWhenNoMatch
+	
+	self assert: ((self inSentences: #('Hola') findPrefix: 'Chau') isEmpty)
+	
 
-	| stack finder matches |
-	
-	stack := OOStack new.
-	stack push: 'Hola'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'Chau'.
-	
-	self assert: matches isEmpty
 	
 	
 
@@ -182,18 +220,11 @@ test02FindReturnsEmptyWhenNoMatch
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:02:35'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:07:56'!
 test03FindReturnsCorrectWithExactMatch
 
-	| stack finder matches |
-	
-	stack := OOStack new.
-	stack push: 'Hola'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'Hola'.
-	
-	self assert: matches size = 1
+	self assert: ((self inSentences: #('Hola') findPrefix: 'Hola') size = 1)
+
 	
 	
 
@@ -201,23 +232,30 @@ test03FindReturnsCorrectWithExactMatch
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:06:30'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:08:25'!
 test04FindReturnsMultipleMatches
 
-	| stack finder matches |
+	| matches |
 	
-	stack := OOStack new.
-	stack push: 'Hola como estas'.
-	stack push: 'Hola mucho gusto'.
-	stack push: 'Holanda'.
-	stack push: 'Patricio Bruno'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'Hol'.
-	
+	matches := self inSentences: #('Hola como estas' 'Hola mucho gusto' 'Holanda' 'Patricio Bruno') findPrefix: 'Hol'.
 	self assert: matches size = 3.
 	self assert: (matches at: 1) = 'Holanda'.
-	self assert: (matches at: 1) = 'Hola mucho gusto'.
+	self assert: (matches at: 2) = 'Hola mucho gusto'.
+	self assert: (matches at: 3) = 'Hola como estas'.
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:03:13'!
+test05FindReturnsCorrectWithPartialMatch
+
+	| matches |
+	
+	matches := self inSentences: #('Hola como estas') findPrefix: 'Hol'.
+	self assert: matches size = 1.
 	self assert: (matches at: 1) = 'Hola como estas'.
 	
 	
@@ -226,20 +264,12 @@ test04FindReturnsMultipleMatches
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:05:32'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:04:22'!
 test06FindIsCaseSensitive
 
-	| stack finder matches |
+	| matches |
 	
-	stack := OOStack new.
-	stack push: 'Hola como estas'.
-	stack push: 'hola mucho gusto'.
-	stack push: 'holanda'.
-	stack push: 'Patricio Bruno'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'hol'.
-	
+	matches := self inSentences: #('Hola como estas' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hol'.
 	self assert: matches size = 2.
 	self assert: (matches at: 1) = 'holanda'.
 	self assert: (matches at: 2) = 'hola mucho gusto'.
@@ -250,20 +280,12 @@ test06FindIsCaseSensitive
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:07:49'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:05:43'!
 test07FindReturnsTwiceIfFoundTwice
 
-	| stack finder matches |
-	
-	stack := OOStack new.
-	stack push: 'hola mucho gusto'.
-	stack push: 'hola mucho gusto'.
-	stack push: 'holanda'.
-	stack push: 'Patricio Bruno'.
-	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'hola '.
-	
+	| matches |
+
+	matches := self inSentences: #('hola mucho gusto' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hola '.
 	self assert: matches size = 2.
 	self assert: (matches at: 1) = 'hola mucho gusto'.
 	self assert: (matches at: 2) = 'hola mucho gusto'.
@@ -274,24 +296,42 @@ test07FindReturnsTwiceIfFoundTwice
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'as yet unclassified' stamp: 'ms 9/17/2022 18:17:19'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:50'!
 test08StackShouldBeSameAsBefore
 
-	| stack finder matches |
+	self inSentences: #('hola mucho susto' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hola '.
+	self assert: stack pop = 'Patricio Bruno'.
+	self assert: stack pop = 'holanda'.
+	self assert: stack pop = 'hola mucho gusto'.
+	self assert: stack pop = 'hola mucho susto'.
 	
-	stack := OOStack new.
-	stack push: 'hola mucho susto'.
-	stack push: 'hola mucho gusto'.
-	stack push: 'holanda'.
-	stack push: 'Patricio Bruno'.
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:07:26'!
+test09FindReturnsEmptyIfStackIsEmpty
+
+	| matches |
 	
-	finder := SentenceFinderByPrefix withStack: stack.
-	matches := finder find: 'hola '.
+	matches := self inSentences: #() findPrefix: 'Chau'.
+	self assert: matches isEmpty
 	
-	self assert: finder pop = 'Patricio Bruno'.
-	self assert: finder pop = 'holanda'.
-	self assert: finder pop = 'hola mucho gusto'.
-	self assert: finder pop = 'hola mucho susto'.
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:15'!
+test10FindReturnsNoMatchIfNoPrefix
+
+	| matches |
+	
+	matches := self inSentences: #('Patricio Cuco Bruno' 'Martin Cuco Saied') findPrefix: 'Cuco'.
+	self assert: matches isEmpty
+	
 	
 
 
@@ -524,7 +564,50 @@ stackEmptyErrorDescription
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'evaluating' stamp: 'ms 9/18/2022 15:45:00'!
+find: aPrefix
+
+	| phrase collection |
+	
+	collection := OrderedCollection new.
+	stack isEmpty ifTrue: [^collection].
+	
+	phrase := stack pop.	
+	(phrase is: aPrefix substringAt: 1) ifTrue: [collection addLast: phrase].
+	
+	collection addAllLast: (self find: aPrefix).
+	
+	stack push: phrase.
+	
+	^collection
+	
+
+
+! !
+
+
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'ms 9/18/2022 15:33:07'!
+initializeWith: aStack
+
+	stack := aStack
+
+
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'ms 9/18/2022 15:43:19'!
+withStack: aStack
+
+	^self new initializeWith: aStack
+
+! !
