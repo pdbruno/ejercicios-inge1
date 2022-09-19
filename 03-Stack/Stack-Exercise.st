@@ -144,7 +144,7 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:37'!
+!SentenceFinderByPrefixTest methodsFor: 'sentence finder initialization' stamp: 'ms 9/18/2022 17:09:37'!
 inSentences: anArray findPrefix: aPrefix
 
 	anArray do: [ :phrase | stack push: phrase].
@@ -173,6 +173,15 @@ inSentences: anArray findPrefix: aPrefix
 
 
 ! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'failure assertion' stamp: 'pdb 9/19/2022 14:34:56'!
+assertThat: aBlockThatFails failsWith: anErrorType checkingThatInTheEnd: finalAssertions
+	[ aBlockThatFails value.
+	self fail ]
+		on: anErrorType 
+		do: [ :anError | finalAssertions value: anError ]! !
+
 
 !SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:34'!
 setUp
@@ -280,12 +289,12 @@ test06FindIsCaseSensitive
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:05:43'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'pdb 9/19/2022 14:45:23'!
 test07FindReturnsTwiceIfFoundTwice
 
 	| matches |
 
-	matches := self inSentences: #('hola mucho gusto' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hola '.
+	matches := self inSentences: #('hola mucho gusto' 'hola mucho gusto' 'Patricio Bruno') findPrefix: 'hola'.
 	self assert: matches size = 2.
 	self assert: (matches at: 1) = 'hola mucho gusto'.
 	self assert: (matches at: 2) = 'hola mucho gusto'.
@@ -296,10 +305,10 @@ test07FindReturnsTwiceIfFoundTwice
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'ms 9/18/2022 17:09:50'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'pdb 9/19/2022 14:44:59'!
 test08StackShouldBeSameAsBefore
 
-	self inSentences: #('hola mucho susto' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hola '.
+	self inSentences: #('hola mucho susto' 'hola mucho gusto' 'holanda' 'Patricio Bruno') findPrefix: 'hola'.
 	self assert: stack pop = 'Patricio Bruno'.
 	self assert: stack pop = 'holanda'.
 	self assert: stack pop = 'hola mucho gusto'.
@@ -331,6 +340,36 @@ test10FindReturnsNoMatchIfNoPrefix
 	
 	matches := self inSentences: #('Patricio Cuco Bruno' 'Martin Cuco Saied') findPrefix: 'Cuco'.
 	self assert: matches isEmpty
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'pdb 9/19/2022 14:40:25'!
+test11PrefixCannotBeEmpty
+
+		self 
+		assertThat: [ self inSentences: #() findPrefix: ''] 
+		failsWith: Error 
+		checkingThatInTheEnd: [ :anError | 
+			self assert: anError messageText = SentenceFinderByPrefix emptyPrefixErrorDescription ].
+	
+	
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'pdb 9/19/2022 14:40:46'!
+test12PrefixCannotHaveWhitespaces
+
+		self 
+		assertThat: [ self inSentences: #() findPrefix: ' '] 
+		failsWith: Error 
+		checkingThatInTheEnd: [ :anError | 
+			self assert: anError messageText = SentenceFinderByPrefix prefixHasWhitespaceErrorDescription].
 	
 	
 
@@ -569,10 +608,13 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'evaluating' stamp: 'ms 9/18/2022 15:45:00'!
+!SentenceFinderByPrefix methodsFor: 'evaluating' stamp: 'pdb 9/19/2022 14:43:24'!
 find: aPrefix
 
 	| phrase collection |
+	
+	aPrefix isEmpty ifTrue: [self error: self class emptyPrefixErrorDescription].
+	(aPrefix indexOf: Character space) = 0 ifFalse: [self error: self class prefixHasWhitespaceErrorDescription].
 	
 	collection := OrderedCollection new.
 	stack isEmpty ifTrue: [^collection].
@@ -604,6 +646,17 @@ initializeWith: aStack
 !classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'pdb 9/19/2022 14:16:28'!
+emptyPrefixErrorDescription
+	
+	^ 'El prefijo no puede ser vac�o'! !
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'pdb 9/19/2022 14:25:58'!
+prefixHasWhitespaceErrorDescription
+	
+	^ 'El prefijo no puede tener espacios en blanco'! !
+
 
 !SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'ms 9/18/2022 15:43:19'!
 withStack: aStack
