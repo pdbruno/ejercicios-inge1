@@ -202,6 +202,129 @@ test11PortfolioWithMultiLevelPortfolioHasSameBalance
 	self assert: account balance equals: (portfolio balance).
 ! !
 
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:24'!
+test12PortfolioCanNotAddItself
+	| portfolio |
+	portfolio _ Portfolio new.
+	self 
+		should: [ portfolio add: portfolio ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:31'!
+test13PortfolioCanNotAddParentPortfolio
+	| portfolio1 portfolio2 |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio2 add: portfolio1 .
+	
+	self 
+		should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:36'!
+test14PortfolioCanNotAddAncestorPortfolio
+	| portfolio1 portfolio2 portfolio3 |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	portfolio2 add: portfolio1.
+	portfolio3 add: portfolio2.
+	
+	self 
+		should: [ portfolio1 add: portfolio3 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:42'!
+test15PortfolioCanNotAddAccountMultipleTimes
+	| portfolio account |
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio add: account.
+
+	
+	self 
+		should: [ portfolio add: account ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:49'!
+test16PortfolioCanNotAddPortfolioThatSharesAccount
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio2 add: account.
+	
+	self 
+		should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:53'!
+test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio2 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio1 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:58'!
+test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio2 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:34'!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	portfolio3 add: account.
+	
+	self 
+		should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:45:40'!
+test20PortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep
+	| parentPortfolio1 parentPortfolio2 childPortfolio1 childPortfolio2 account |
+	parentPortfolio1 _ Portfolio new.
+	parentPortfolio2 _ Portfolio new.
+	childPortfolio1 _ Portfolio new.
+	childPortfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	parentPortfolio1 add: childPortfolio1.
+	parentPortfolio2 add: childPortfolio2.
+	childPortfolio2 add: account.
+	childPortfolio1 add: account.	
+	self 
+		should: [ parentPortfolio1 add: parentPortfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage! !
+
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
@@ -400,10 +523,61 @@ for: aValue
 
 !classDefinition: #Asset category: 'Portfolio-Ejercicio'!
 Object subclass: #Asset
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions parents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
+
+!Asset methodsFor: 'testing' stamp: 'ms 10/17/2022 13:38:09'!
+hasAsset: anAssetToFind
+	self subclassResponsibility ! !
+
+!Asset methodsFor: 'testing' stamp: 'ms 10/17/2022 16:06:51'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+
+
+!Asset methodsFor: 'parents' stamp: 'ms 10/17/2022 15:56:51'!
+addParent: aPortfolio
+	
+	parents add: aPortfolio.! !
+
+
+!Asset methodsFor: 'balance' stamp: 'ms 10/17/2022 16:05:03'!
+balance
+	
+	self subclassResponsibility ! !
+
+
+!Asset methodsFor: 'accessing' stamp: 'ms 10/17/2022 16:04:25'!
+allAssets
+	
+	self subclassResponsibility ! !
+
+
+!Asset methodsFor: 'initialization' stamp: 'ms 10/17/2022 16:07:27'!
+initialize
+
+	self subclassResponsibility 
+! !
+
+
+!Asset methodsFor: 'transactions' stamp: 'ms 10/17/2022 16:06:15'!
+transactions
+
+	self subclassResponsibility ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Asset class' category: 'Portfolio-Ejercicio'!
+Asset class
+	instanceVariableNames: ''!
+
+!Asset class methodsFor: 'error description' stamp: 'ms 10/17/2022 16:09:45'!
+canNotAddErrorMessage
+	
+	self subclassResponsibility ! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
@@ -413,31 +587,70 @@ Asset subclass: #Portfolio
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:44'!
-add: anAsset
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:35:40'!
+allAssets
 	
-	assets add: anAsset.
+	^assets inject: (Set with: self) into: [ :aSet :anAsset | aSet union: anAsset allAssets ]
+	
 	! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:59:34'!
-balance
-	
-	^assets sum: [:anAsset | anAsset balance] ifEmpty: [0]! !
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:11:24'!
+roots
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 16:12:55'!
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	^(parents collect: [ :parent | parent roots]) flatten.! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/17/2022 14:49:38'!
+initialize
+	
+	assets := OrderedCollection new.
+	parents := OrderedCollection new.! !
+
+
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:58:52'!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: anAsset class canNotAddErrorMessage ].
+	
+	assets add: anAsset.
+	anAsset addParent: self.
+! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'ms 10/17/2022 15:44:48'!
+hasAsset: anAssetToFind
+	^ self = anAssetToFind or: [assets anySatisfy: [:anAsset | anAsset = anAssetToFind or: [anAsset hasAsset: anAssetToFind ]]].! !
+
+!Portfolio methodsFor: 'testing' stamp: 'ms 10/10/2022 16:12:55'!
 hasRegistered: aTransaction
 	
 	^self transactions includes: aTransaction.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:21'!
-initialize
-	
-	assets := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:51:40'!
+!Portfolio methodsFor: 'balance' stamp: 'ms 10/10/2022 15:59:34'!
+balance
+	
+	^assets sum: [:anAsset | anAsset balance] ifEmpty: [0]! !
+
+
+!Portfolio methodsFor: 'transactions' stamp: 'ms 10/10/2022 15:51:40'!
 transactions
 	^(assets collect: [:anAsset | anAsset transactions]) flatten
 	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!Portfolio class methodsFor: 'error descriptions' stamp: 'ms 10/17/2022 13:39:18'!
+canNotAddErrorMessage
+	'No se puede agregar este portfolio, se está introduciendo un ciclo en el grafo'! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -447,10 +660,11 @@ Asset subclass: #ReceptiveAccount
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/17/2022 16:07:38'!
 initialize
 
-	transactions := OrderedCollection new.! !
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
@@ -471,8 +685,28 @@ balance
 	^transactions inject: 0 into: [ :balance :aTransaction | aTransaction updateBalance: balance ].! !
 
 
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/17/2022 13:39:58'!
+hasAsset: anAssetToFind
+	^false! !
+
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
 hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:34:33'!
+allAssets
+	
+	^Set with: self.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Ejercicio'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'error description' stamp: 'ms 10/17/2022 13:40:08'!
+canNotAddErrorMessage
+	'No se puede agregar esta cuenta ya que se encuentra en el portfolio'! !
