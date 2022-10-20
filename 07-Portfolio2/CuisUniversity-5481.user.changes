@@ -1,0 +1,2090 @@
+
+
+----QUIT----(11 September 2022 19:10:09) CuisUniversity-5481.image priorSource: 2810882!
+
+----STARTUP---- (11 September 2022 19:10:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5481.image!
+
+
+----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
+
+----STARTUP---- (17 October 2022 21:29:46) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/2022-2c/06-Portfolio1/Portfolio-Solucion.st----!
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:34:06'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'no messages' stamp: 'ms 10/17/2022 21:34:45' overrides: 50552889!
+value
+
+	^ value! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:35:03'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:35:41' overrides: 50552893!
+affectBalance: aValue
+
+	value := aValue ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:35:52' prior: 50553013 overrides: 50552893!
+affectBalance: aBalance
+
+	^aBalance - value! !
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:37:52'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #SendTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SendTransfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:38:14'!
+AccountTransaction subclass: #SendTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #ReceiveTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceiveTransfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:38:20'!
+AccountTransaction subclass: #ReceiveTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transfer stamp: 'ms 10/17/2022 21:38:27'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceiveTransfer stamp: 'ms 10/17/2022 21:39:18'!
+AccountTransaction subclass: #ReceiveTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #SendTransfer stamp: 'ms 10/17/2022 21:39:21'!
+AccountTransaction subclass: #SendTransfer
+	instanceVariableNames: 'value sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:41:35'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Transfer subclass: #SendTransfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/17/2022 21:42:02'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 21:43:02'!
+test16TransferFromOneAccountToAnother
+	
+	| account1 |
+	
+	account1 
+
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 21:45:14' prior: 50553114!
+test16TransferFromOneAccountToAnother
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	self assert: account1 balance equals: 100.
+	self assert: account2 balance equals: 100.! !
+!Transfer class methodsFor: 'no messages' stamp: 'ms 10/17/2022 21:46:32'!
+register: aValue from: anAccount to: otherAccount
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:46:45' prior: 50553132!
+register: aValue from: anAccount to: otherAccount
+
+	^ self new initializeFor: aValue ! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:46:54' prior: 50553137!
+register: aValue from: anAccount to: otherAccount
+
+	^ self new initializeFor: aValue from: anAccount to: otherAccount.! !
+!Transfer methodsFor: 'no messages' stamp: 'ms 10/17/2022 21:47:15'!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:47:45' prior: 50553149!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	Deposit register: aValue on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 21:47:55' prior: 50553155!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	Withdraw register: aValue on: anAccount.
+	Deposit register: aValue on: otherAccount.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/17/2022 21:48:16'!
+test08TransferFromOneAccountToAnother
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	self assert: account1 balance equals: 100.
+	self assert: account2 balance equals: 100.! !
+
+!methodRemoval: PortfolioTest #test16TransferFromOneAccountToAnother stamp: 'ms 10/17/2022 21:48:19'!
+test16TransferFromOneAccountToAnother
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	self assert: account1 balance equals: 100.
+	self assert: account2 balance equals: 100.!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/17/2022 21:48:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/17/2022 21:48:46'!
+PASSED!
+
+----QUIT----(17 October 2022 21:55:51) CuisUniversity-5481.image priorSource: 7059698!
+
+----STARTUP---- (19 October 2022 17:08:40) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:11:32'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 17:16:10'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:17:41'!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	self assert: account1 balance equals: 100.
+	self assert: account2 balance equals: 100.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:18:06' prior: 50553251!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	self assert: account1 hasRegistered: account2.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:18:57' prior: 50553264!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer :=Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:19:02' prior: 50553276!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegistered: transfer).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:20:51' prior: 50553289!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegisteredTransfer: transfer).! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/19/2022 17:21:17'!
+hasRegisteredTransfer: aTransfer
+
+	^ transactions includes: aTransfer 
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/19/2022 17:21:39' prior: 50553315!
+hasRegisteredTransfer: aTransfer
+
+	| transfers |
+	^ transfers includes: aTransfer 
+! !
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/19/2022 17:22:14' prior: 50553321!
+hasRegisteredTransfer: aTransfer
+
+	| transfers1 |
+	^ transfers1 includes: aTransfer 
+! !
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:22:24'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions transfers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/19/2022 17:22:31' prior: 50553332!
+hasRegisteredTransfer: aTransfer
+
+	^ transfers includes: aTransfer 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'ms 10/19/2022 17:23:56'!
+registerTransfer: aTransfer
+
+	transfers add: aTransfer 
+! !
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 17:30:38'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 17:30:38'!
+ERROR!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/19/2022 17:31:02' prior: 50552831 overrides: 16920235!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:33:27' prior: 50553143!
+register: aValue from: anAccount to: otherAccount
+
+	| transfer |
+	
+	transfer := self new initializeFor: aValue from: anAccount to: otherAccount.
+	anAccount registerTransfer: transfer.
+	otherAccount registerTransfer: transfer.
+	
+	^ transfer! !
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 17:33:39'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:33:53' prior: 50553302!
+test09ReceptiveAccountKnowsRegisteredTransfer
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegisteredTransfer: transfer).
+	self assert: (account2 hasRegisteredTransfer: transfer).! !
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 17:33:54'!
+PASSED!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:39:57'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:40:04' prior: 50553162!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdraw := Withdraw register: aValue on: anAccount.
+	Deposit register: aValue on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:40:07' prior: 50553456!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdraw := Withdraw register: aValue on: anAccount.
+	deposit := Deposit register: aValue on: otherAccount.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:40:58'!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegisteredTransfer: transfer).
+	self assert: (account2 hasRegisteredTransfer: transfer).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:44:55' prior: 50553474!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	self assert: (account1 hasRegisteredTransfer: transfer).
+	self assert: (account2 hasRegisteredTransfer: transfer).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:45:48' prior: 50553489!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	
+	self assert: (account1 hasRegisteredTransfer: transfer).
+	self assert: (account2 hasRegisteredTransfer: transfer).! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 17:47:11' prior: 50553504!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 17:47:15'!
+ERROR!
+
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransferTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:47:26'!
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransferTransaction subclass: #TransferDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDeposit category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:47:43'!
+AccountTransferTransaction subclass: #TransferDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransferTransaction subclass: #TransferWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferWithdraw category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:47:53'!
+AccountTransferTransaction subclass: #TransferWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransferTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:48:16'!
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:49:07'!
+deposit
+	
+	^deposit! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:49:25'!
+withdrawal
+	
+
+! !
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawal deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 17:49:30'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value withdrawal deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:49:33' prior: 50553465!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := Withdraw register: aValue on: anAccount.
+	deposit := Deposit register: aValue on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:49:37' prior: 50553597!
+withdrawal
+	
+	^withdrawal
+! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:49:52' prior: 50553614!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := TransferWithdraw register: aValue on: anAccount.
+	deposit := TransferDeposit register: aValue on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:50:00' prior: 50553627!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := TransferWithdraw on: anAccount.
+	deposit := TransferDeposit on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:50:33' prior: 50553637!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := TransferWithdraw on: anAccount from: self.
+	deposit := TransferDeposit on: otherAccount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:50:37' prior: 50553646!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := TransferWithdraw on: anAccount fromTransfer: self.
+	deposit := TransferDeposit on: otherAccount .! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:50:53' prior: 50553655!
+initializeFor: aValue from: anAccount to: otherAccount
+
+	value := aValue.
+	withdrawal := TransferWithdraw on: anAccount forTransfer: self.
+	deposit := TransferDeposit on: otherAccount forTransfer: self.! !
+!AccountTransferTransaction class methodsFor: 'no messages' stamp: 'ms 10/19/2022 17:51:47'!
+on: account forTransfer: aTransfer
+
+	| transaction |
+	
+	transaction := self new.
+	account register: transaction.
+		
+	^ transaction! !
+!AccountTransferTransaction class methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:52:15' prior: 50553674!
+on: account forTransfer: aTransfer
+
+	| transaction |
+	
+	transaction := self new initializeFor: aTransfer .
+	account register: transaction.
+		
+	^ transaction! !
+!AccountTransferTransaction class methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:52:15' prior: 50553682!
+on: account forTransfer: aTransfer
+
+	| transaction |
+	
+	transaction := self new initializeFor: aTransfer.
+	account register: transaction.
+		
+	^ transaction! !
+!AccountTransferTransaction methodsFor: 'no messages' stamp: 'ms 10/19/2022 17:52:35'!
+initializeFor: aTransfer
+
+	transfer := aTransfer 
+
+! !
+!AccountTransferTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 17:53:01'!
+transfer
+
+	^transfer
+
+! !
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 17:53:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:02:47'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:02:47'!
+ERROR!
+!AccountTransferTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:03:06'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+!TransferDeposit methodsFor: 'no messages' stamp: 'ms 10/19/2022 23:03:32' overrides: 50553752!
+affectBalance: aBalance
+	
+	^aBalance - transfer value! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:03:38' prior: 50553757 overrides: 50553752!
+affectBalance: aBalance
+	
+	^aBalance + transfer value! !
+!TransferWithdraw methodsFor: 'no messages' stamp: 'ms 10/19/2022 23:03:43' overrides: 50553752!
+affectBalance: aBalance
+	
+	^aBalance - transfer value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:03:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:03:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:03:44'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:05:16' overrides: 16902254!
+value
+	
+	^value
+! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:05:17'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:06:17'!
+test11AddingTransferDontAddDeposit
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:07:08'!
+test11CanNotTransferIfNotEnoughMoney
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:07:11' prior: 50553872!
+test11CanNotTransferIfNotEnoughMoney
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+
+!testRun: #ReceptiveAccountTest #test11CanNotTransferIfNotEnoughMoney stamp: 'ms 10/19/2022 23:07:16'!
+PASSED!
+
+!methodRemoval: ReceptiveAccountTest #test11CanNotTransferIfNotEnoughMoney stamp: 'ms 10/19/2022 23:07:32'!
+test11CanNotTransferIfNotEnoughMoney
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.!
+
+!methodRemoval: ReceptiveAccountTest #test11AddingTransferDontAddDeposit stamp: 'ms 10/19/2022 23:07:33'!
+test11AddingTransferDontAddDeposit
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.!
+
+Object subclass: #AbstractTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AbstractTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:16:17'!
+Object subclass: #AbstractTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:18:50'!
+AbstractTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:18:55'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:19:02'!
+Object subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:19:06'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:19:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/19/2022 23:19:10'!
+PASSED!
+
+AbstractTransaction subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransferTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:19:21'!
+AbstractTransaction subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransferTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:19:58'!
+Object subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:20:10'!
+Object subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:20:15'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:20:21'!
+Object subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:20:26'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'ms 10/19/2022 23:20:35'!
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'ms 10/19/2022 23:20:35'!
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #AccountTransaction stamp: 'ms 10/19/2022 23:20:36'!
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #AccountTransaction stamp: 'ms 10/19/2022 23:20:36'!
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'nil'!
+
+!classRemoval: #AbstractTransaction stamp: 'ms 10/19/2022 23:20:36'!
+Object subclass: #AbstractTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/Portfolio-Solucion2.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:23:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/19/2022 23:23:25'!
+PASSED!
+
+----QUIT----(19 October 2022 23:23:44) CuisUniversity-5481.image priorSource: 7090512!
+
+----STARTUP---- (19 October 2022 23:23:49) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+
+Object subclass: #AbstractTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AbstractTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:24:31'!
+Object subclass: #AbstractTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AbstractTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AbstractTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:24:34'!
+Object subclass: #AbstractTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:24:38'!
+AbstractTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AbstractTransaction subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransferTransaction category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:24:43'!
+AbstractTransaction subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:28:55'!
+test11GenerateReportForEmptyAccount
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+
+!classDefinition: #SummaryReport category: 'SummaryReport' stamp: 'ms 10/19/2022 23:31:03'!
+Object subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'SummaryReport'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:30:50'!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport isEmpty.
+! !
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #NameOfSubclass category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:31:20'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #SummaryReport stamp: 'ms 10/19/2022 23:31:25'!
+Object subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'SummaryReport'!
+
+Object subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'ms 10/19/2022 23:31:33'!
+Object subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #NameOfSubclass stamp: 'ms 10/19/2022 23:31:46'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'nil' stamp: 'ms 10/19/2022 23:32:16'!
+generateReport: aReport
+
+	^aReport generate: self.
+
+! !
+!SummaryReport methodsFor: 'no messages' stamp: 'ms 10/19/2022 23:33:42'!
+generate: anAccount
+
+	^anAccount transactions collect: [ :aTransaction | aTransaction print ]! !
+!AbstractTransaction methodsFor: 'nil' stamp: 'ms 10/19/2022 23:33:57' overrides: 16902957!
+print
+
+	self subclassResponsibility 
+
+! !
+!Deposit methodsFor: 'value' stamp: 'ms 10/19/2022 23:34:33' overrides: 50555385!
+print
+
+	^'Deposito por ',value! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/19/2022 23:34:53' overrides: 50555385!
+print
+
+	^'Extraccion por ',value! !
+
+!methodRemoval: ReceptiveAccountTest #test11GenerateReportForEmptyAccount stamp: 'ms 10/19/2022 23:35:27'!
+test11GenerateReportForEmptyAccount
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:35:28'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:35:29'!
+ERROR!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:36:04' prior: 50555379!
+generate: anAccount
+
+	^anAccount transactions collect: [ :aTransaction | aTransaction print ]! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:36:14' prior: 50555423!
+generate: anAccount
+
+	^anAccount transactions collect: [ :aTransaction | aTransaction ]! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:36:21' prior: 50555430!
+generate: anAccount
+
+	^anAccount transactions collect: [ :aTransaction | aTransaction ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:36:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:36:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:36:23'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:36:42' prior: 50555327!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport isEmpty.
+! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:36:43'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:36:53'!
+test11GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport isEmpty.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:36:59' prior: 50555543!
+test11GenerateSummaryReportForAccountWithDeposit
+
+	| account deposit summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport isEmpty.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:37:20' prior: 50555555!
+test11GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport isEmpty.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:38:08' prior: 50555567!
+test11GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: (generatedReport at: 1) equals: (OrderedCollection with: 'Deposito de 100.').
+! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:38:10'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:38:16'!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: (generatedReport at: 1) equals: (OrderedCollection with: 'Deposito de 100.').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test11GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:38:19'!
+test11GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: (generatedReport at: 1) equals: (OrderedCollection with: 'Deposito de 100.').
+!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:38:22'!
+FAILURE!
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:38:38' overrides: 50555385!
+print
+
+	^''
+
+! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:38:59' prior: 50555632 overrides: 50555385!
+print
+
+	^'Salida por transferencia de',transfer value,'.'
+
+! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:39:06' prior: 50555637 overrides: 50555385!
+print
+
+	^'Salida por transferencia de ',transfer value,'.'
+
+! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/19/2022 23:39:13' prior: 50555393 overrides: 50555385!
+print
+
+	^'Extraccion por ',value,'.'! !
+!Deposit methodsFor: 'value' stamp: 'ms 10/19/2022 23:39:19' prior: 50555389 overrides: 50555385!
+print
+
+	^'Deposito por ',value,'.'! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:39:50' overrides: 50555385!
+print
+	
+	^'Entrada por transferencia de ',transfer value,'.'.! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:40:27' prior: 50555487!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: (generatedReport at: 1) equals: (OrderedCollection with: 'Balance = 0').
+! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:41:04' prior: 50555436!
+generate: anAccount
+
+	^(anAccount transactions collect: [ :aTransaction | aTransaction ]) add: 'Balance = ',anAccount balance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:41:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:41:09'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:41:09'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:41:15'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:41:15'!
+ERROR!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:41:40' prior: 50555677!
+generate: anAccount
+
+	^(anAccount transactions collect: [ :aTransaction | aTransaction print ]) add: 'Balance = ',anAccount balance.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:41:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:41:53'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:41:53'!
+ERROR!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:42:25' prior: 50555737!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount transactions collect: [ :aTransaction | aTransaction print ].
+	collection add: 'Balance = ',anAccount balance.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:42:32' prior: 50555790!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount transactions collect: [ :aTransaction | aTransaction print ].
+	collection add: 'Balance = ',anAccount balance.
+	
+	^collection.! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:42:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:42:35'!
+ERROR!
+!Deposit methodsFor: 'value' stamp: 'ms 10/19/2022 23:43:04' prior: 50555654 overrides: 50555385!
+print
+
+	^'Deposito por ',value,'.'! !
+!Deposit methodsFor: 'value' stamp: 'ms 10/19/2022 23:43:13' prior: 50555816 overrides: 50555385!
+print
+
+	^'Deposito por ',value,'.'! !
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/Packages/TerseGuide.pck.st----!
+!Deposit methodsFor: 'value' stamp: 'ms 10/19/2022 23:43:55' prior: 50555821 overrides: 50555385!
+print
+
+	^'Deposito por ',value printString,'.'! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/19/2022 23:44:02' prior: 50555649 overrides: 50555385!
+print
+
+	^'Extraccion por ',value printString,'.'! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:44:08' prior: 50555643 overrides: 50555385!
+print
+
+	^'Salida por transferencia de ',transfer value printString,'.'
+
+! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:44:15' prior: 50555659 overrides: 50555385!
+print
+	
+	^'Entrada por transferencia de ',transfer value printString,'.'.! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:44:19'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:44:19'!
+ERROR!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/19/2022 23:45:04' prior: 50555799!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount transactions collect: [ :aTransaction | aTransaction print ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:06'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:06'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:45:26' prior: 50555664!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+! !
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:45:27'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:45:27'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:45:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:45:32'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:45:32'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:45:47' prior: 50555598!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport  equals: (OrderedCollection with: 'Deposito de 100.').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:45:49' prior: 50558912!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito de 100.').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:45:56' prior: 50558926!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito de 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:45:57'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:16' prior: 50558940!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:46:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:46:19'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:26'!
+test12GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:29' prior: 50559026!
+test12GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/19/2022 23:46:30'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:36' prior: 50559041!
+test12GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/19/2022 23:46:37'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:47' prior: 50559060!
+test12GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/19/2022 23:46:47'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/19/2022 23:46:57'!
+test13GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/19/2022 23:47:00'!
+test12GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+!
+
+----QUIT----(19 October 2022 23:49:34) CuisUniversity-5481.image priorSource: 7154974!
