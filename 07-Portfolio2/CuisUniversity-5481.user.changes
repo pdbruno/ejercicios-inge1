@@ -2088,3 +2088,3520 @@ test12GenerateSummaryReportForAccountWithWithdraw
 !
 
 ----QUIT----(19 October 2022 23:49:34) CuisUniversity-5481.image priorSource: 7154974!
+
+----STARTUP---- (20 October 2022 19:28:16) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:30:50'!
+test13GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:32:50' prior: 50559183!
+test13GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:33:24'!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:33:26'!
+test13GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:33:34' prior: 50559215!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:33:37'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:33:46' prior: 50559251!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:33:49'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:34:00'!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = 100').
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:34:04' prior: 50559347!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = 100').
+! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 19:34:18' prior: 50558764 overrides: 50555385!
+print
+	
+	^'Salida por transferencia de ',transfer value printString,'.'.! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 19:34:23' prior: 50558757 overrides: 50555385!
+print
+
+	^'Entrada por transferencia de ',transfer value printString,'.'
+
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:34:36' prior: 50559273!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:34:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:34:37'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:34:37'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'ms 10/20/2022 19:34:47' prior: 50559365!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:34:48'!
+PASSED!
+!Account methodsFor: 'nil' stamp: 'ms 10/20/2022 19:37:37'!
+collectTransactions: aBlock
+	
+	^self transactions collect: aBlock value ! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 19:38:26' prior: 50558777!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount collectTransactions: [ :aTransaction | aTransaction print ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 19:38:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 19:38:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 19:38:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 19:38:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:38:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:38:27'!
+ERROR!
+!Account methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 19:38:46' prior: 50559558!
+collectTransactions: aBlock
+	
+	^self transactions collect: aBlock ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 19:39:06'!
+PASSED!
+
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'ms 10/20/2022 19:59:37'!
+Object subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNet methodsFor: 'no messages' stamp: 'ms 10/20/2022 19:59:59'!
+generate: anAccount
+
+
+
+! !
+
+!classRenamed: #TransferNet as: #TransferNetReport stamp: 'ms 10/20/2022 20:00:05'!
+Smalltalk renameClassNamed: #TransferNet as: #TransferNetReport!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:02:04' prior: 50559704!
+generate: anAccount
+
+	^anAccount 
+
+
+! !
+
+TestCase subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/20/2022 20:05:21'!
+TestCase subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReceptiveAccountTest subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/20/2022 20:05:51'!
+ReceptiveAccountTest subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:00' overrides: 50558794!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 20:06:01'!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:06' overrides: 50558959!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 20:06:06'!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:11' overrides: 50559146!
+test13GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 20:06:11'!
+test13GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:18' overrides: 50554628!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+
+!methodRemoval: ReceptiveAccountTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 20:06:18'!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:21' overrides: 50559397!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 20:06:21'!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:25' overrides: 50559480!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: ReceptiveAccountTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 20:06:25'!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+!
+
+TestCase subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/20/2022 20:06:29'!
+TestCase subclass: #SummaryReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:06:36'!
+test01CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.! !
+
+!methodRemoval: SummaryReportTest #test10CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 20:06:38'!
+test10CanObtainTransferFromWithdraw
+
+	| account1 account2 transfer deposit withdrawal |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 200 on: account1.
+	transfer := Transfer register: 100 from: account1 to: account2.
+	
+	deposit := transfer deposit.
+	withdrawal := transfer withdrawal.
+	
+	self assert: deposit equals: withdrawal transfer deposit.
+	self assert: withdrawal equals: deposit transfer withdrawal.!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:07:09'!
+test02GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+! !
+
+!methodRemoval: SummaryReportTest #test11GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 20:07:11'!
+test11GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:07:14'!
+test03GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+
+!methodRemoval: SummaryReportTest #test12GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 20:07:16'!
+test12GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:07:20'!
+test04GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: SummaryReportTest #test13GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 20:07:22'!
+test13GenerateSummaryReportForAccountWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:07:26'!
+test05GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!methodRemoval: SummaryReportTest #test14GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 20:07:28'!
+test14GenerateSummaryReportForAccountWithTransferDeposit
+
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account2 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/20/2022 20:07:32'!
+test06GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: SummaryReportTest #test15GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 20:07:33'!
+test15GenerateSummaryReportForAccountWithTransferWithdraw
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/20/2022 20:07:36'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/20/2022 20:07:37'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/20/2022 20:07:37'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/20/2022 20:07:37'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/20/2022 20:07:37'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/20/2022 20:07:37'!
+PASSED!
+
+TestCase subclass: #TransferNetReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/20/2022 20:07:46'!
+TestCase subclass: #TransferNetReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetReportTest methodsFor: 'no messages' stamp: 'ms 10/20/2022 20:08:16'!
+test01TransferNetReportReturnZeroIfAccountEmpty
+	
+	! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:08:20' prior: 50560176!
+test01TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account |! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:08:31' prior: 50560182!
+test01TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account |
+	
+	account := ReceptiveAccount new.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:09:37' prior: 50560188!
+test01TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) generate equals: 0.! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:09:40'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:09:49' prior: 50559713!
+generate: anAccount
+
+	^0 
+
+
+! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:09:51'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:09:51'!
+ERROR!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:10:01' prior: 50560195!
+test01TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:10:02'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:10:02'!
+PASSED!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:10:08'!
+test02TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:10:32'!
+test02TransferNetReportReturnCorrectForOneTransfer
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:11:11' prior: 50560250!
+test02TransferNetReportReturnCorrectForOneTransfer
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:11:13'!
+FAILURE!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:12:39' prior: 50560210!
+generate: anAccount
+
+	^anAccount transactions inject: [0] into: [ :aTransaction :aBalance | aTransaction affectBalance: aBalance ]
+
+
+! !
+
+!methodRemoval: TransferNetReportTest #test02TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:12:43'!
+test02TransferNetReportReturnZeroIfAccountEmpty
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:12:45'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:12:45'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:13:21' prior: 50560279!
+generate: anAccount
+
+	^anAccount transactions inject: [0] into: [ :aBalance :aTransaction | aTransaction affectBalance: aBalance ]
+
+
+! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:13:26'!
+FAILURE!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:13:26'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:13:32'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:13:32'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:14:12' prior: 50560306!
+generate: anAccount
+
+		^anAccount transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:14:13' prior: 50560330!
+generate: anAccount
+
+	^anAccount transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]
+
+
+! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:14:17'!
+PASSED!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:16:05'!
+test03TransferNetReportReturnCorrectForOneTransfer
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:16:13'!
+test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+
+!methodRemoval: TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:16:14'!
+test03TransferNetReportReturnCorrectForOneTransfer
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:16:48' prior: 50560364!
+test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 300 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/20/2022 20:16:52'!
+FAILURE!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:18:23' prior: 50560338!
+generate: anAccount
+
+	| acc | 
+
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: acc ] 
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:18:30' prior: 50560413!
+generate: anAccount
+
+	| acc | 
+	
+	acc := 0
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: acc ] 
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:18:35' prior: 50560422!
+generate: anAccount
+
+	| acc | 
+	
+	acc := 0.
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: acc ] 
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:19:55' prior: 50560431!
+generate: anAccount
+
+	| acc | 
+	
+	acc := 0.
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: acc ] 
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:19:59' prior: 50560440!
+generate: anAccount
+
+	| acc | 
+	
+	acc := 0.
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: acc ].
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:20:22' prior: 50560449!
+generate: anAccount
+
+	| acc | 
+	
+	acc := 0.
+	^anAccount collectTransfersTransactions: [ :aTransferTransaction |  acc := aTransferTransaction affectBalance: 0 ].
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:20:33' prior: 50560458!
+generate: anAccount
+
+	| list | 
+	
+	list := anAccount collectTransfersTransactions: [ :aTransferTransaction |  aTransferTransaction affectBalance: 0 ].
+
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:20:42' prior: 50560467!
+generate: anAccount
+
+	| list | 
+	
+	list := anAccount collectTransfersTransactions: [ :aTransferTransaction |  aTransferTransaction affectBalance: 0 ].
+	
+	^list sum
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:20:43' prior: 50560476!
+generate: anAccount
+
+	| list | 
+	
+	list := anAccount collectTransfersTransactions: [ :aTransferTransaction |  aTransferTransaction affectBalance: 0 ].
+	
+	^list sum.
+
+
+
+! !
+!Account methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:21:14'!
+collectTransfersTransactions: aBlock
+	
+	^self transactions collect: aBlock ! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:22:59' prior: 50560393!
+test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 300 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:27:23' prior: 50560485!
+generate: anAccount
+
+	| list | 
+	
+	list := anAccount inject: 0 into: [:partialTransferBalance :aTransferTransaction |  aTransferTransaction affectBalance: partialTransferBalance ].
+	
+	^list sum.
+
+
+
+! !
+!AccountTransaction methodsFor: 'balance' stamp: 'ms 10/20/2022 20:28:18'!
+affectTransferBalance: aBalance
+
+	^0 ! !
+!AccountTransferTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:30:07'!
+affectTransferBalance: aBalance
+
+	^self affectBalance: aBalance! !
+
+!methodRemoval: Account #collectTransfersTransactions: stamp: 'ms 10/20/2022 20:31:29'!
+collectTransfersTransactions: aBlock
+	
+	^self transactions collect: aBlock !
+!Account methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:33:53'!
+inject: anInitialValue intoTransactions: aBlock
+	
+	^self transactions inject: anInitialValue into: aBlock ! !
+
+!methodRemoval: Account #collectTransactions: stamp: 'ms 10/20/2022 20:33:59'!
+collectTransactions: aBlock
+	
+	^self transactions collect: aBlock !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:35:45' prior: 50559564!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount inject: OrderedCollection new intoTransactions: [:aCollection :aTransaction | aCollection add: (aTransaction print) ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:37:19' prior: 50560515!
+generate: anAccount
+
+	^anAccount inject: 0 intoTransactions: [:partialTransferBalance :aTransaction | aTransaction affectTransferBalance: partialTransferBalance ].
+
+
+
+! !
+!AccountTransaction methodsFor: 'balance' stamp: 'ms 10/20/2022 20:37:26' prior: 50560524!
+affectTransferBalance: aBalance
+
+	^aBalance! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/20/2022 20:37:53' prior: 50560563!
+generate: anAccount
+
+	^anAccount inject: 0 intoTransactions: 
+	[:partialTransferBalance :aTransaction | aTransaction affectTransferBalance: partialTransferBalance ].
+
+
+
+! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/20/2022 20:37:53'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/20/2022 20:37:53'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/20/2022 20:37:53'!
+PASSED!
+
+----QUIT----(20 October 2022 22:38:03) CuisUniversity-5481.image priorSource: 7280819!
+
+----STARTUP---- (21 October 2022 18:53:01) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:01:28' prior: 50560551!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount inject: OrderedCollection new intoTransactions: [:aCollection :aTransaction | aCollection add: (aTransaction aggregateToReport: self) ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+!AbstractTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:01:46'!
+aggregateToReport
+
+	self subclassResponsibility 
+
+! !
+!AbstractTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:01:56'!
+aggregateToReport: aReport
+
+	self subclassResponsibility 
+
+! !
+
+!methodRemoval: AbstractTransaction #aggregateToReport stamp: 'ms 10/21/2022 19:02:00'!
+aggregateToReport
+
+	self subclassResponsibility 
+
+!
+
+!methodRemoval: AbstractTransaction #print stamp: 'ms 10/21/2022 19:02:18'!
+print
+
+	self subclassResponsibility 
+
+!
+!Deposit methodsFor: 'value' stamp: 'ms 10/21/2022 19:04:30' overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateDepositToReport: self.
+	! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:05:43'!
+aggregateDepositToReport: aDeposit
+	
+	^'Deposito por ',aDeposit value printString,'.'.! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/21/2022 19:06:39' overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateWithdrawToReport: self.
+	! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:06:59'!
+aggregateWithdrawToReport: aDeposit
+	
+	^'Deposito por ',aDeposit value printString,'.'.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:07:05' prior: 50560651!
+aggregateWithdrawToReport: aDeposit
+	
+	^'Extraccion por ',aDeposit value printString,'.'.! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:09:17' overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateWithdrawToReport: self.
+	! !
+!TransferDeposit methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:09:30' prior: 50560664 overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateTransferDepositToReport: self.
+	! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:09:54'!
+aggregateTransferDepositToReport: aDeposit
+	
+	^'Extraccion por ',aDeposit value printString,'.'.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:10:17' prior: 50560677!
+aggregateTransferDepositToReport: aDeposit
+	
+	^'Entrada por transferencia de ',aDeposit value printString,'.'.! !
+
+!methodRemoval: TransferDeposit #print stamp: 'ms 10/21/2022 19:10:27'!
+print
+
+	^'Entrada por transferencia de ',transfer value printString,'.'
+
+!
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:10:34' overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateTransferDepositToReport: self.
+	! !
+!TransferWithdraw methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:10:44' prior: 50560696 overrides: 50560622!
+aggregateToReport: aReport
+	
+	^aReport aggregateTransferWithdrawToReport: self.
+	! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:11:09'!
+aggregateTransferWithdrawToReport: aDeposit
+	
+	^'Salida por transferencia de ',aDeposit value printString,'.'.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:11:30' prior: 50560709!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	
+	^'Salida por transferencia de ',aTransferWithdraw value printString,'.'.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:11:45' prior: 50560657!
+aggregateWithdrawToReport: aWithdraw
+	
+	^'Extraccion por ',aWithdraw value printString,'.'.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:11:59' prior: 50560684!
+aggregateTransferDepositToReport: aTransferDeposit
+	
+	^'Entrada por transferencia de ',aTransferDeposit value printString,'.'.! !
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 19:12:02'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 19:12:02'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:12:02'!
+ERROR!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 19:12:02'!
+ERROR!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:12:02'!
+ERROR!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 19:12:02'!
+ERROR!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:12:09'!
+ERROR!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:12:09'!
+ERROR!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:13:10'!
+ERROR!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:13:10'!
+ERROR!
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:15:48' prior: 50560605!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount inject: OrderedCollection new intoTransactions: [:aCollection :aTransaction | aCollection add: (aTransaction aggregateToReport: self). aCollection ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+!SummaryReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:16:03' prior: 50560776!
+generate: anAccount
+
+	| collection |
+
+	collection := anAccount inject: OrderedCollection new intoTransactions: 
+		[:aCollection :aTransaction | aCollection add: (aTransaction aggregateToReport: self). aCollection ].
+	collection add: 'Balance = ',anAccount balance printString.
+	
+	^collection.! !
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 19:16:05'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 19:16:05'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:16:05'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 19:16:05'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:16:05'!
+FAILURE!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 19:16:05'!
+FAILURE!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:16:10'!
+FAILURE!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:17:27'!
+FAILURE!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:17:27'!
+FAILURE!
+!AccountTransferTransaction methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:18:05' overrides: 16902254!
+value
+
+	^transfer value
+! !
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 19:18:11'!
+PASSED!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:25:45' prior: 50560577!
+generate: anAccount
+
+	^anAccount inject: 0 intoTransactions: 
+	[:partialTransferBalance :aTransaction | aTransaction aggregateToReport: self + partialTransferBalance].
+
+
+
+! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:25:56'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:25:56'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:25:56'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:26:00'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:26:49' prior: 50560864!
+generate: anAccount
+
+	^anAccount inject: 0 intoTransactions: 
+	[:partialTransferBalance :aTransaction | (aTransaction aggregateToReport: self) + partialTransferBalance].
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:31:08'!
+aggregateTransferWithdrawToReport: aTransferWithdraw 
+	self shouldBeImplemented.! !
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 19:35:00'!
+Object subclass: #TransferNetReport
+	instanceVariableNames: 'partialBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:34:58' prior: 50560898!
+aggregateTransferWithdrawToReport: aTransferWithdraw 
+	partialBalance := aTransferWithdraw affectBalance: partialBalance! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:35:19'!
+ERROR!
+!TransferNetReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 19:36:18' overrides: 16920235!
+initialize
+	partialBalance := 0! !
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:36:25'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:36:25'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:36:25'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:36:28'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:37:18' prior: 50560889!
+generate: anAccount
+
+	^anAccount inject: 0 intoTransactions: 
+	[:partialTransferBalance :aTransaction | aTransaction aggregateToReport: self].
+
+
+
+! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:38:02' prior: 50560912!
+aggregateTransferWithdrawToReport: aTransferWithdraw 
+	partialBalance := aTransferWithdraw affectBalance: partialBalance.
+	^partialBalance ! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:38:04'!
+FAILURE!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:41:11'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:41:16'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:41:16'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:41:16'!
+ERROR!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:41:16'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:41:28'!
+aggregateDepositToReport: aDeposit 
+	self shouldBeImplemented.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:41:45' prior: 50560984!
+aggregateDepositToReport: aDeposit 
+! !
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:41:47'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:41:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:41:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:41:54'!
+PASSED!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:42:16'!
+test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 300 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:42:22' prior: 50561011!
+test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Withdraw register: 300 on: account1.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.! !
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 19:42:23'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:42:32'!
+aggregateWithdrawToReport: aWithdraw 
+	self shouldBeImplemented.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:42:45' prior: 50561047!
+aggregateWithdrawToReport: aWithdraw 
+	! !
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 19:42:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:42:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:42:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:42:54'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 19:42:54'!
+PASSED!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:44:02' prior: 50560261!
+test02TransferNetReportReturnCorrectForOneTransfer
+	
+	| account1 account2 transferReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport) equals: -100.
+	self assert: (account2 generateReport: transferReport) equals: 100.! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:44:03'!
+ERROR!
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:44:13'!
+aggregateTransferDepositToReport: aTransferDeposit 
+	self shouldBeImplemented.! !
+!TransferNetReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:44:52' prior: 50561099!
+aggregateTransferDepositToReport: aTransferDeposit 
+	partialBalance := aTransferDeposit affectBalance: partialBalance.
+	^partialBalance. ! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:44:55'!
+FAILURE!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:45:06'!
+FAILURE!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:45:06'!
+FAILURE!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:45:38'!
+FAILURE!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 19:46:25' prior: 50561079!
+test02TransferNetReportReturnCorrectForOneTransfer
+	
+	| account1 account2 transferReport1 transferReport2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport1) equals: -100.
+	self assert: (account2 generateReport: transferReport2) equals: 100.! !
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:46:26'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 19:46:26'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 19:46:26'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 19:46:26'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 19:46:26'!
+PASSED!
+
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 19:49:29'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Report methodsFor: 'aggregate transactions' stamp: 'ms 10/21/2022 19:51:46'!
+aggregateDepositToReport: aDeposit
+	self subclassResponsibility ! !
+!Report methodsFor: 'aggregate transactions' stamp: 'ms 10/21/2022 19:52:12'!
+aggregateWithdrawToReport: aWithdraw
+	self subclassResponsibility ! !
+!Report methodsFor: 'aggregate transactions' stamp: 'ms 10/21/2022 19:52:24'!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	self subclassResponsibility ! !
+!Report methodsFor: 'aggregate transactions' stamp: 'ms 10/21/2022 19:53:34'!
+aggregateTransferDepositToReport: aTransferDeposit
+	self subclassResponsibility ! !
+!Report methodsFor: 'evaluating' stamp: 'ms 10/21/2022 19:55:03'!
+generate
+	self subclassResponsibility ! !
+!Report methodsFor: 'evaluating' stamp: 'ms 10/21/2022 19:57:20'!
+generate: anAccount
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #generate stamp: 'ms 10/21/2022 19:57:32'!
+generate
+	self subclassResponsibility !
+
+Report subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 20:01:04'!
+Report subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'partialBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 20:01:11'!
+Report subclass: #TransferNetReport
+	instanceVariableNames: 'partialBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:07:19' prior: 50560105!
+test06GenerateSummaryReportForAccountWithTransferWithdraw
+	
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:12:30'!
+test07GenerateSummaryReportForPortfolioWithDeposit
+	
+	| account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:12:46' prior: 50561253!
+test07GenerateSummaryReportForPortfolioWithDeposit
+	
+	| portfolio account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	generatedReport := account1 generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:12:59'!
+test07GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:13:10' prior: 50561271!
+test07GenerateSummaryReportForPortfolioWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+
+!methodRemoval: SummaryReportTest #test07GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 20:13:16'!
+test07GenerateSummaryReportForAccountWithDeposit
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:13:40' prior: 50561303!
+test07GenerateSummaryReportForPortfolioWithDeposit
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:14:10' prior: 50561333!
+test07GenerateSummaryReportForPortfolioWithDeposit
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:14:21' prior: 50561349!
+test07GenerateSummaryReportForPortfolioWithDeposit
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Deposito por 100.' with: 'Balance = 100').
+! !
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 20:14:22'!
+ERROR!
+!Account methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:14:47'!
+generateReport: aReport
+
+	^aReport generate: self.
+
+! !
+
+!methodRemoval: ReceptiveAccount #generateReport: stamp: 'ms 10/21/2022 20:14:47'!
+generateReport: aReport
+
+	^aReport generate: self.
+
+!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 20:14:53'!
+PASSED!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:15:45'!
+test04GenerateSummaryReportForPortfolioWithWithdraw
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:16:03' prior: 50561422!
+test04GenerateSummaryReportForPortfolioWithWithdraw
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:16:11' prior: 50561437!
+test04GenerateSummaryReportForPortfolioWithWithdraw
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:16:18' prior: 50561453!
+test04GenerateSummaryReportForPortfolioWithWithdraw
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 20:16:19'!
+PASSED!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:16:26'!
+test08GenerateSummaryReportForPortfolioWithWithdraw
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+! !
+
+!methodRemoval: SummaryReportTest #test04GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 20:16:30'!
+test04GenerateSummaryReportForPortfolioWithWithdraw
+
+	| portfolio account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Extraccion por 100.' with: 'Balance = -100').
+!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:17:20'!
+test09GenerateSummaryReportForPortfolioWithTransferDeposit
+
+	| portfolio account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	portfolio add: account2.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/21/2022 20:17:21'!
+PASSED!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:18:04'!
+test10GenerateSummaryReportForPortfolioWithTransferWithdraw
+
+	| portfolio account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	portfolio add: account2.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:18:11' prior: 50561614!
+test10GenerateSummaryReportForPortfolioWithTransferWithdraw
+
+	| portfolio account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	portfolio add: account1.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Entrada por transferencia de 100.' with: 'Balance = 100').
+! !
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/21/2022 20:18:13'!
+FAILURE!
+!SummaryReportTest methodsFor: 'tests' stamp: 'ms 10/21/2022 20:18:39' prior: 50561634!
+test10GenerateSummaryReportForPortfolioWithTransferWithdraw
+
+	| portfolio account1 account2 summaryReport generatedReport | 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	summaryReport := SummaryReport new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	portfolio add: account1.
+	
+	generatedReport := portfolio generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
+! !
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/21/2022 20:18:40'!
+PASSED!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:19:20'!
+test05TransferNetReportReturnCorrectForOneTransferForPortfolio
+	
+	| portfolio account1 account2 transferReport1 transferReport2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport1) equals: -100.
+	self assert: (account2 generateReport: transferReport2) equals: 100.! !
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:27:37'!
+test06TransferNetReportReturnCorrectForOneTransferForPortfolio
+	
+	| portfolio1 portfolio2 account1 account2 transferReport1 transferReport2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio1 add: account1.
+	portfolio2 add: account2.
+	
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (portfolio1 generateReport: transferReport1) equals: -100.
+	self assert: (portfolio2 generateReport: transferReport2) equals: 100.! !
+
+!testRun: #TransferNetReportTest #test06TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test05TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test06TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 20:27:39'!
+PASSED!
+
+!methodRemoval: TransferNetReportTest #test05TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 20:28:07'!
+test05TransferNetReportReturnCorrectForOneTransferForPortfolio
+	
+	| portfolio account1 account2 transferReport1 transferReport2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (account1 generateReport: transferReport1) equals: -100.
+	self assert: (account2 generateReport: transferReport2) equals: 100.!
+!TransferNetReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:28:16'!
+test05TransferNetReportReturnCorrectForOneTransferForPortfolio
+	
+	| portfolio1 portfolio2 account1 account2 transferReport1 transferReport2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio1 add: account1.
+	portfolio2 add: account2.
+	
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (portfolio1 generateReport: transferReport1) equals: -100.
+	self assert: (portfolio2 generateReport: transferReport2) equals: 100.! !
+
+!methodRemoval: TransferNetReportTest #test06TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 20:28:20'!
+test06TransferNetReportReturnCorrectForOneTransferForPortfolio
+	
+	| portfolio1 portfolio2 account1 account2 transferReport1 transferReport2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio1 add: account1.
+	portfolio2 add: account2.
+	
+	Transfer register: 100 from: account1 to: account2.
+	
+	transferReport1 := TransferNetReport new.
+	transferReport2 := TransferNetReport new.
+	
+	self assert: (portfolio1 generateReport: transferReport1) equals: -100.
+	self assert: (portfolio2 generateReport: transferReport2) equals: 100.!
+
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 20:38:53'!
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:42:53'!
+named: aName with: anAccount
+
+	^self new initializeWithName: aName andAccount: anAccount;
+		yourself! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/21/2022 20:43:31'!
+PASSED!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 20:46:08'!
+named: aName with: anAccount with: anotherAccount
+	^self new initializeWithName: aName andAccount: anAccount andAccount: anAccount;
+		yourself! !
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'ms 10/21/2022 20:49:58'!
+named: aName
+	self new initializeWith: aName ! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/21/2022 20:53:21'!
+initializeWith: aName
+
+	super initialize.
+	name := aName.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/21/2022 20:53:57' prior: 50554849 overrides: 16920235!
+initialize
+
+	super initialize.
+	name := 'aReceptiveAccount'.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/21/2022 20:54:14' prior: 50561955 overrides: 16920235!
+initialize
+
+	super initialize.
+	name := 'Une Receptive Account'.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.! !
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 20:54:41' prior: 50554727 overrides: 16920235!
+initialize
+	name := 'Une Portfolie'.
+	accounts := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Account methodsFor: 'accessing' stamp: 'ms 10/21/2022 20:55:20' overrides: 16903442!
+name
+	^name! !
+
+Report subclass: #TreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 20:59:14'!
+Report subclass: #TreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructureReport methodsFor: 'no messages' stamp: 'ms 10/21/2022 21:07:40' overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: aPortfolio name) intoTransactions: 
+	[:partialTransferBalance :aTransaction | aTransaction aggregateToReport: self].
+! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:17:42' prior: 50561995 overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: aPortfolio name) intoTransactions: 
+	[:aCollection :aTransaction | (aCollection add: (aTransaction aggregateToReport: self)). aCollection].
+! !
+
+TestCase subclass: #TreeStructureReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 21:18:35'!
+TestCase subclass: #TreeStructureReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructureReportTest methodsFor: 'no messages' stamp: 'ms 10/21/2022 21:20:29'!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:20:35' prior: 50562028!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account transferReport |
+	
+	account := ReceptiveAccount new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:20:56' prior: 50562039!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account transferReport |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:21:52' prior: 50562050!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account transferReport |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:21:54' prior: 50562062!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account transferReport |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	transferReport := TransferNetReport new.
+	
+	self assert: (account generateReport: transferReport) equals: 0.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:22:20' prior: 50562075!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: 0.! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 21:22:21'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 21:22:37'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:22:37'!
+initializeWithName: aName andAccount: anAccount 
+	self shouldBeImplemented.
+	name := aName.
+	account := anAccount.! !
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:22:45' prior: 50562112!
+initializeWithName: aName andAccount: anAccount 
+
+	name := aName.
+	account := anAccount.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:23:08' prior: 50562088!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1').! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 21:23:09'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 21:23:09'!
+PASSED!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:25:14'!
+test02TreeStructureReportReturnWithChilds
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:25:42' prior: 50562126!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio report |
+	
+
+	portfolio := Portfolio named: 'Portfolio 1'.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:25:47' prior: 50562162!
+test01TreeStructureReportReturnJustPortfolioIfEmpty
+	
+	| portfolio report |
+
+	portfolio := Portfolio named: 'Portfolio 1'.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1').! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 21:25:48'!
+ERROR!
+!Portfolio class methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:26:00'!
+named: aString 
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:26:09' prior: 50562189!
+named: aString 
+	
+	! !
+!Portfolio class methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:26:38' prior: 50562194!
+named: aName 
+
+	^self new initializeWithName: aName;
+		yourself! !
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 21:26:49'!
+initializeWithName: aName 
+
+	name := aName.
+! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 21:26:55'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChilds stamp: 'ms 10/21/2022 21:26:55'!
+PASSED!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:27:25' prior: 50562148!
+test02TreeStructureReportReturnWithChilds
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' ').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:27:37' prior: 50562216!
+test02TreeStructureReportReturnWithChilds
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChilds stamp: 'ms 10/21/2022 21:27:40'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:33:15'!
+aggregateReceptiveAccountToReport: aWithdraw 
+	! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:33:23' prior: 50562249!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:46:53'!
+aggregatePortfolioToReport: aReceptiveAccount
+	^ aReceptiveAccount name! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:49:56' prior: 50562259!
+aggregatePortfolioToReport: aPortfolio
+	^ self generate: aPortfolio! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:53:06' prior: 50562254!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	^OrderedCollection with: aReceptiveAccount name! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:53:50' prior: 50562005 overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: aPortfolio name) intoTransactions: 
+	[:aCollection :aTransaction | (aCollection addAllLast: (aTransaction aggregateToReport: self)). aCollection].
+! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 21:54:54'!
+test02TreeStructureReportReturnWithChildren
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').! !
+
+!methodRemoval: TreeStructureReportTest #test02TreeStructureReportReturnWithChilds stamp: 'ms 10/21/2022 21:54:56'!
+test02TreeStructureReportReturnWithChilds
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 21:56:40'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:01:19' prior: 50562279 overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: aPortfolio name) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection].
+! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:01:21'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'ms 10/21/2022 22:01:34'!
+inject: anOrderedCollection intoAccounts: aBlockClosure 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reports' stamp: 'ms 10/21/2022 22:02:33' prior: 50562337!
+inject: anInitialValue intoAccounts: aBlockClosure 
+	accounts inject: anInitialValue into: aBlockClosure.! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:02:35'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:02:44'!
+FAILURE!
+!Portfolio methodsFor: 'reports' stamp: 'ms 10/21/2022 22:03:47' prior: 50562343!
+inject: anInitialValue intoAccounts: aBlockClosure 
+	^accounts inject: anInitialValue into: aBlockClosure.! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:03:55'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:03:55'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:03:55'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:05:00'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:05:00'!
+FAILURE!
+
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 22:05:38'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:05:56' prior: 50562119!
+initializeWithName: aName andAccount: anAccount 
+
+	name := aName.
+	accounts := OrderedCollection with: anAccount .! !
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:05:58' prior: 50562396!
+initializeWithName: aName andAccount: anAccount 
+
+	name := aName.
+	accounts := OrderedCollection with: anAccount.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/21/2022 22:06:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/21/2022 22:06:07'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/21/2022 22:06:11'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/21/2022 22:06:15'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/21/2022 22:06:15'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/21/2022 22:06:15'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/21/2022 22:06:15'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test05TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/21/2022 22:06:15'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:06:17'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:06:17'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:06:17'!
+ERROR!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:07:27' prior: 50562324 overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: aPortfolio name) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection].
+! !
+!Account methodsFor: 'reports' stamp: 'ms 10/21/2022 22:07:53'!
+aggregateToReport: aReport
+
+	self subclassResponsibility .
+
+! !
+!Portfolio methodsFor: 'nil' stamp: 'ms 10/21/2022 22:08:22' overrides: 50562583!
+aggregateToReport: aReport
+	
+	aReport aggregatePortfolioToReport: self.! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'ms 10/21/2022 22:08:40' overrides: 50562583!
+aggregateToReport: aReport
+	
+	aReport aggregateReceptiveAccountToReport: self.! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:09:07'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:09:07'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:09:30'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:09:30'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:10:46'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:10:46'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:11:41'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:11:41'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'ms 10/21/2022 22:13:21' prior: 50561942!
+named: aName
+	^self new initializeWith: aName ! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:13:38' prior: 50561947!
+initializeWith: aName
+
+	super initialize.
+	name := aName.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.
+	
+	^self! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:13:43' prior: 50561964 overrides: 16920235!
+initialize
+
+	super initialize.
+	name := 'Une Receptive Account'.
+	transactions := OrderedCollection new.
+	transfers := OrderedCollection new.
+	^self! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:13:58'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:13:58'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:15:09'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:15:09'!
+ERROR!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:18:03' prior: 50562271!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+
+	^OrderedCollection with: aReceptiveAccount name! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:18:06'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:18:06'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:19:07' prior: 50562594 overrides: 50562583!
+aggregateToReport: aReport
+	
+	^aReport aggregateReceptiveAccountToReport: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:19:12' prior: 50562588 overrides: 50562583!
+aggregateToReport: aReport
+	
+	^aReport aggregatePortfolioToReport: self.! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:19:27'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:19:27'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:19:27'!
+FAILURE!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:19:46' prior: 50562289!
+test02TreeStructureReportReturnWithChildren
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: 'Receptive Account 1').! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:19:46'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:19:46'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:19:46'!
+PASSED!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:20:35' prior: 50562709!
+test02TreeStructureReportReturnWithChildren
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').! !
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:20:35'!
+FAILURE!
+
+Report subclass: #TreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/21/2022 22:21:55'!
+Report subclass: #TreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructureReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:24:13' overrides: 16920235!
+initialize
+	indentation := ''! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:25:22' prior: 50562669!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+
+	^OrderedCollection with: indentation , aReceptiveAccount name! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:28:08' prior: 50562265!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size -1.
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:28:11'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:28:11'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:28:11'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:29:28'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:29:28'!
+FAILURE!
+!TreeStructureReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:31:56' prior: 50562768 overrides: 16920235!
+initialize
+	indentation := ' '! !
+!TreeStructureReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:32:10' prior: 50562810 overrides: 16920235!
+initialize
+	indentation := ''! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:32:29'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:32:29'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:32:29'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:33:13' prior: 50562773!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	^OrderedCollection with: indentation,' ' , aReceptiveAccount name! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:33:16' prior: 50562832!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	^OrderedCollection with: indentation,' ',aReceptiveAccount name! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:33:18'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:33:18'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:33:51'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:33:51'!
+PASSED!
+!TreeStructureReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:34:07' prior: 50562815 overrides: 16920235!
+initialize
+	indentation := ' '! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:34:16' prior: 50562840!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	^OrderedCollection with: indentation,aReceptiveAccount name! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:34:17'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:34:17'!
+PASSED!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:36:31'!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:36:49'!
+test02TreeStructureReportReturnWithOneChild
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').! !
+
+!methodRemoval: TreeStructureReportTest #test02TreeStructureReportReturnWithChildren stamp: 'ms 10/21/2022 22:36:52'!
+test02TreeStructureReportReturnWithChildren
+	
+	| portfolio account report |
+	
+	account := ReceptiveAccount named: 'Receptive Account 1'.
+	portfolio := Portfolio named: 'Portfolio 1' with: account.
+	
+	
+	report := TreeStructureReport new.
+	
+	self assert: (portfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:38:13' prior: 50562884!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	self assert: (familyPortfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio 1' with: ' Receptive Account 1').! !
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:38:14'!
+ERROR!
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:39:18'!
+initializeWithName: aName andAccount: anAccount andAccount: anotherAccount 
+
+	name := aName.
+	accounts := OrderedCollection with: anAccount with: anotherAccount! !
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:39:21'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:39:21'!
+FAILURE!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:39:55' prior: 50562935!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	self assert: (familyPortfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio de la familia' with: ' Receptive Account 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:40:17' prior: 50562981!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	
+	self assert: (familyPortfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio de la familia' with: ' Receptive Account 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:40:37' prior: 50563007!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'Portfolio de la familia'.
+	
+	self assert: (familyPortfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio de la familia' with: ' Receptive Account 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:41:34' prior: 50563034!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'Portfolio de la familia';addLast: 	' Cuenta Mia';addLast: ' Portfolio de hijos';addLast: '  Cuenta de juan';addLast: '  Cuenta de Angeles'.
+	
+	self assert: (familyPortfolio generateReport: report) equals: (OrderedCollection with: 'Portfolio de la familia' with: ' Receptive Account 1').! !
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:41:44' prior: 50563063!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'Portfolio de la familia';addLast: 	' Cuenta Mia';addLast: ' Portfolio de hijos';addLast: '  Cuenta de juan';addLast: '  Cuenta de Angeles'.
+	
+	self assert: (familyPortfolio generateReport: report) equals: expected.! !
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:41:45'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:41:56'!
+FAILURE!
+!Portfolio class methodsFor: 'instance creation' stamp: 'ms 10/21/2022 22:42:38' prior: 50561934!
+named: aName with: anAccount with: anotherAccount
+	^self new initializeWithName: aName andAccount: anAccount andAccount: anotherAccount;
+		yourself! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:42:41'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:42:41'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:42:41'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:42:41'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:42:55'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:42:55'!
+FAILURE!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:43:56' prior: 50563095!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'Portfolio de la familia';addLast: 	' Cuenta Mia';addLast: ' Portfolio de hijos';addLast: '  Cuenta de juan';addLast: '  Cuenta de Angeles'.
+	
+	self assert: (familyPortfolio generateReport: report) equals: expected.! !
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:43:56'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:44:58'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:44:58'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:47:34' prior: 50562780!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size.
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:47:35'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:47:35'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:47:35'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:47:35'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:47:39' prior: 50563209!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:47:42'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:47:42'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:47:42'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:47:42'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:47:34' prior: 50563235!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size.
+	^result! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:49:49' prior: 50563259!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result at: 1.
+	indentation := indentation copyUpTo: indentation size.
+	^result! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:50:54' prior: 50563269!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result at: 1 put: (indentation, result at: 1) .
+	indentation := indentation copyUpTo: indentation size.
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:50:56'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:50:56'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:50:56'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:50:56'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:51:51'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:51:51'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:51:51'!
+ERROR!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:51:51'!
+ERROR!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:52:51' prior: 50563279!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result at: 1 put: (indentation, (result at: 1)) .
+	indentation := indentation copyUpTo: indentation size.
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:52:53'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:52:53'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:52:53'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:52:53'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:53:27'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:53:27'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:53:27'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:53:27'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:54:20' prior: 50563322!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size.
+	result at: 1 put: (indentation, (result at: 1)) .
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:54:21'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:54:21'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:54:21'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:54:21'!
+FAILURE!
+!TreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:55:00' prior: 50563166!
+test03TreeStructureReportReturnWithMultilevelChildren
+	
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio report expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	report := TreeStructureReport new.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'Portfolio de la familia';addLast: 	' Cuenta Mia';addLast: ' Portfolio de hijos';addLast: '  Cuenta de Juan';addLast: '  Cuenta de Angeles'.
+	
+	self assert: (familyPortfolio generateReport: report) equals: expected.! !
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:55:01'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:55:52' prior: 50563366!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size- 1.
+	result at: 1 put: (indentation, (result at: 1)) .
+	^result! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:55:54' prior: 50563428!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: indentation size - 1.
+	result at: 1 put: (indentation, (result at: 1)) .
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:55:56'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:55:56'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:55:56'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:55:56'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:56:16' prior: 50563439!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	result at: 1 put: (indentation, (result at: 1)) .
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:56:21'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:56:21'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:56:21'!
+FAILURE!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:56:21'!
+FAILURE!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:56:52' prior: 50562869!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	^OrderedCollection with: indentation,' ',aReceptiveAccount name! !
+!TreeStructureReport methodsFor: 'initialization' stamp: 'ms 10/21/2022 22:57:01' prior: 50562864 overrides: 16920235!
+initialize
+	indentation := ''! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:57:29' prior: 50562574 overrides: 50561203!
+generate: aPortfolio
+
+	^aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection].
+! !
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:57:34' prior: 50563467!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/21/2022 22:57:35'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/21/2022 22:57:35'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:57:35'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/21/2022 22:57:42'!
+PASSED!
+
+----QUIT----(21 October 2022 22:58:00) CuisUniversity-5481.image priorSource: 7326291!
