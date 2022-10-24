@@ -5605,3 +5605,2000 @@ PASSED!
 PASSED!
 
 ----QUIT----(21 October 2022 22:58:00) CuisUniversity-5481.image priorSource: 7326291!
+
+----STARTUP---- (24 October 2022 14:35:37) as /Users/msaied/Documents/UBA/inge1/Imagenes/Imagen Portfolio 2/CuisUniversity-5481.image!
+
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/24/2022 14:36:15'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/24/2022 14:36:15'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/24/2022 14:36:15'!
+PASSED!
+
+Report subclass: #SummaryTreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryTreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 14:41:41'!
+Report subclass: #SummaryTreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:42:57' prior: 50563519!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'no messages' stamp: 'ms 10/24/2022 14:43:15'!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	^OrderedCollection with: indentation,' ',aReceptiveAccount name! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:44:02' prior: 50563587!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:45:08' prior: 50563595!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	
+	^result addAllLast: (aReceptiveAccount generateReport: SummaryReport new ).! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:45:10' prior: 50563604!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	
+	^result addAllLast: (aReceptiveAccount generateReport: SummaryReport new).! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:46:35' prior: 50563615!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	
+	^result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, '  ',aLine]).! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:46:47' prior: 50563626!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	
+	^result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, '  ',aLine]).! !
+
+TestCase subclass: #SummaryTreeStructureReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryTreeStructureReportTest category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 14:46:59'!
+TestCase subclass: #SummaryTreeStructureReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!SummaryTreeStructureReportTest methodsFor: 'no messages' stamp: 'ms 10/24/2022 14:47:15'!
+test01
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:47:59'!
+test01GenerateSummaryReportForEmptyAccount
+
+	| account summaryReport generatedReport | 
+	
+	account := ReceptiveAccount new.
+	summaryReport := SummaryReport new.
+	
+	generatedReport := account generateReport: summaryReport.
+	
+	self assert: generatedReport equals: (OrderedCollection with: 'Balance = 0').
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:49:15' prior: 50563667!
+test01GenerateSummaryReportForEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	report := SummaryReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Balance = 0').
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:49:30' prior: 50563681!
+test01GenerateSummaryReportForEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	report := SummaryReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:49:30'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:49:44' prior: 50563694!
+test01GenerateSummaryReportForEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:49:44'!
+ERROR!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:49:52'!
+ERROR!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:49:58' overrides: 50561203!
+generate: aPortfolio 
+	self shouldBeImplemented.! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:50:08' prior: 50563732 overrides: 50561203!
+generate: aPortfolio 
+	
+	! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:50:41' prior: 50563738 overrides: 50561203!
+generate: aPortfolio 
+
+	^aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection].
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test01 stamp: 'ms 10/24/2022 14:51:07'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:51:07'!
+ERROR!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:51:07'!
+ERROR!
+
+!methodRemoval: SummaryTreeStructureReportTest #test01 stamp: 'ms 10/24/2022 14:51:35'!
+test01
+!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:51:54' overrides: 16920235!
+initialize
+	indentation := ''! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:52:06'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:52:06'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:53:15' prior: 50563743 overrides: 50561203!
+generate: aPortfolio 
+
+	^(aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]) 	add: 'Balance = ',aPortfolio balance printString.
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:53:18'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:53:18'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:53:52' prior: 50563781 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: 'Balance = ',aPortfolio balance printString.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:53:57' prior: 50563802 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: 'Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:53:58'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:53:58'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:54:35' prior: 50563816 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: ' Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 14:54:36'!
+PASSED!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:59:20'!
+test02GenerateSummaryReportForPortfolioWithOneEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	portfolio add: (ReceptiveAccount named: 'La Cuenta de Patito' ).
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance=0' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 14:59:21'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:02:13'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:02:13'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:02:13'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:04:21' prior: 50563638!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, '  ',aLine]).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:04:22'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:04:22'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:04:22'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:07:42' prior: 50563855!
+test02GenerateSummaryReportForPortfolioWithOneEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	portfolio add: (ReceptiveAccount named: 'La Cuenta de Patito' ).
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance = 0' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:07:43'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:07:43'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:07:43'!
+PASSED!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:11:43'!
+test02GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit for: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance = 0' with: ' Balance = 0').
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:11:52'!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit for: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance = 0' with: ' Balance = 0').
+! !
+
+!methodRemoval: SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:11:55'!
+test02GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit for: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance = 0' with: ' Balance = 0').
+!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:15:04' prior: 50563965!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: ' Depósito por 100' with: '  Balance = 0' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:15:06'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:17:00' prior: 50564004!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: ' Deposito por 100' with: '  Balance = 0' with: ' Balance = 0').
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:17:38' prior: 50564029!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: ' Deposito por 100.' with: '  Balance = 0' with: ' Balance = 0').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:17:39'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:18:10' prior: 50564050!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: ' Deposito por 100.' with: '  Balance = 100' with: ' Balance = 100').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:18:14'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:19:06' prior: 50564075!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: '  Deposito por 100.' with: '  Balance = 100' with: ' Balance = 100').
+! !
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:19:07'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:19:07'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:19:07'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:19:07'!
+PASSED!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:19:23'!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: '  Deposito por 100.' with: '  Balance = 100' with: ' Balance = 100').
+! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:26:48' prior: 50564138!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| portfolio account result report actual | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:27:43' prior: 50564159!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| portfolio johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result report actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := portfolio generateReport: report.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:28:03' prior: 50564193!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| portfolio johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:28:35' prior: 50564235!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| portfolio johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:28:53' prior: 50564277!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:29:34' prior: 50564321!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount  new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:29:36' prior: 50564366!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:30:03' prior: 50564413!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit  register: 100 on: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:30:04' prior: 50564460!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit  register: 100 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:30:23' prior: 50564508!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:30:24' prior: 50564556!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new;
+	addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:30:26'!
+ERROR!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:31:11'!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:31:21' prior: 50564658!
+aggregatePortfolioToReport: aPortfolio
+
+	|result|
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:31:24' prior: 50564668!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:32:14' prior: 50564678!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result addLast: indentation,aPortfolio balance printString.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:32:17'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:32:17'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:32:17'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:17'!
+ERROR!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:17'!
+ERROR!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:32:34'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:32:34'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:32:34'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:34'!
+ERROR!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:34'!
+ERROR!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:32:52' prior: 50564605!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: '  Cuenta Mia';
+	addLast: '     Depósito por 100';
+	addLast: '     Extracción por 50';
+	addLast: '     Balance = 50';
+	addLast: '  Portfolio de hijos';
+	addLast: '     Cuenta de Juan';
+	addLast: '        Depósito por 100';
+	addLast: '        Extracción por 50';
+	addLast: '        Balance = 50';
+	addLast: '     Cuenta de Angeles';
+	addLast: '        Salida por extracción de 100';
+	addLast: '        Balance = -100';
+	addLast: '     Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:32:55'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:32:55'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:32:55'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:55'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:32:55'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:12' prior: 50564744!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Depósito por 100';
+	addLast: '  Extracción por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Depósito por 100';
+	addLast: '    Extracción por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: '  Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:20' prior: 50564815!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Depósito por 100';
+	addLast: '  Extracción por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Depósito por 100';
+	addLast: '    Extracción por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:34:24'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:40' prior: 50564863!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Depósito por 100';
+	addLast: '  Extracción por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100';
+	addLast: '    Extracción por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:44' prior: 50564916!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100';
+	addLast: '  Extracción por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100';
+	addLast: '    Extracción por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:47' prior: 50564964!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100';
+	addLast: '  Extraccion por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100';
+	addLast: '    Extracción por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:49' prior: 50565012!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100';
+	addLast: '  Extraccion por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100';
+	addLast: '    Extraccion por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extracción de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:34:51' prior: 50565060!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100';
+	addLast: '  Extraccion por 50';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100';
+	addLast: '    Extraccion por 50';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extraccion de 100';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:35:04'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:35:24' prior: 50564688!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result addLast: (indentation,aPortfolio balance printString).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:35:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:35:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:35:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:35:26'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:35:26'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:36:21' prior: 50565161!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	result addLast: (indentation,'Balance = ',aPortfolio balance printString).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:36:24'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:36:24'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:36:24'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:36:24'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:36:24'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:37:33' prior: 50565108!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100.';
+	addLast: '    Extraccion por 50.';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extraccion de 100.';
+	addLast: '    Balance = -100.';
+	addLast: '   Balance = -50.';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:37:37' prior: 50565230!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100.';
+	addLast: '    Extraccion por 50.';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extraccion de 100.';
+	addLast: '    Balance = -100.';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:37:39' prior: 50565278!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100.';
+	addLast: '    Extraccion por 50.';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extraccion de 100.';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:37:43'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:38:30' prior: 50565326!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '    Deposito por 100.';
+	addLast: '    Extraccion por 50.';
+	addLast: '    Balance = 50';
+	addLast: '   Cuenta de Angeles';
+	addLast: '    Salida por extraccion de 100.';
+	addLast: '    Balance = -100';
+	addLast: '   Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:38:56' prior: 50565379!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '   Deposito por 100.';
+	addLast: '   Extraccion por 50.';
+	addLast: '   Balance = 50';
+	addLast: '  Cuenta de Angeles';
+	addLast: '   Salida por extraccion de 100.';
+	addLast: '   Balance = -100';
+	addLast: '  Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:39:13'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:39:28' prior: 50565427!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '   Deposito por 100.';
+	addLast: '   Extraccion por 50.';
+	addLast: '   Balance = 50';
+	addLast: '  Cuenta de Angeles';
+	addLast: '   Salida por transferencia de 100.';
+	addLast: '   Balance = -100';
+	addLast: '  Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:39:29'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:40:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:40:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:40:26'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:40:26'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:40:26'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:41:01' prior: 50565195!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:41:04'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:41:04'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:41:04'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:41:04'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:41:04'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:41:34' prior: 50565555!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	indentation := indentation , ' '.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:41:53'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:41:53'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:42:43' prior: 50565480!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '   Deposito por 100.';
+	addLast: '   Extraccion por 50.';
+	addLast: '   Balance = 50';
+	addLast: '  Cuenta de Angeles';
+	addLast: '   Salida por transferencia de 100.';
+	addLast: '   Balance = -100';
+	addLast: ' Balance = -50';
+	addLast: 'Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:42:48'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:43:20'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:44:07' prior: 50563838 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,'Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:44:08'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:44:08'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:44:08'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:44:08'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:44:29'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:44:29'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:44:29'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:44:29'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:44:36' prior: 50565664 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,' ','Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:44:36'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:44:36'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:44:36'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:44:36'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:44:36'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:44:54' prior: 50565714 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,'Balance = ',aPortfolio balance printString.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:45:02' prior: 50565751 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,' Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:45:02'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:45:02'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:45:02'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:45:02'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:45:02'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:47:34' prior: 50563890!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation , ' '.
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, '  ',aLine]).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:47:46' prior: 50565801!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation.
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:48:00' prior: 50565815!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation.
+	result  := OrderedCollection with: indentation,' ',aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:48:16' prior: 50565828!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation.
+	result  := OrderedCollection with: indentation,aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:48:23' prior: 50565843!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:48:25'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:48:25'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:48:25'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:48:25'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:48:42' prior: 50565858!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation, ' '.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:48:43'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:48:43'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:48:43'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:48:43'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:50:35'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:50:35'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:50:35'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:50:35'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:50:38'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:51:14' prior: 50565765 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,'Balance = ',aPortfolio balance printString.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:51:15'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:51:15'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:51:15'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:51:15'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:51:39' prior: 50565946 overrides: 50561203!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,' Balance = ',aPortfolio balance printString.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:08'!
+augmentIndentation
+
+	^ indentation := indentation , ' '! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:08' prior: 50565587!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	indentation := indentation copyUpTo: (indentation size - 1).
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:45'!
+reduceIndentation
+
+	^ indentation := indentation copyUpTo: (indentation size - 1)! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:45' prior: 50565891!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	indentation := indentation, ' '.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	self reduceIndentation.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:45' prior: 50565998!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:56' prior: 50566014!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	self augmentIndentation.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, ' ',aLine]).
+	self reduceIndentation.
+	^result! !
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:54:33' prior: 50566037!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	self augmentIndentation.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	self augmentIndentation.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, aLine]).
+	self reduceIndentation.
+	self reduceIndentation.
+	^result! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:55:05'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:55:05'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:55:05'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:55:05'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:55:29'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 15:57:16'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:57:16'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 15:57:16'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 15:57:16'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 15:57:20'!
+FAILURE!
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 16:00:29' prior: 50566007!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)! !
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:00:31'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:00:31'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:00:31'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:00:31'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:00:31'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:00:45'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:00:45'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:00:45'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:00:45'!
+FAILURE!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:00:45'!
+FAILURE!
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 16:01:19' prior: 50565606!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '   Deposito por 100.';
+	addLast: '   Extraccion por 50.';
+	addLast: '   Balance = 50';
+	addLast: '  Cuenta de Angeles';
+	addLast: '   Salida por transferencia de 100.';
+	addLast: '   Balance = -100';
+	addLast: '  Balance = -50';
+	addLast: ' Balance = 0'.
+		
+	self assert: result equals: actual.! !
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:01:20'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:01:20'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:01:20'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:01:20'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:01:20'!
+PASSED!
+
+----SNAPSHOT----(24 October 2022 16:01:41) CuisUniversity-5481.image priorSource: 7420583!

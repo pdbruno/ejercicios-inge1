@@ -1,4 +1,4 @@
-!classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
+07-Portfolio2/Portfolio-Solucion.st!classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -494,6 +494,97 @@ test10GenerateSummaryReportForPortfolioWithTransferWithdraw
 	
 	self assert: generatedReport equals: (OrderedCollection with: 'Salida por transferencia de 100.' with: 'Balance = -100').
 ! !
+
+
+!classDefinition: #SummaryTreeStructureReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #SummaryTreeStructureReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:49:44'!
+test01GenerateSummaryReportForEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1' with: ' Balance = 0').
+! !
+
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:07:42'!
+test02GenerateSummaryReportForPortfolioWithOneEmptyAccount
+
+	| portfolio result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	portfolio add: (ReceptiveAccount named: 'La Cuenta de Patito' ).
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito'  with: '  Balance = 0' with: ' Balance = 0').
+! !
+
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:19:06'!
+test03GenerateSummaryReportForPortfolioWithOneUsedAccount
+
+	| portfolio account result report | 
+	
+	portfolio := Portfolio named: 'Portfolio 1'.
+	account := ReceptiveAccount named: 'La Cuenta de Patito'.
+	Deposit register: 100 on: account.
+	portfolio add: account.
+	report := SummaryTreeStructureReport new.
+	
+	result := portfolio generateReport: report.
+	
+	self assert: result equals: (OrderedCollection with: 'Portfolio 1'  with: ' La Cuenta de Patito' with: '  Deposito por 100.' with: '  Balance = 100' with: ' Balance = 100').
+! !
+
+!SummaryTreeStructureReportTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 16:01:19'!
+test04GenerateSummaryReportForPortfolioWithManyUsedAccount
+
+	| johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio result actual | 
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	Deposit register: 100 on: johnsAccount.
+	Withdraw  register: 50 on: johnsAccount .
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Transfer register: 100 from: angiesAccount to: ReceptiveAccount new.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta Mia'.
+	Deposit register: 100 on: myAccount.
+	Withdraw register: 50 on: myAccount.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	
+	result := familyPortfolio generateReport: SummaryTreeStructureReport  new.
+	actual := OrderedCollection new.
+	actual 
+	addLast: 'Portfolio de la familia';
+	addLast: ' Cuenta Mia';
+	addLast: '  Deposito por 100.';
+	addLast: '  Extraccion por 50.';
+	addLast: '  Balance = 50';
+	addLast: ' Portfolio de hijos';
+	addLast: '  Cuenta de Juan';
+	addLast: '   Deposito por 100.';
+	addLast: '   Extraccion por 50.';
+	addLast: '   Balance = 50';
+	addLast: '  Cuenta de Angeles';
+	addLast: '   Salida por transferencia de 100.';
+	addLast: '   Balance = -100';
+	addLast: '  Balance = -50';
+	addLast: ' Balance = 0'.
+		
+	self assert: result equals: actual.! !
 
 
 !classDefinition: #TransferNetReportTest category: 'Portfolio-Solucion'!
@@ -1295,6 +1386,60 @@ generate: anAccount
 	^collection.! !
 
 
+!classDefinition: #SummaryTreeStructureReport category: 'Portfolio-Solucion'!
+Report subclass: #SummaryTreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:45'!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:54:33'!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	| result |
+	self augmentIndentation.
+	result  := OrderedCollection with: indentation, aReceptiveAccount name.
+	self augmentIndentation.
+	result addAllLast: ((aReceptiveAccount generateReport: SummaryReport new) collect: [ :aLine | indentation, aLine]).
+	self reduceIndentation.
+	self reduceIndentation.
+	^result! !
+
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 15:53:08'!
+augmentIndentation
+
+	^ indentation := indentation , ' '! !
+
+!SummaryTreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 16:00:29'!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)! !
+
+
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 15:51:39'!
+generate: aPortfolio 
+
+	| result |
+	
+	result := aPortfolio inject: (OrderedCollection with: (indentation,aPortfolio name)) intoAccounts: 
+	[:aCollection :aAccount | (aCollection addAllLast: (aAccount aggregateToReport: self)). aCollection]. 
+	result add: indentation,' Balance = ',aPortfolio balance printString.
+	^result! !
+
+!SummaryTreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 14:51:54'!
+initialize
+	indentation := ''! !
+
+
 !classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
 Report subclass: #TransferNetReport
 	instanceVariableNames: 'partialBalance'
@@ -1348,7 +1493,7 @@ initialize
 	indentation := ''! !
 
 
-!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/21/2022 22:57:34'!
+!TreeStructureReport methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 14:42:57'!
 aggregatePortfolioToReport: aPortfolio
 	|result|
 	indentation := indentation , ' '.
