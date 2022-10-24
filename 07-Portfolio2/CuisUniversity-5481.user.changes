@@ -7602,3 +7602,672 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(24 October 2022 16:01:41) CuisUniversity-5481.image priorSource: 7420583!
+!Report methodsFor: 'evaluating' stamp: 'ms 10/24/2022 16:20:14'!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility ! !
+!Report methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:20:48'!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransferTransaction #affectTransferBalance: stamp: 'ms 10/24/2022 16:24:52'!
+affectTransferBalance: aBalance
+
+	^self affectBalance: aBalance!
+
+!methodRemoval: TransferWithdraw #print stamp: 'ms 10/24/2022 16:25:02'!
+print
+	
+	^'Salida por transferencia de ',transfer value printString,'.'.!
+
+!methodRemoval: Withdraw #print stamp: 'ms 10/24/2022 16:25:11'!
+print
+
+	^'Extraccion por ',value printString,'.'!
+
+!methodRemoval: Deposit #print stamp: 'ms 10/24/2022 16:25:20'!
+print
+
+	^'Deposito por ',value printString,'.'!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/24/2022 16:25:26'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/24/2022 16:25:26'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/24/2022 16:25:26'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/24/2022 16:25:27'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/24/2022 16:25:27'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/24/2022 16:25:27'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/24/2022 16:25:27'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test05TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/24/2022 16:25:27'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:25:29'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:25:29'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:25:29'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:25:29'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/24/2022 16:25:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/24/2022 16:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/24/2022 16:25:38'!
+PASSED!
+!TreeStructureReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:27:12' prior: 50563578 overrides: 50566234!
+aggregatePortfolioToReport: aPortfolio
+	|result|
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+!TreeStructureReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:27:14' prior: 50566444 overrides: 50566234!
+aggregatePortfolioToReport: aPortfolio
+
+	|result|
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+!TreeStructureReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:27:18' prior: 50566453 overrides: 50566234!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+!TreeStructureReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 16:27:29'!
+augmentIndentation
+
+	^ indentation := indentation , ' '! !
+!TreeStructureReport methodsFor: 'private' stamp: 'ms 10/24/2022 16:28:07'!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)! !
+
+Report subclass: #TransactionReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransactionReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:30:50'!
+Report subclass: #TransactionReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransactionReport subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:30:58'!
+TransactionReport subclass: #SummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransactionReport subclass: #TransferNetReport
+	instanceVariableNames: 'partialBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:31:04'!
+TransactionReport subclass: #TransferNetReport
+	instanceVariableNames: 'partialBalance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:31:17'!
+Report subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #SummaryTreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryTreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:31:27'!
+AccountReport subclass: #SummaryTreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #TreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:31:31'!
+AccountReport subclass: #TreeStructureReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:31:56' overrides: 50566234!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:31:56' overrides: 50566234!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregatePortfolioToReport: stamp: 'ms 10/24/2022 16:31:56'!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility !
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:32:02' overrides: 50566239!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:32:02' overrides: 50566239!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregateReceptiveAccountToReport: stamp: 'ms 10/24/2022 16:32:02'!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	self subclassResponsibility !
+
+!methodRemoval: TransactionReport #aggregatePortfolioToReport: stamp: 'ms 10/24/2022 16:32:09'!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility !
+
+!methodRemoval: TransactionReport #aggregateReceptiveAccountToReport: stamp: 'ms 10/24/2022 16:32:12'!
+aggregateReceptiveAccountToReport: aReceptiveAccount
+	
+	self subclassResponsibility !
+
+AccountReport subclass: #SummaryTreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryTreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:32:37'!
+AccountReport subclass: #SummaryTreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #TreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:32:41'!
+AccountReport subclass: #TreeStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #AccountReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: 'Portfolio-Solucion' stamp: 'ms 10/24/2022 16:32:49'!
+Report subclass: #AccountReport
+	instanceVariableNames: 'indentation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountReport methodsFor: 'evaluating' stamp: 'ms 10/24/2022 16:32:55' overrides: 16920235!
+initialize
+	indentation := ''! !
+
+!methodRemoval: SummaryTreeStructureReport #initialize stamp: 'ms 10/24/2022 16:32:55'!
+initialize
+	indentation := ''!
+!AccountReport methodsFor: 'private' stamp: 'ms 10/24/2022 16:32:59'!
+augmentIndentation
+
+	^ indentation := indentation , ' '! !
+
+!methodRemoval: SummaryTreeStructureReport #augmentIndentation stamp: 'ms 10/24/2022 16:32:59'!
+augmentIndentation
+
+	^ indentation := indentation , ' '!
+!AccountReport methodsFor: 'private' stamp: 'ms 10/24/2022 16:33:04'!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)! !
+
+!methodRemoval: SummaryTreeStructureReport #reduceIndentation stamp: 'ms 10/24/2022 16:33:04'!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)!
+
+!methodRemoval: TreeStructureReport #augmentIndentation stamp: 'ms 10/24/2022 16:33:08'!
+augmentIndentation
+
+	^ indentation := indentation , ' '!
+
+!methodRemoval: TreeStructureReport #reduceIndentation stamp: 'ms 10/24/2022 16:33:10'!
+reduceIndentation
+
+	^ indentation := indentation copyFrom:1 to: (indentation size - 1)!
+
+!methodRemoval: TreeStructureReport #initialize stamp: 'ms 10/24/2022 16:33:12'!
+initialize
+	indentation := ''!
+
+!methodRemoval: AccountReport #aggregatePortfolioToReport: stamp: 'ms 10/24/2022 16:33:39'!
+aggregatePortfolioToReport: aPortfolio
+
+	self subclassResponsibility !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:33:45'!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result! !
+
+!methodRemoval: SummaryTreeStructureReport #aggregatePortfolioToReport: stamp: 'ms 10/24/2022 16:33:45'!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result!
+
+!methodRemoval: TreeStructureReport #aggregatePortfolioToReport: stamp: 'ms 10/24/2022 16:34:06'!
+aggregatePortfolioToReport: aPortfolio
+
+	| result |
+	self augmentIndentation.
+	result := self generate: aPortfolio.
+	self reduceIndentation.
+	^result!
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/24/2022 16:34:18'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/24/2022 16:34:18'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/24/2022 16:34:18'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:34:21'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:34:21'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:34:21'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:34:21'!
+PASSED!
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:31' overrides: 50561178!
+aggregateDepositToReport: aDeposit
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:31' overrides: 50561178!
+aggregateDepositToReport: aDeposit
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregateDepositToReport: stamp: 'ms 10/24/2022 16:34:31'!
+aggregateDepositToReport: aDeposit
+	self subclassResponsibility !
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:36' overrides: 50561194!
+aggregateTransferDepositToReport: aTransferDeposit
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:36' overrides: 50561194!
+aggregateTransferDepositToReport: aTransferDeposit
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregateTransferDepositToReport: stamp: 'ms 10/24/2022 16:34:36'!
+aggregateTransferDepositToReport: aTransferDeposit
+	self subclassResponsibility !
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:40' overrides: 50561188!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:40' overrides: 50561188!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregateTransferWithdrawToReport: stamp: 'ms 10/24/2022 16:34:40'!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	self subclassResponsibility !
+!TransactionReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:45' overrides: 50561183!
+aggregateWithdrawToReport: aWithdraw
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'aggregate transactions' stamp: 'ms 10/24/2022 16:34:45' overrides: 50561183!
+aggregateWithdrawToReport: aWithdraw
+	self subclassResponsibility ! !
+
+!methodRemoval: Report #aggregateWithdrawToReport: stamp: 'ms 10/24/2022 16:34:45'!
+aggregateWithdrawToReport: aWithdraw
+	self subclassResponsibility !
+
+!methodRemoval: AccountReport #aggregateDepositToReport: stamp: 'ms 10/24/2022 16:34:55'!
+aggregateDepositToReport: aDeposit
+	self subclassResponsibility !
+
+!methodRemoval: AccountReport #aggregateTransferDepositToReport: stamp: 'ms 10/24/2022 16:35:00'!
+aggregateTransferDepositToReport: aTransferDeposit
+	self subclassResponsibility !
+
+!methodRemoval: AccountReport #aggregateTransferWithdrawToReport: stamp: 'ms 10/24/2022 16:35:02'!
+aggregateTransferWithdrawToReport: aTransferWithdraw
+	self subclassResponsibility !
+
+!methodRemoval: AccountReport #aggregateWithdrawToReport: stamp: 'ms 10/24/2022 16:35:03'!
+aggregateWithdrawToReport: aWithdraw
+	self subclassResponsibility !
+
+!testRun: #TreeStructureReportTest #test01TreeStructureReportReturnJustPortfolioIfEmpty stamp: 'ms 10/24/2022 16:36:20'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test02TreeStructureReportReturnWithOneChild stamp: 'ms 10/24/2022 16:36:20'!
+PASSED!
+
+!testRun: #TreeStructureReportTest #test03TreeStructureReportReturnWithMultilevelChildren stamp: 'ms 10/24/2022 16:36:20'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test01TransferNetReportReturnZeroIfAccountEmpty stamp: 'ms 10/24/2022 16:36:21'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test02TransferNetReportReturnCorrectForOneTransfer stamp: 'ms 10/24/2022 16:36:21'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test03TransferNetReportReturnCorrectForOneTransferAndOneDeposit stamp: 'ms 10/24/2022 16:36:21'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test04TransferNetReportReturnCorrectForOneTransferAndOneWithdraw stamp: 'ms 10/24/2022 16:36:21'!
+PASSED!
+
+!testRun: #TransferNetReportTest #test05TransferNetReportReturnCorrectForOneTransferForPortfolio stamp: 'ms 10/24/2022 16:36:21'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test01GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:36:22'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test02GenerateSummaryReportForPortfolioWithOneEmptyAccount stamp: 'ms 10/24/2022 16:36:22'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test03GenerateSummaryReportForPortfolioWithOneUsedAccount stamp: 'ms 10/24/2022 16:36:22'!
+PASSED!
+
+!testRun: #SummaryTreeStructureReportTest #test04GenerateSummaryReportForPortfolioWithManyUsedAccount stamp: 'ms 10/24/2022 16:36:22'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/24/2022 16:36:23'!
+PASSED!
+
+!testRun: #SummaryReportTest #test01CanObtainTransferFromWithdraw stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test02GenerateSummaryReportForEmptyAccount stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test03GenerateSummaryReportForAccountWithDeposit stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test04GenerateSummaryReportForAccountWithWithdraw stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test05GenerateSummaryReportForAccountWithTransferDeposit stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test06GenerateSummaryReportForAccountWithTransferWithdraw stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test07GenerateSummaryReportForPortfolioWithDeposit stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test08GenerateSummaryReportForPortfolioWithWithdraw stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test09GenerateSummaryReportForPortfolioWithTransferDeposit stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #SummaryReportTest #test10GenerateSummaryReportForPortfolioWithTransferWithdraw stamp: 'ms 10/24/2022 16:36:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08TransferFromOneAccountToAnother stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09ReceptiveAccountKnowsRegisteredTransfer stamp: 'ms 10/24/2022 16:36:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'ms 10/24/2022 16:36:30'!
+PASSED!
+
+----SNAPSHOT----(24 October 2022 16:36:57) CuisUniversity-5481.image priorSource: 7506565!
+
+----SNAPSHOT----(24 October 2022 16:38:06) CuisUniversity-5481.image priorSource: 7532876!
