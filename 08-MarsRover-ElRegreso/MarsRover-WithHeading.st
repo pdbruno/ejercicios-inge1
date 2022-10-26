@@ -1,3 +1,4 @@
+08-MarsRover-ElRegreso/MarsRover-WithHeading.st
 !classDefinition: #LoggerListenerTest category: 'MarsRover-WithHeading'!
 TestCase subclass: #LoggerListenerTest
 	instanceVariableNames: ''
@@ -832,15 +833,20 @@ Object subclass: #WindowListener
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:51:53'!
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:25:05'!
 initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
 	heading := ''.
 	position := ''.
-	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
-	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
 	
-	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
-	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	anArrayOfEventNames 
+		do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
 	^self! !
 
 

@@ -3541,3 +3541,206 @@ test06ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
 
 !testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:40:55'!
 PASSED!
+
+Object subclass: #Event
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #Event category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:37'!
+Object subclass: #Event
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #Event category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:41'!
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #PositionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:46'!
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #DirectionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:48'!
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!DirectionEvent class methodsFor: 'no messages' stamp: 'ms 10/26/2022 19:13:16'!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover directionEvent)! !
+!PositionEvent class methodsFor: 'nil' stamp: 'ms 10/26/2022 19:13:21'!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover directionEvent)! !
+!PositionEvent class methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 19:13:24' prior: 50556642!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover positionEvent )! !
+!PositionEvent class methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 19:13:25' prior: 50556648!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover positionEvent)! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:21:12' prior: 50553064!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	| handlers |
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:21:16' prior: 50556660!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:24:36' prior: 50556684!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+
+
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:24:42' prior: 50556708!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames 
+		do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+
+
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:25:05' prior: 50556725!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames 
+		do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+	^self! !
+
+!classRemoval: #PositionEvent stamp: 'ms 10/26/2022 19:25:13'!
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #DirectionEvent stamp: 'ms 10/26/2022 19:25:13'!
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #Event stamp: 'ms 10/26/2022 19:25:13'!
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListIfProcessButListeningNothing stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test04ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
