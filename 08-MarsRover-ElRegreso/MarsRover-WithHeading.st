@@ -378,6 +378,43 @@ test03ReturnNewHeadingIfRoverTurnsRight
 	self assert: '' equals: window position.
 	self assert: 'Heading East' equals: window heading.! !
 
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:35'!
+test04ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:40:52'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading South' equals: window heading.! !
+
 
 !classDefinition: #LoggerListener category: 'MarsRover-WithHeading'!
 Object subclass: #LoggerListener
@@ -417,7 +454,7 @@ observes: anArrayOfEventNames on: aMarsRover
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head subscribers directionSubscribers positionSubscribers'
+	instanceVariableNames: 'position head subscribersByEvent'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -433,11 +470,14 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:28:36'!
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/26/2022 18:23:53'!
 initializeAt: aPosition heading: aHeadingType
-	"subscribers := OrderedCollection new."
-	directionSubscribers := OrderedCollection new.
-	positionSubscribers := OrderedCollection new.
+
+	subscribersByEvent := Dictionary new.
+	subscribersByEvent 
+		add: self class positionEvent -> OrderedCollection new; 
+		add: self class directionEvent -> OrderedCollection new.
+
 	position := aPosition.
 	head := aHeadingType for: self ! !
 
@@ -555,18 +595,20 @@ processCommand: aCommand
 	self signalInvalidCommand.! !
 
 
-!MarsRover methodsFor: 'events-registering' stamp: 'ms 10/24/2022 21:22:32'!
+!MarsRover methodsFor: 'events-registering' stamp: 'ms 10/26/2022 18:25:57'!
 subscribeToEvents: anEventName handleWith: aBlockClosure 
-	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers add: aBlockClosure].
-	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers add: aBlockClosure].! !
+	
+	| closures |
+	
+	closures := subscribersByEvent at: anEventName.
+	closures  add: aBlockClosure.
+	subscribersByEvent at: anEventName put: closures. ! !
 
 
-!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/24/2022 21:27:48'!
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 18:26:31'!
 emitEvent: anEventName with: aValue 
 	
-	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
-	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
-	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].! !
+	(subscribersByEvent at: anEventName) do: [:aSubscriber | aSubscriber value: aValue].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
