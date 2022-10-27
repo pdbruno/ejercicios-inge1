@@ -1,0 +1,3746 @@
+
+
+----QUIT----(11 September 2022 19:10:09) CuisUniversity-5481.image priorSource: 2810882!
+
+----STARTUP---- (11 September 2022 19:10:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5481.image!
+
+
+----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
+
+----STARTUP---- (24 October 2022 19:50:06) as /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Downloads/MarsRover-WithHeading.st----!
+
+TestCase subclass: #LoggerListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #LoggerListenerTest category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:09:16'!
+TestCase subclass: #LoggerListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LoggerListenerTest methodsFor: 'no messages' stamp: 'ms 10/24/2022 20:10:05'!
+test01ReturnEmptyListIfNothingWasObserved
+! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:10:13' prior: 50552772!
+test01ReturnEmptyListIfNothingWasObserved
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:13:36' prior: 50552777!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth . 
+	
+	marsRover process: OrderedCollection new.
+	
+	self assert: (marsRover isAt: 0@0 heading: MarsRoverHeadingNorth)
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:14:03' prior: 50552782!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth . 
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: MarsRoverHeadingNorth)
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:14:08' prior: 50552793!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth. 
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: MarsRoverHeadingNorth)
+	
+	! !
+
+!classDefinition: #LoggerListener category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:15:59'!
+Object subclass: #LoggerListener
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:15:51' prior: 50552804!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heading: MarsRoverHeadingNorth)
+	
+	! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:16:07'!
+ERROR!
+!LoggerListener methodsFor: 'no messages' stamp: 'ms 10/24/2022 20:16:43'!
+observes: anArrayOfEventNames on: aMarsRover
+
+
+
+! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:17:29' prior: 50552822!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:17:30'!
+ERROR!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:17:45'!
+ERROR!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:17:45'!
+ERROR!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:17:52' prior: 50552844!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener new observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:17:53'!
+ERROR!
+!LoggerListener methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:18:08'!
+log
+
+	^OrderedCollection new.
+
+! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:18:09'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:19:07'!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener new observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:19:17' prior: 50552893!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener new observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:19:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:19:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:19:24'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:19:39' prior: 50552907!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener new observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: 'f') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:19:40'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:22:11' prior: 50552868!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:22:16' prior: 50552932!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: #((MarsRover direction) (MarsRoverPosition)) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: 'f') equals: logger log.
+	
+	! !
+!LoggerListener class methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:22:29'!
+observes: anArrayOfEventNames on: aMarsRover
+
+
+
+! !
+
+!methodRemoval: LoggerListener #observes:on: stamp: 'ms 10/24/2022 20:22:29'!
+observes: anArrayOfEventNames on: aMarsRover
+
+
+
+!
+!LoggerListener class methodsFor: 'instance creation' stamp: 'ms 10/24/2022 20:24:42' prior: 50552978!
+observes: anArrayOfEventNames on: aMarsRover
+
+	"validar nombres de los parametros"
+	^self new initializeObserving: anArrayOfEventNames on: aMarsRover
+
+! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:24:46'!
+ERROR!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:24:46'!
+ERROR!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:24:48'!
+ERROR!
+
+!classDefinition: #LoggerListener category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:25:06'!
+Object subclass: #LoggerListener
+	instanceVariableNames: 'arrayOfEventNames'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #LoggerListener category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:25:06'!
+Object subclass: #LoggerListener
+	instanceVariableNames: 'arrayOfEventNames marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LoggerListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 20:25:06'!
+initializeObserving: anArrayOfEventNames on: aMarsRover 
+	self shouldBeImplemented.
+	arrayOfEventNames := anArrayOfEventNames.
+	marsRover := aMarsRover.! !
+
+!classDefinition: #LoggerListener category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:26:51'!
+Object subclass: #LoggerListener
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LoggerListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 20:26:49' prior: 50553022!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	log := OrderedCollection new.
+	aMarsRover subscribeToEvents: anArrayOfEventNames handleWith: [:anEventName :aValue | ]! !
+!LoggerListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 20:29:45' prior: 50553039!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	log := OrderedCollection new.
+	aMarsRover subscribeToEvents: anArrayOfEventNames handleWith: [:anEventName :aValue | log add: aValue]! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:29:48'!
+ERROR!
+!MarsRover methodsFor: 'events-accessing' stamp: 'ms 10/24/2022 20:30:06'!
+subscribeToEvents: anArray handleWith: aBlockClosure 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 20:32:09'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'events-accessing' stamp: 'ms 10/24/2022 20:32:07' prior: 50553060!
+subscribeToEvents: anArray handleWith: aBlockClosure 
+	subscribers add: aBlockClosure! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:32:15'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/24/2022 20:32:48' prior: 50552462!
+initializeAt: aPosition heading: aHeadingType
+	subscribers := OrderedCollection new.
+	position := aPosition.
+	head := aHeadingType for: self ! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:32:57'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:33:01'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:33:01'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:33:01'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:36:22' prior: 50552964!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: 'f') equals: logger log.
+	
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:38:23' prior: 50552522!
+moveForward
+	self emitEvent: self class positionEvent with: 'f'.
+	head moveForward! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:39:30' prior: 50553172!
+moveForward
+	self emitEvent: self class positionEvent with: $f.
+	head moveForward! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:39:41' prior: 50552514!
+moveBackward
+	self emitEvent: self class positionEvent with: $b.
+	head moveBackward! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:39:59' prior: 50553184!
+moveBackward
+	"self emitEvent: self class positionEvent with: $b."
+	head moveBackward! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:40:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:40:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:40:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:40:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:40:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:40:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:40:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:40:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:40:07'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:11'!
+ERROR!
+!MarsRover class methodsFor: 'event names' stamp: 'ms 10/24/2022 20:40:27'!
+positionEvent
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'event names' stamp: 'ms 10/24/2022 20:40:48' prior: 50553308!
+positionEvent
+	'position'! !
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:40:49'!
+ERROR!
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/24/2022 20:41:11'!
+emitEvent: aClass with: aCharacter 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/24/2022 20:42:39' prior: 50553320!
+emitEvent: anEventName with: aValue 
+	subscribers do: [:aSubscriber | aSubscriber value: anEventName value: aValue]! !
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:42:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:42:45'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:42:49'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:42:49'!
+ERROR!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:42:49'!
+ERROR!
+!MarsRover class methodsFor: 'event names' stamp: 'ms 10/24/2022 20:42:57'!
+directionEvent
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'event names' stamp: 'ms 10/24/2022 20:43:11' prior: 50553401!
+directionEvent
+	^'direction'! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:43:13'!
+FAILURE!
+!MarsRover class methodsFor: 'event names' stamp: 'ms 10/24/2022 20:43:32' prior: 50553313!
+positionEvent
+	^'position'! !
+!LoggerListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 20:44:00' prior: 50553048!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	log := OrderedCollection new.
+	aMarsRover subscribeToEvents: anArrayOfEventNames handleWith: [:anEventName :aValue | log add: aValue].
+	^self! !
+!LoggerListener methodsFor: 'accessing' stamp: 'ms 10/24/2022 20:44:22' prior: 50552885!
+log
+
+	^log
+
+! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:44:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:44:24'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:44:24'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:44:51' prior: 50553158!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: $f) equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:44:55'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:44:55'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:44:55'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:45:16'!
+test03ReturnListWithOneItemIfChangeDirection
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: $f) equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:45:23' prior: 50553468!
+test03ReturnListWithOneItemIfChangeDirection
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'l'.
+	
+	self assert: (OrderedCollection with: $f) equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:45:26' prior: 50553482!
+test03ReturnListWithOneItemIfChangeDirection
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'l'.
+	
+	self assert: (OrderedCollection with: $l) equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:45:27'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:46:48' prior: 50552526!
+moveNorth
+	self emitEvent: self class positionEvent with: $f.
+	position := position + (0@1)! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:46:51' prior: 50553513!
+moveNorth
+
+	position := position + (0@1)! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:47:42' prior: 50552484!
+rotateLeft
+	self emitEvent: self class positionEvent with: $f.
+	head rotateLeft! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:47:49' prior: 50553523!
+rotateLeft
+	self emitEvent: self class directionEvent with: $l.
+	head rotateLeft! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:49:02' prior: 50553443!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: 1@1) equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:49:16' prior: 50553535!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: '1@1') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:49:22'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:50:40' prior: 50553178!
+moveForward
+	self emitEvent: self class positionEvent with: $f.
+	head moveForward! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:51:05' prior: 50553566!
+moveForward
+	self emitEvent: self class positionEvent with: position.
+	head moveForward! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:51:11' prior: 50553572!
+moveForward
+	self emitEvent: self class positionEvent with: position printString.
+	head moveForward! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:51:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:51:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:51:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:51:14'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:51:21'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:51:21'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:51:21'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:51:21'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 20:52:23' prior: 50553578!
+moveForward
+	
+	head moveForward.
+	self emitEvent: self class positionEvent with: position printString.! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:52:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:52:27'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:52:27'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:52:27'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:52:27'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:52:38' prior: 50553549!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: '0@1') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:52:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:52:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:52:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:52:39'!
+PASSED!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:53:22' prior: 50552468!
+headEast
+	
+	head := MarsRoverHeadingEast for: self
+! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:53:40' prior: 50553529!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: position printString.
+	! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:53:59' prior: 50553763!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head printString.
+	
+	! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:54:02' prior: 50553769!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head printString.
+	
+	! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:54:05' prior: 50553775!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:54:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:54:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:54:39'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:54:39'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 20:56:10' prior: 50553781!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: 'East'.
+	
+	! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 20:56:11'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:56:14'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:56:14'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:56:14'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:56:14'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:56:42' prior: 50553496!
+test03ReturnListWithOneItemIfChangeDirection
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'l'.
+	
+	self assert: (OrderedCollection with: 'East') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:56:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:56:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:56:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:56:43'!
+PASSED!
+!MarsRoverHeading methodsFor: 'printing' stamp: 'ms 10/24/2022 20:57:20' overrides: 16902983!
+printString
+	
+	self subclassResponsibility ! !
+!MarsRoverHeadingEast methodsFor: 'heading' stamp: 'ms 10/24/2022 20:57:33' overrides: 50553907!
+printString
+	
+	^'East'! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 20:57:35'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 20:57:35'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 20:57:35'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:59:12' prior: 50552950!
+test01ReturnEmptyListIfNothingWasObserved
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: OrderedCollection new equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 20:59:57'!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'l'.
+	
+	self assert: (OrderedCollection with: 'East') equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:00:27' prior: 50553941!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrfff'.
+	
+	self assert: (OrderedCollection with: 'East') equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:04:00' prior: 50553955!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrff'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'South'; addLast: '-1@-1'; addLast: '-2@-1'.
+	
+	self assert: (OrderedCollection with: 'East') equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:04:07' prior: 50553969!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrff'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'South'; addLast: '-1@-1'; addLast: '-2@-1'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:04:08'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:04:20'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:04:53' prior: 50553802!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head printString.
+	
+	! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:04:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:04:53'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:04:54'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:04:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:04:54'!
+ERROR!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:05:09' prior: 50554017!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head class printString.
+	
+	! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:05:09'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:05:12'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:05:12'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:05:12'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:05:12'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:05:22'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:05:22'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:05:27' prior: 50553878!
+test03ReturnListWithOneItemIfChangeDirection
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'l'.
+	
+	self assert: (OrderedCollection with: 'West') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:05:28'!
+FAILURE!
+!MarsRoverHeadingWest methodsFor: 'heading' stamp: 'ms 10/24/2022 21:05:53' overrides: 50553907!
+printString
+	
+	^'West'! !
+!MarsRoverHeadingSouth methodsFor: 'heading' stamp: 'ms 10/24/2022 21:06:00' overrides: 50553907!
+printString
+	
+	^'South'! !
+!MarsRoverHeadingNorth methodsFor: 'heading' stamp: 'ms 10/24/2022 21:06:09' overrides: 50553907!
+printString
+	
+	^'South'! !
+!MarsRoverHeadingNorth methodsFor: 'heading' stamp: 'ms 10/24/2022 21:06:13' prior: 50554188 overrides: 50553907!
+printString
+	
+	^'North'! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:06:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:06:16'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:06:17'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:06:17'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:06:17'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:06:17'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:06:23'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:06:23'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:07:11' prior: 50552488!
+rotateRight
+	
+	head rotateRight.
+	self emitEvent: self class directionEvent with: head class printString.
+! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:07:12'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:07:15'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:07:15'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:07:15'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:07:15'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:07:23' prior: 50554273!
+rotateRight
+	
+	head rotateRight.
+	self emitEvent: self class directionEvent with: head  printString.
+! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:07:24' prior: 50554349!
+rotateRight
+	
+	head rotateRight.
+	self emitEvent: self class directionEvent with: head printString.
+! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/24/2022 21:07:26' prior: 50554078!
+rotateLeft
+	
+	head rotateLeft.
+	self emitEvent: self class directionEvent with: head printString.
+	
+	! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:07:26'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:07:30'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:07:30'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:07:30'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:07:30'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:07:30'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/24/2022 21:08:21' prior: 50553190!
+moveBackward
+
+	head moveBackward.
+	self emitEvent: self class positionEvent with: position printString.! !
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:08:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:08:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:08:24'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:08:24'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:08:24'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:09:07'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:10:24' prior: 50553990!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'South'; addLast: '-1@-1'; addLast: '-2@-1'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:10:28' prior: 50554469!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'South'; addLast: '-1@-1'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:10:28'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:10:57' prior: 50554489!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'North'; addLast: '-1@-1'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:11:02'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:11:34' prior: 50554512!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'North'; addLast: '0@-1'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:11:36' prior: 50554535!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@-1'; addLast: 'West'; addLast: '0@-1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:11:36'!
+FAILURE!
+
+-1@-1 printString!
+
+(-1@-1) printString!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:12:44' prior: 50554555!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:12:44'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:12:44'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:12:44'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:12:44'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:12:44'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:13:30'!
+test05ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:13:37'!
+test05ReturnListWithMoreItemIfProcessButJustDirection
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:14:02' prior: 50554617!
+test05ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:14:07' prior: 50554656!
+test05ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:14:26' prior: 50554636!
+test05ReturnListWithMoreItemIfProcessButJustDirection
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West';  addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:14:32' prior: 50554698!
+test05ReturnListWithMoreItemIfProcessButJustDirection
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:14:33'!
+FAILURE!
+
+	'asd'@'asd'!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/Packages/TerseGuide.pck.st----!
+!MarsRover methodsFor: 'events-accessing' stamp: 'ms 10/24/2022 21:21:20' prior: 50553074!
+subscribeToEvents: anEventName handleWith: aBlockClosure 
+	subscribers add: aBlockClosure.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 21:22:35'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribers directionSubscribers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 21:22:36'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribers directionSubscribers positionSubscribers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'events-accessing' stamp: 'ms 10/24/2022 21:22:32' prior: 50557660!
+subscribeToEvents: anEventName handleWith: aBlockClosure 
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers add: aBlockClosure].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers add: aBlockClosure].! !
+!LoggerListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:26:23' prior: 50553418!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	log := OrderedCollection new.
+	anArrayOfEventNames do: [:anEventName | aMarsRover subscribeToEvents: anEventName handleWith: [:aValue | log add: aValue]].
+	^self! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/24/2022 21:26:45' prior: 50553325!
+emitEvent: anEventName with: aValue 
+	
+	subscribers do: [:aSubscriber | aSubscriber value: aValue]! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/24/2022 21:27:48' prior: 50557705!
+emitEvent: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:27:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:27:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:27:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:27:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:27:52'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:27:57'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:28:36' prior: 50553084!
+initializeAt: aPosition heading: aHeadingType
+	"subscribers := OrderedCollection new."
+	directionSubscribers := OrderedCollection new.
+	positionSubscribers := OrderedCollection new.
+	position := aPosition.
+	head := aHeadingType for: self ! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/24/2022 21:28:37'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:28:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:28:43'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:28:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:28:43'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:28:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:28:43'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:28:52'!
+PASSED!
+
+!methodRemoval: LoggerListenerTest #test05ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:28:57'!
+test05ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:28:58'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:28:58'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:29:12' prior: 50554580!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:29:19' prior: 50557903!
+test04ReturnListWithMoreItemIfProcess
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent) 
+		on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:29:19'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:29:19'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:29:19'!
+FAILURE!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:29:19'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:29:19'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:29:19'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:29:19'!
+FAILURE!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:29:30' prior: 50553730!
+test02ReturnListWithOneItemIfMovesOnePosition
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: (OrderedCollection with: '0@1') equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:29:31'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:29:51'!
+test05ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:29:56' prior: 50558007!
+test05ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:30:04'!
+test0R6eturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!methodRemoval: LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/24/2022 21:30:06'!
+test05ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:30:12'!
+test06ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!methodRemoval: LoggerListenerTest #test0R6eturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/24/2022 21:30:14'!
+test0R6eturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: 'South'; addLast: 'West'; addLast: 'North'.
+	
+	self assert: expected equals: logger log.
+	
+	!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:30:22' prior: 50558079!
+test06ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: 'West'; addLast: '-1@0'; addLast: 'South'; addLast: '-1@ -1'; addLast: 'West'; addLast: '0@ -1'; addLast: 'North'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:30:38' prior: 50558115!
+test06ReturnListWithMoreItemIfProcessButJustPosition
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/24/2022 21:30:39'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:30:56'!
+test06ReturnListWithMoreItemIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:31:07'!
+test07ReturnEmptyListWithMoreItemIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!methodRemoval: LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButListeningNothing stamp: 'ms 10/24/2022 21:31:09'!
+test06ReturnListWithMoreItemIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:31:17'!
+test07ReturnEmptyListIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:31:22' prior: 50558233!
+test07ReturnEmptyListIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection new) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	! !
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:31:27' prior: 50558251!
+test07ReturnEmptyListIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection new) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+
+	
+	self assert: expected equals: logger log.
+	
+	! !
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListIfProcessButListeningNothing stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListIfProcessButListeningNothing stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListWithMoreItemIfProcessButListeningNothing stamp: 'ms 10/24/2022 21:31:28'!
+PASSED!
+!LoggerListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:31:30' prior: 50558268!
+test07ReturnEmptyListIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection new) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+
+	self assert: expected equals: logger log.
+	
+	! !
+
+!methodRemoval: LoggerListenerTest #test07ReturnEmptyListWithMoreItemIfProcessButListeningNothing stamp: 'ms 10/24/2022 21:31:38'!
+test07ReturnEmptyListWithMoreItemIfProcessButListeningNothing
+
+	| marsRover logger expected |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	logger := LoggerListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'lflfrbrf'.
+	
+	expected := OrderedCollection new.
+	expected addLast: '-1@0'; addLast: '-1@ -1'; addLast: '0@ -1'; addLast: '0@0'.
+	
+	self assert: expected equals: logger log.
+	
+	!
+
+Object subclass: #WindowListener
+	instanceVariableNames: 'arrayOfEventNames marsRover heading position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #WindowListener category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 21:35:00'!
+Object subclass: #WindowListener
+	instanceVariableNames: 'arrayOfEventNames marsRover heading position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+TestCase subclass: #WindowListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #WindowListenerTest category: 'MarsRover-WithHeading' stamp: 'ms 10/24/2022 21:35:11'!
+TestCase subclass: #WindowListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!WindowListenerTest methodsFor: 'no messages' stamp: 'ms 10/24/2022 21:38:38'!
+test01ReturnEmptyHeaderAndPositionIfNothingWasObserved
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := LoggerListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:38:48' prior: 50558377!
+test01ReturnEmptyHeaderAndPositionIfNothingWasObserved
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:39:35'!
+ERROR!
+!WindowListener class methodsFor: 'instance creation' stamp: 'ms 10/24/2022 21:40:23'!
+observes: anArrayOfEventNames on: aMarsRover
+
+	"validar nombres de los parametros"
+	^self new initializeObserving: anArrayOfEventNames on: aMarsRover
+! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:42:16'!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	anArrayOfEventNames do: [:anEventName | aMarsRover subscribeToEvents: anEventName handleWith: 
+		[:aValue | heading := aValue]].
+	^self! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:42:30'!
+ERROR!
+!WindowListener methodsFor: 'accessing' stamp: 'ms 10/24/2022 21:42:39'!
+position
+	self shouldBeImplemented.
+	^position! !
+!WindowListener methodsFor: 'accessing' stamp: 'ms 10/24/2022 21:43:12' prior: 50558432!
+position
+	^position! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:43:17'!
+ERROR!
+!WindowListener methodsFor: 'accessing' stamp: 'ms 10/24/2022 21:43:21'!
+heading
+	self shouldBeImplemented.
+	^heading! !
+!WindowListener methodsFor: 'accessing' stamp: 'ms 10/24/2022 21:43:28' prior: 50558444!
+heading
+	^heading! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:43:31'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:43:31'!
+PASSED!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:44:17'!
+test01ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:44:25' prior: 50558461!
+test01ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: ''.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:44:26' prior: 50558476!
+test01ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:44:31' prior: 50558491!
+test01ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test01ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:44:54'!
+FAILURE!
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:45:07' prior: 50558418!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	anArrayOfEventNames do: [:anEventName | aMarsRover subscribeToEvents: anEventName handleWith: 
+		[:aValue | position := aValue]].
+	^self! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:45:09'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:45:09'!
+FAILURE!
+
+!testRun: #WindowListenerTest #test01ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:45:09'!
+FAILURE!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:45:15'!
+test02ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+
+!methodRemoval: WindowListenerTest #test01ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:45:16'!
+test01ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:46:11' prior: 50558546!
+test02ReturnNewPositionIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:46:11'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:46:11'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:46:11'!
+PASSED!
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:49:27' prior: 50558524!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | position := aValue]].
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:49:35' prior: 50558601!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := aValue]].
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:49:52' prior: 50558618!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:49:55'!
+PASSED!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:50:03'!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover positionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:50:25' prior: 50558655!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'f'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:50:30' prior: 50558670!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:50:32' prior: 50558685!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: '' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:51:06' prior: 50558700!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:51:28'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:51:28'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverMovesForward stamp: 'ms 10/24/2022 21:51:28'!
+FAILURE!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverMovesForward stamp: 'ms 10/24/2022 21:51:28'!
+FAILURE!
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/24/2022 21:51:53' prior: 50558635!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	heading := ''.
+	position := ''.
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:51:56'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:51:56'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverMovesForward stamp: 'ms 10/24/2022 21:51:56'!
+PASSED!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/24/2022 21:53:19'!
+test03ReturnNewHeadingIfRoverTurnsRight
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/24/2022 21:53:19'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/24/2022 21:53:19'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/24/2022 21:53:19'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverMovesForward stamp: 'ms 10/24/2022 21:53:19'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/24/2022 21:53:19'!
+PASSED!
+
+!methodRemoval: WindowListenerTest #test03ReturnNewHeadingIfRoverMovesForward stamp: 'ms 10/24/2022 21:53:22'!
+test03ReturnNewHeadingIfRoverMovesForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.!
+
+----STARTUP---- (26 October 2022 17:17:46) as /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/08-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 17:25:25'!
+test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 17:25:42' prior: 50553108!
+test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 17:25:44' prior: 50553124!
+test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 17:26:03' prior: 50553141!
+test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 17:26:09'!
+test04ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!methodRemoval: WindowListenerTest #test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 17:26:11'!
+test03ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.!
+
+!testRun: #WindowListenerTest #test04ReturnNewHeadingAndPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 17:26:12'!
+PASSED!
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 17:34:45'!
+notifyDirectionEvent: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 17:34:58'!
+notifyDirectionWith: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 17:35:26'!
+notifyDirectionEventWith: aValue 
+	
+	directionSubscribers do: [:aSubscriber | aSubscriber value: aValue].
+! !
+
+!methodRemoval: MarsRover #notifyDirectionWith:with: stamp: 'ms 10/26/2022 17:35:30'!
+notifyDirectionWith: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].!
+
+!methodRemoval: MarsRover #notifyDirectionEvent:with: stamp: 'ms 10/26/2022 17:35:31'!
+notifyDirectionEvent: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].!
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 17:37:21'!
+notifyPositionEventWith: aValue 
+	
+	directionSubscribers do: [:aSubscriber | aSubscriber value: aValue].
+! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 17:37:25' prior: 50553273!
+notifyPositionEventWith: aValue 
+	
+	positionSubscribers do: [:aSubscriber | aSubscriber value: aValue].
+! !
+
+!methodRemoval: MarsRover #emitEvent:with: stamp: 'ms 10/26/2022 17:37:30'!
+emitEvent: anEventName with: aValue 
+	
+	"subscribers do: [:aSubscriber | aSubscriber value: aValue]"
+	(anEventName = self class directionEvent ) ifTrue: [directionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].
+	(anEventName = self class positionEvent ) ifTrue: [positionSubscribers do: [:aSubscriber | aSubscriber value: aValue]].!
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/26/2022 17:38:06' prior: 50552715!
+rotateLeft
+	
+	head rotateLeft.
+	self notifyDirectionEventWith: head printString.
+	
+	! !
+!MarsRover methodsFor: 'heading' stamp: 'ms 10/26/2022 17:38:35' prior: 50552721!
+rotateRight
+	
+	head rotateRight.
+	self notifyDirectionEventWith: head printString.
+! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/26/2022 17:38:49' prior: 50552749!
+moveBackward
+
+	head moveBackward.
+	self notifyPositionEventWith: position printString.! !
+!MarsRover methodsFor: 'moving' stamp: 'ms 10/26/2022 17:39:00' prior: 50552759!
+moveForward
+	
+	head moveForward.
+	self notifyPositionEventWith: position printString.! !
+
+Object subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #PositionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 17:49:36'!
+Object subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #DirectionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 17:49:41'!
+Object subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!DirectionEvent methodsFor: 'no messages' stamp: 'ms 10/26/2022 17:50:36'!
+emit: aValue on: aMarsRover
+	
+	aMarsRover notifyPositionEventWith: aValue.! !
+
+!classRemoval: #PositionEvent stamp: 'ms 10/26/2022 17:54:14'!
+Object subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #DirectionEvent stamp: 'ms 10/26/2022 17:54:16'!
+Object subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #Event category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 18:00:24'!
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #DirectionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 18:00:35'!
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #PositionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 18:00:41'!
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!PositionEvent class methodsFor: 'no messages' stamp: 'ms 10/26/2022 18:01:53'!
+for: anEventName
+	
+	(anEventName = MarsRover positionEvent) ifTrue: [^self]! !
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/08-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/05-MarsRover/MarsRover.st----!
+
+----STARTUP---- (26 October 2022 18:04:18) as /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/08-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+!classRemoval: #WindowListener stamp: 'ms 10/26/2022 18:04:55'!
+Object subclass: #WindowListener
+	instanceVariableNames: 'arrayOfEventNames marsRover heading position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverHeadingWest stamp: 'ms 10/26/2022 18:04:56'!
+MarsRoverHeading subclass: #MarsRoverHeadingWest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverHeadingSouth stamp: 'ms 10/26/2022 18:04:56'!
+MarsRoverHeading subclass: #MarsRoverHeadingSouth
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverHeadingNorth stamp: 'ms 10/26/2022 18:04:56'!
+MarsRoverHeading subclass: #MarsRoverHeadingNorth
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverHeadingEast stamp: 'ms 10/26/2022 18:04:56'!
+MarsRoverHeading subclass: #MarsRoverHeadingEast
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverHeading stamp: 'ms 10/26/2022 18:04:56'!
+Object subclass: #MarsRoverHeading
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRover stamp: 'ms 10/26/2022 18:04:57'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribers directionSubscribers positionSubscribers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #LoggerListener stamp: 'ms 10/26/2022 18:04:57'!
+Object subclass: #LoggerListener
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #WindowListenerTest stamp: 'ms 10/26/2022 18:04:57'!
+TestCase subclass: #WindowListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #MarsRoverTest stamp: 'ms 10/26/2022 18:04:57'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #LoggerListenerTest stamp: 'ms 10/26/2022 18:04:58'!
+TestCase subclass: #LoggerListenerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/05-MarsRover/MarsRover.st----!
+
+----STARTUP---- (26 October 2022 18:12:19) as /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/08-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribersByEvent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 18:13:30'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head subscribersByEvent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/MarsRoverWithHeading/Packages/TerseGuide.pck.st----!
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/26/2022 18:23:11' prior: 50552689!
+initializeAt: aPosition heading: aHeadingType
+
+	subscribersByEvent := Dictionary new.
+	subscribersByEvent add: self class positionEvent -> OrderedCollection new.
+
+	position := aPosition.
+	head := aHeadingType for: self ! !
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/26/2022 18:23:48' prior: 50556042!
+initializeAt: aPosition heading: aHeadingType
+
+	subscribersByEvent := Dictionary new.
+	subscribersByEvent add: self class positionEvent -> OrderedCollection new; add: self class directionEvent -> OrderedCollection new.
+
+	position := aPosition.
+	head := aHeadingType for: self ! !
+!MarsRover methodsFor: 'initialization' stamp: 'ms 10/26/2022 18:23:53' prior: 50556052!
+initializeAt: aPosition heading: aHeadingType
+
+	subscribersByEvent := Dictionary new.
+	subscribersByEvent 
+		add: self class positionEvent -> OrderedCollection new; 
+		add: self class directionEvent -> OrderedCollection new.
+
+	position := aPosition.
+	head := aHeadingType for: self ! !
+!MarsRover methodsFor: 'events-registering' stamp: 'ms 10/26/2022 18:25:55' prior: 50552796!
+subscribeToEvents: anEventName handleWith: aBlockClosure 
+	
+	| closures |
+	
+	closures := subscribersByEvent at: anEventName.
+	closures  add: aBlockClosure.
+	subscribersByEvent at: anEventName put: closures.  ! !
+!MarsRover methodsFor: 'events-registering' stamp: 'ms 10/26/2022 18:25:57' prior: 50556076!
+subscribeToEvents: anEventName handleWith: aBlockClosure 
+	
+	| closures |
+	
+	closures := subscribersByEvent at: anEventName.
+	closures  add: aBlockClosure.
+	subscribersByEvent at: anEventName put: closures. ! !
+!MarsRover methodsFor: 'events-triggering' stamp: 'ms 10/26/2022 18:26:31' prior: 50552807!
+emitEvent: anEventName with: aValue 
+	
+	(subscribersByEvent at: anEventName) do: [:aSubscriber | aSubscriber value: aValue].! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'ms 10/26/2022 18:26:50'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListIfProcessButListeningNothing stamp: 'ms 10/26/2022 18:26:52'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/26/2022 18:26:55'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/26/2022 18:26:55'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/26/2022 18:26:55'!
+PASSED!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:34:54'!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:34:56' prior: 50556195!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:34:59' prior: 50556211!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent) on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:35:00'!
+FAILURE!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:18' prior: 50556227!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover  positionEvent ) on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:23' prior: 50556247!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:25' prior: 50556264!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '0@1' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:35:25'!
+FAILURE!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:31' prior: 50556281!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:35'!
+test04ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+
+!methodRemoval: WindowListenerTest #test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:35:37'!
+test03ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:48'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:35:55'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:36:15' prior: 50556369!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:36:30' prior: 50556386!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.! !
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:36:36' prior: 50556404!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading South' equals: window heading.! !
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:36:36'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/26/2022 18:36:36'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/26/2022 18:36:37'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/26/2022 18:36:37'!
+PASSED!
+
+!testRun: #WindowListenerTest #test04ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:36:37'!
+PASSED!
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:36:37'!
+PASSED!
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:36:37'!
+PASSED!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:40:16'!
+test06ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading South' equals: window heading.! !
+
+!methodRemoval: WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 18:40:17'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverTurnsRightAndForward
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:40:27' prior: 50556425!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	! !
+
+!methodRemoval: WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:40:44'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	!
+!WindowListenerTest methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 18:40:52'!
+test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading South' equals: window heading.! !
+
+!methodRemoval: WindowListenerTest #test06ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:40:53'!
+test06ReturnOnlyLastHeadingAndNewPositionIfRoverMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 0@0 heading: MarsRoverHeadingNorth.
+	
+	window := WindowListener 
+		observes: (OrderedCollection with: MarsRover directionEvent with: MarsRover positionEvent ) 
+		on: marsRover.
+	
+	marsRover process: 'rf'.
+	
+	self assert: '1@0' equals: window position.
+	self assert: 'Heading East' equals: window heading.
+	
+	marsRover process: 'br'.
+	
+	self assert: '0@0' equals: window position.
+	self assert: 'Heading South' equals: window heading.!
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 18:40:55'!
+PASSED!
+
+Object subclass: #Event
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #Event category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:37'!
+Object subclass: #Event
+	instanceVariableNames: 'arrayOfEventNames marsRover log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #Event category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:41'!
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #PositionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:46'!
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #DirectionEvent category: 'MarsRover-WithHeading' stamp: 'ms 10/26/2022 19:12:48'!
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!DirectionEvent class methodsFor: 'no messages' stamp: 'ms 10/26/2022 19:13:16'!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover directionEvent)! !
+!PositionEvent class methodsFor: 'nil' stamp: 'ms 10/26/2022 19:13:21'!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover directionEvent)! !
+!PositionEvent class methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 19:13:24' prior: 50556642!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover positionEvent )! !
+!PositionEvent class methodsFor: 'as yet unclassified' stamp: 'ms 10/26/2022 19:13:25' prior: 50556648!
+isFor: anEventName
+	
+	^(anEventName  = MarsRover positionEvent)! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:21:12' prior: 50553064!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+	| handlers |
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:21:16' prior: 50556660!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	(anArrayOfEventNames includes: MarsRover directionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover directionEvent handleWith: [:aValue | heading := 'Heading ',aValue]].
+	
+	(anArrayOfEventNames includes: MarsRover positionEvent) ifTrue: 
+	[aMarsRover subscribeToEvents: MarsRover positionEvent handleWith: [:aValue | position := aValue]].
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:24:36' prior: 50556684!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+
+
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:24:42' prior: 50556708!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames 
+		do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+
+
+	^self! !
+!WindowListener methodsFor: 'initialization' stamp: 'ms 10/26/2022 19:25:05' prior: 50556725!
+initializeObserving: anArrayOfEventNames on: aMarsRover
+
+	| handlers |
+
+	heading := ''.
+	position := ''.
+	handlers := Dictionary new.
+	handlers add: MarsRover directionEvent -> [:aValue | heading := 'Heading ',aValue].
+	handlers add: MarsRover positionEvent -> [:aValue | position := aValue].	
+	
+	anArrayOfEventNames 
+		do: [ :anEventName | aMarsRover subscribeToEvents: anEventName handleWith: (handlers at: anEventName) ].
+
+	^self! !
+
+!classRemoval: #PositionEvent stamp: 'ms 10/26/2022 19:25:13'!
+Event subclass: #PositionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #DirectionEvent stamp: 'ms 10/26/2022 19:25:13'!
+Event subclass: #DirectionEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classRemoval: #Event stamp: 'ms 10/26/2022 19:25:13'!
+Object subclass: #Event
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!testRun: #LoggerListenerTest #test01ReturnEmptyListIfNothingWasObserved stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test02ReturnListWithOneItemIfMovesOnePosition stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test03ReturnListWithOneItemIfChangeDirection stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test04ReturnListWithMoreItemIfProcess stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test05ReturnListWithMoreItemIfProcessButJustDirection stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test06ReturnListWithMoreItemIfProcessButJustPosition stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #LoggerListenerTest #test07ReturnEmptyListIfProcessButListeningNothing stamp: 'ms 10/26/2022 19:25:46'!
+PASSED!
+
+!testRun: #WindowListenerTest #test01ReturnEmptyHeaderAndPositionIfNothingWasObserved stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test02ReturnNewPositionIfRoverMovesForward stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test03ReturnNewHeadingIfRoverTurnsRight stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test04ReturnNewHeadingAndNewPositionIfRoverTurnsRightAndForward stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!
+
+!testRun: #WindowListenerTest #test05ReturnOnlyLastHeadingAndNewPositionIfRoverMoves stamp: 'ms 10/26/2022 19:25:49'!
+PASSED!

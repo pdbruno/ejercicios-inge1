@@ -7,120 +7,1847 @@
 
 ----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
 
-----STARTUP---- (16 October 2022 10:25:38) as C:\Users\Patricio\Desktop\windows64\CuisUniversity-5481.image!
+----STARTUP---- (6 October 2022 20:29:34) as /Users/msaied/Documents/UBA/inge1/Imagen Cuis/CuisUniversity-5481.image!
 
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:33:41'!
-test11PortfolioCanNotAddItself
-	| portfolio |
-	portfolio _ Portfolio new.! !
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:35:00'!
-test12PortfolioCanNotAddItself
-	| portfolio |
-	portfolio _ Portfolio new.! !
 
-!methodRemoval: PortfolioTest #test11PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:35:05'!
-test11PortfolioCanNotAddItself
+----End fileIn of /Users/msaied/Documents/UBA/inge1/2022-2c/06-Portfolio1/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:34:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 20:34:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:34:14'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:36:41'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 20:36:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:36:41'!
+FAILURE!
+!Withdraw methodsFor: 'value' stamp: 'ms 10/6/2022 20:41:18' prior: 50552442 overrides: 50552371!
+value
+
+	^ -1 * value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:41:19'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 20:41:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:41:19'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:43:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 20:43:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:43:15'!
+FAILURE!
+!AccountTransaction methodsFor: 'value' stamp: 'ms 10/6/2022 20:44:02'!
+netValue 
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'ms 10/6/2022 20:44:09' overrides: 50552623!
+netValue
+
+	^ value! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/6/2022 20:44:14' overrides: 50552623!
+netValue
+
+	^ -1 * value! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/6/2022 20:44:21' prior: 50552560 overrides: 50552371!
+value
+
+	^ value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ms 10/6/2022 20:44:31' prior: 50552486!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction netValue ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 20:44:33'!
+PASSED!
+!Deposit methodsFor: 'value' stamp: 'ms 10/6/2022 21:04:50'!
+updateBalance: aBalance
+
+	^aBalance + value! !
+
+!methodRemoval: Deposit #netValue stamp: 'ms 10/6/2022 21:04:53'!
+netValue
+
+	^ value!
+!AccountTransaction methodsFor: 'value' stamp: 'ms 10/6/2022 21:05:16'!
+updateBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #netValue stamp: 'ms 10/6/2022 21:05:19'!
+netValue 
+
+	self subclassResponsibility !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/6/2022 21:05:40' overrides: 50552677!
+updateBalance: aBalance
+
+	^aBalance - value! !
+
+!methodRemoval: Withdraw #netValue stamp: 'ms 10/6/2022 21:05:43'!
+netValue
+
+	^ -1 * value!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ms 10/6/2022 21:07:08' prior: 50552639!
+balance
+
+	^transactions inject: 0 into: [ :partialBalance :aTransaction | aTransaction updateBalance: partialBalance ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/6/2022 21:07:10'!
+PASSED!
+
+----STARTUP---- (10 October 2022 15:30:14) as /Users/msaied/Documents/UBA/inge1/Imagen Cuis/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/ejercicios-inge1/06-Portfolio1/Portfolio-Ejercicio.st----!
+!AccountTransaction methodsFor: 'value' stamp: 'ms 10/10/2022 15:32:16'!
+updateBalance: aBalance 
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'ms 10/10/2022 15:32:58' overrides: 50552957!
+updateBalance: aBalance
+
+	^aBalance + value! !
+!Withdraw methodsFor: 'value' stamp: 'ms 10/10/2022 15:33:13' overrides: 50552957!
+updateBalance: aBalance
+
+	^aBalance - value! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/10/2022 15:33:15'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/10/2022 15:33:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/10/2022 15:33:15'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'ms 10/10/2022 15:33:45' prior: 50552943!
+balance
+
+	^transactions inject: 0 into: [ :balance :aTransaction | aTransaction updateBalance: balance ].! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/10/2022 15:33:47'!
+PASSED!
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 15:35:11'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 15:35:20'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:38:42'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:38:59' prior: 50553058!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:39:12' prior: 50553063!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
 	| portfolio |
-	portfolio _ Portfolio new.!
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:35:57' prior: 50552278!
-test12PortfolioCanNotAddItself
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:39:14'!
+ERROR!
+!Portfolio methodsFor: 'no messages' stamp: 'ms 10/10/2022 15:39:51'!
+balance
+	
+	^0! !
+
+!testRun: #PortfolioTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:39:52'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:43:48'!
+test01PortfolioWithOneAccountHasSameTransactions
+
 	| portfolio |
-	portfolio _ Portfolio new.
-	self 
-		should: [ portfolio add: portfolio ]
-		raise: Error
-		withMessageText: Portfolio canNotAddErrorMessage ! !
-!Portfolio class methodsFor: 'no messages' stamp: 'pdb 10/16/2022 10:38:21'!
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:44:11'!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!methodRemoval: PortfolioTest #test01PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:44:13'!
+test01PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:44:23'!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!methodRemoval: PortfolioTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:44:26'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:44:32' prior: 50553096!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:44:52' prior: 50553127!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:45:17' prior: 50553137!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:45:37'!
+add: anAsset
+	
+	! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 15:45:46'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:20' overrides: 16920235!
+initialize
+	
+	assets := OrderedCollection new! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:21' prior: 50553174 overrides: 16920235!
+initialize
+	
+	assets := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:43' prior: 50553158!
+add: anAsset
+	
+	assets add: anAsset
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:46:44' prior: 50553185!
+add: anAsset
+	
+	assets add: anAsset.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:47:10'!
+transactions
+	
+	assets := OrderedCollection new.! !
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagen Cuis/Packages/TerseGuide.pck.st----!
+
+#(#(1)#(2)#(3))!
+
+#(#(1)#(2)#(3)) flatten!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:51:40' prior: 50553194!
+transactions
+	^(assets collect: [:anAsset | anAsset transactions]) flatten
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:51:58' prior: 50553147!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 0 equals: portfolio transactions.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:52:01' prior: 50556126!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 1 equals: portfolio transactions.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:52:07' prior: 50556137!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:52:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:52:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:52:10'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:52:25' prior: 50556148!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 2 equals: (portfolio transactions) size.
+! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:52:26'!
+FAILURE!
+
+	^(assets collect: [:anAsset | anAsset transactions]) flatten
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:53:16' prior: 50556170!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 2 equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:53:29' prior: 50556187!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Deposit register: 100 on: account.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 2 equals: (portfolio transactions) size.
+! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:53:30'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:53:36' prior: 50556198!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: 2 equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:55:07' prior: 50556215!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes:1
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:55:41' prior: 50556226!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes:1
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:55:46' prior: 50556237!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit
+! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:55:48'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:56:11' prior: 50556249!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:56:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:56:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:56:12'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:57:13'!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:57:28'!
+testxxPortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+
+!methodRemoval: PortfolioTest #test02PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:57:28'!
+test02PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:57:58' prior: 50556296!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 100 equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:58:12' prior: 50556337!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: account balance equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:58:28' prior: 50556351!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:58:37' prior: 50556365!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:58:44' prior: 50556377!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 15:58:48' prior: 50556388!
+test02PortfolioWithOneAccountHasSameBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 15:59:34' prior: 50553082!
+balance
+	
+	^assets sum: [:anAsset | anAsset balance] ifEmpty: [0]! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 15:59:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 15:59:38'!
+PASSED!
+
+!testRun: #PortfolioTest #testxxPortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 15:59:38'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:00:19'!
+test03PortfolioWithTwoAccountsHasSumOfBalances
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:01:14' prior: 50556429!
+test03PortfolioWithTwoAccountsHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:01:27' prior: 50556442!
+test03PortfolioWithTwoAccountsHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:01:49' prior: 50556457!
+test03PortfolioWithTwoAccountsHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Deposit register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance) equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:01:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:01:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:01:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:01:58'!
+PASSED!
+
+!testRun: #PortfolioTest #testxxPortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:01:58'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:02:23'!
+test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Deposit register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:02:29' prior: 50556507!
+test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance) equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+
+!testRun: #PortfolioTest #testxxPortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:02:35'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:02:46' prior: 50556524!
+test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: 60 equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+
+!testRun: #PortfolioTest #testxxPortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:02:47'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:03:04' prior: 50556563!
+test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance)  equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:03:51'!
+test05PortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+
+!methodRemoval: PortfolioTest #testxxPortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:03:53'!
+testxxPortfolioWithOneAccountHasSameTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:04:24'!
+test06PortfolioWithTwoAccountHasAllTransactions
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	portfolio add: account.
+
+	self assert: (portfolio transactions) includes: deposit.
+	self assert: 1 equals: (portfolio transactions) size.
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:04:52' prior: 50556645!
+test06PortfolioWithTwoAccountHasAllTransactions
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: (account1 balance + account2 balance)  equals: (portfolio balance).
+
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:07:45' prior: 50556659!
+test06PortfolioWithTwoAccountHasAllTransactions
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: ((portfolio transactions) allSatisfy: 
+		[ :aTransaction | (account1 transactions includes: aTransaction) or: (account2 transactions includes: aTransaction) ])
+
+! !
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:07:47'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:08:34' prior: 50556676!
+test06PortfolioWithTwoAccountHasAllTransactions
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: ((portfolio transactions) allSatisfy: 
+		[ :aTransaction | (account1 transactions includes: aTransaction) or: (account2 transactions includes: aTransaction) ]).
+	self assert: (account1 transactions size + account2 transactions size) equals: portfolio transactions size.
+
+! !
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:08:35'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:10:04'!
+test07PortfolioHasRegisteredTransaction
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 10 on: account1.
+	Withdraw register: 30 on: account2.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+
+	self assert: ((portfolio transactions) allSatisfy: 
+		[ :aTransaction | (account1 transactions includes: aTransaction) or: (account2 transactions includes: aTransaction) ]).
+	self assert: (account1 transactions size + account2 transactions size) equals: portfolio transactions size.
+
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:10:55' prior: 50556769!
+test07PortfolioHasRegisteredTransaction
+
+	| portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+
+	portfolio add: account.
+
+
+	self assert: (portfolio hasRegistered: transaction) 
+! !
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:10:56'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 16:11:03'!
+hasRegistered: aDeposit 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 16:11:14' prior: 50556807!
+hasRegistered: aDeposit 
+	
+	^true! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 16:11:19' prior: 50556812!
+hasRegistered: aTransaction
+	
+	^true! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:11:21'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:11:27'!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+
+	portfolio add: account.
+
+
+	self assert: (portfolio hasRegistered: transaction) 
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:11:36' prior: 50556846!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+
+	portfolio add: account.
+
+
+	self assert: (portfolio hasRegistered: transaction) 
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:11:46' prior: 50556858!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+
+	portfolio add: account.
+
+
+	self assert: (portfolio hasRegistered: transaction) 
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:11:59' prior: 50556870!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+	Deposit register: 100 on: account2.
+
+	portfolio add: account2.
+
+
+	self assert: (portfolio hasRegistered: transaction) 
+! !
+
+!testRun: #PortfolioTest #test07PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:12:02'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:12:07' prior: 50556883!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+	Deposit register: 100 on: account2.
+
+	portfolio add: account2.
+
+
+	self assertFalse: (portfolio hasRegistered: transaction) 
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:12:17' prior: 50556930!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+	Deposit register: 100 on: account2.
+
+	portfolio add: account2.
+
+
+	self deny: (portfolio hasRegistered: transaction) 
+! !
+
+!testRun: #PortfolioTest #test07PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:12:18'!
+FAILURE!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:12:29'!
+test08PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+	Deposit register: 100 on: account2.
+
+	portfolio add: account2.
+
+
+	self deny: (portfolio hasRegistered: transaction) 
+! !
+
+!methodRemoval: PortfolioTest #test07PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:12:32'!
+test07PortfolioHasNotRegisteredTransaction
+
+	| portfolio account account2 transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transaction := Deposit register: 100 on: account.
+	Deposit register: 100 on: account2.
+
+	portfolio add: account2.
+
+
+	self deny: (portfolio hasRegistered: transaction) 
+!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/10/2022 16:12:55' prior: 50556817!
+hasRegistered: aTransaction
+	
+	^self transactions includes: aTransaction.! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:12:57'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:14:21'!
+test09PortfolioWithOnePortfolioHasSameBalance
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:14:44' prior: 50557025!
+test09PortfolioWithOnePortfolioHasSameBalance
+
+	| portfolio childPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:14:46' prior: 50557038!
+test09PortfolioWithOnePortfolioHasSameBalance
+
+	| portfolio childPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	portfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:14:54' prior: 50557052!
+test09PortfolioWithOnePortfolioHasSameBalance
+
+	| portfolio childPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	childPortfolio add: account.
+
+	self assert: (account balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:15:08' prior: 50557066!
+test09PortfolioWithOnePortfolioHasSameBalance
+
+	| portfolio childPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+
+	self assert: (childPortfolio balance) equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/10/2022 16:15:09'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:15:34'!
+test09PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+
+	self assert: (childPortfolio balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:15:42' prior: 50557131!
+test09PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+
+	self assert: (childPortfolio balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:16:03' prior: 50557147!
+test09PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 10 on: account.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+
+	self assert: (childPortfolio balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:16:44' prior: 50557163!
+test09PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account2.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+	portfolio add: account2.
+
+	self assert: (childPortfolio balance + account2 balance) equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test09PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/10/2022 16:16:44'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:16:49'!
+test10PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account2.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+	portfolio add: account2.
+
+	self assert: (childPortfolio balance + account2 balance) equals: (portfolio balance).
+! !
+
+!methodRemoval: PortfolioTest #test09PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/10/2022 16:16:52'!
+test09PortfolioWithPortfolioAndAccountHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account2.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+	portfolio add: account2.
+
+	self assert: (childPortfolio balance + account2 balance) equals: (portfolio balance).
+!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:17:42'!
+test11PortfolioWithMultiLevelPortfolioHasSameBalance
+
+	| portfolio childPortfolio account account2 |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Deposit register: 50 on: account2.
+	
+	childPortfolio add: account.
+	portfolio add: childPortfolio.
+	portfolio add: account2.
+
+	self assert: (childPortfolio balance + account2 balance) equals: (portfolio balance).
+! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/10/2022 16:18:47' prior: 50557275!
+test11PortfolioWithMultiLevelPortfolioHasSameBalance
+
+	| portfolio childPortfolio childChildPortfolio account |
+	
+	portfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	childChildPortfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	Deposit register: 100 on: account.
+	
+	childChildPortfolio add: account.
+	childPortfolio add: childChildPortfolio.
+	portfolio add: childPortfolio.
+
+	self assert: account balance equals: (portfolio balance).
+! !
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/10/2022 16:18:48'!
+PASSED!
+
+Object subclass: #Asset
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Asset category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 16:28:14'!
+Object subclass: #Asset
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Asset subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 16:28:23'!
+Asset subclass: #Portfolio
+	instanceVariableNames: 'assets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Asset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Asset subclass: #ReceptiveAccount
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'ms 10/10/2022 16:28:38'!
+Asset subclass: #ReceptiveAccount
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----SNAPSHOT----(11 October 2022 06:22:14) CuisUniversity-5481.image priorSource: 7059698!
+
+----STARTUP---- (17 October 2022 13:36:45) as /Users/msaied/Documents/UBA/inge1/Imagen Cuis/CuisUniversity-5481.image!
+
+!Asset methodsFor: 'no messages' stamp: 'ms 10/17/2022 13:38:01'!
+addToPortfolio: aPortfolio
+	self subclassResponsibility 
+! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:38:09'!
+hasAsset: anAssetToFind
+	self subclassResponsibility ! !
+!Asset methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:38:22'!
+add: anAsset
+	anAsset addToPortfolio: self.! !
+
+!methodRemoval: Asset #add: stamp: 'ms 10/17/2022 13:38:29'!
+add: anAsset
+	anAsset addToPortfolio: self.!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:38:36' prior: 50553190!
+add: anAsset
+	anAsset addToPortfolio: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:38:48' overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio = self or: [self hasAsset: aPortfolio] or: [assets anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:39:04' overrides: 50557407!
+hasAsset: anAssetToFind
+	^ assets anySatisfy: [:anAsset | anAsset = anAssetToFind or: [anAsset hasAsset: anAssetToFind ]].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 13:39:10'!
+safeAdd: anAsset
+	assets add: anAsset.! !
+!Portfolio class methodsFor: 'no messages' stamp: 'ms 10/17/2022 13:39:18'!
 canNotAddErrorMessage
 	'No se puede agregar este portfolio, se está introduciendo un ciclo en el grafo'! !
+!ReceptiveAccount class methodsFor: 'no messages' stamp: 'ms 10/17/2022 13:39:25'!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self! !
 
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 10:39:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 10:39:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 10:39:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 10:39:30'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:39:31'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:39:31'!
-FAILURE!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:39:31'!
-FAILURE!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:42:52' prior: 50553190!
-add: anAsset
-	(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	assets add: anAsset.! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:42:55'!
-PASSED!
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:44:54'!
-test13PortfolioCanNotAddParentPortfolio
+!methodRemoval: ReceptiveAccount class #addToPortfolio: stamp: 'ms 10/17/2022 13:39:37'!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/17/2022 13:39:49' overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'ms 10/17/2022 13:39:58' overrides: 50557407!
+hasAsset: anAssetToFind
+	^false! !
+!ReceptiveAccount class methodsFor: 'no messages' stamp: 'ms 10/17/2022 13:40:08'!
+canNotAddErrorMessage
+	'No se puede agregar esta cuenta ya que se encuentra en el portfolio'! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:24'!
+test12PortfolioCanNotAddItself
 	| portfolio |
 	portfolio _ Portfolio new.
 	self 
 		should: [ portfolio add: portfolio ]
 		raise: Error
 		withMessageText: Portfolio canNotAddErrorMessage ! !
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:46:29' prior: 50552400!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:31'!
 test13PortfolioCanNotAddParentPortfolio
 	| portfolio1 portfolio2 |
 	portfolio1 _ Portfolio new.
@@ -131,190 +1858,7 @@ test13PortfolioCanNotAddParentPortfolio
 		should: [ portfolio1 add: portfolio2 ]
 		raise: Error
 		withMessageText: Portfolio canNotAddErrorMessage ! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:49:00' prior: 50552351!
-add: anAsset
-	(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasRegistered: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	assets add: anAsset.! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:49:04'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 10:49:04'!
-FAILURE!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 10:49:04'!
-FAILURE!
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:51:07'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:51:08'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 10:51:08'!
-FAILURE!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 10:51:08'!
-FAILURE!
-
-anAsset isKindOf: Portfolio!
-
-self transactions includes: arg1!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:55:19' prior: 50556991!
-hasRegistered: aTransaction
-	^ self transactions includes: aTransaction.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:56:16' prior: 50552421!
-add: anAsset
-	(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasImmediateAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	assets add: anAsset.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:56:50'!
-hasImmediateAsset: anAsset
-	^ assets includes: anAsset.! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 10:56:57'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 10:56:58'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 10:56:58'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 10:56:58'!
-PASSED!
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:57:29'!
-test13PortfolioCanNotAddAncestorPortfolio
-	| portfolio1 portfolio2 |
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio2 add: portfolio1 .
-	
-	self 
-		should: [ portfolio1 add: portfolio2 ]
-		raise: Error
-		withMessageText: Portfolio canNotAddErrorMessage ! !
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:58:16' prior: 50552602!
-test13PortfolioCanNotAddAncestorPortfolio
-	| portfolio1 portfolio2 portfolio3 |
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
-	portfolio2 add: portfolio1.
-	portfolio3 add: portfolio2.
-	
-	self 
-		should: [ portfolio1 add: portfolio2 ]
-		raise: Error
-		withMessageText: Portfolio canNotAddErrorMessage ! !
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:58:24' prior: 50552614!
-test13PortfolioCanNotAddAncestorPortfolio
-	| portfolio1 portfolio2 portfolio3 |
-	portfolio1 _ Portfolio new.
-	portfolio2 _ Portfolio new.
-	portfolio3 _ Portfolio new.
-	portfolio2 add: portfolio1.
-	portfolio3 add: portfolio2.
-	
-	self 
-		should: [ portfolio1 add: portfolio3 ]
-		raise: Error
-		withMessageText: Portfolio canNotAddErrorMessage ! !
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 10:58:30'!
-FAILURE!
-!PortfolioTest methodsFor: 'tests' stamp: 'pdb 10/16/2022 10:58:40'!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:36'!
 test14PortfolioCanNotAddAncestorPortfolio
 	| portfolio1 portfolio2 portfolio3 |
 	portfolio1 _ Portfolio new.
@@ -327,509 +1871,1244 @@ test14PortfolioCanNotAddAncestorPortfolio
 		should: [ portfolio1 add: portfolio3 ]
 		raise: Error
 		withMessageText: Portfolio canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:42'!
+test15PortfolioCanNotAddAccountMultipleTimes
+	| portfolio account |
+	portfolio _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio add: account.
 
-!methodRemoval: PortfolioTest #test13PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 10:58:44'!
-test13PortfolioCanNotAddAncestorPortfolio
-	| portfolio1 portfolio2 portfolio3 |
+	
+	self 
+		should: [ portfolio add: account ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:49'!
+test16PortfolioCanNotAddPortfolioThatSharesAccount
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio2 add: account.
+	
+	self 
+		should: [ portfolio1 add: portfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:53'!
+test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio2 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio1 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:40:58'!
+test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio2 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 13:41:04'!
+testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep
+"	| parentPortfolio1 parentPortfolio2 childPortfolio1 childPortfolio2 account |
+	parentPortfolio1 _ Portfolio new.
+	parentPortfolio2 _ Portfolio new.
+	childPortfolio1 _ Portfolio new.
+	childPortfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	parentPortfolio1 add: childPortfolio1.
+	parentPortfolio2 add: childPortfolio2.
+	childPortfolio2 add: account.
+	childPortfolio1 add: account.	
+	self 
+		should: [ parentPortfolio1 add: parentPortfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage "! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 13:41:07'!
+FAILURE!
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 13:41:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 13:41:07'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 14:48:42'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 14:48:42'!
+FAILURE!
+
+Object subclass: #Asset
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Asset category: 'Portfolio-Ejercicio' stamp: 'ms 10/17/2022 14:48:57'!
+Object subclass: #Asset
+	instanceVariableNames: 'transactions parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 14:49:23' prior: 50557425 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio = self or: [self hasAsset: aPortfolio] or: [assets anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!Portfolio methodsFor: 'initialization' stamp: 'ms 10/17/2022 14:49:38' prior: 50553180 overrides: 16920235!
+initialize
+	
+	assets := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 14:50:06' prior: 50557468 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/17/2022 14:50:19' prior: 50552929 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 14:51:31' prior: 50557707 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 14:52:06' prior: 50557688 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio = self or: [self hasAsset: aPortfolio] or: [assets anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 14:52:38' prior: 50557723 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:06:07' prior: 50557744 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio roots.
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:07:55'!
+roots
+
+	parents isEmpty ifTrue: [].
+	
+	parents do: [ :parent | ^parent roots].! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:08:47' prior: 50557762!
+roots
+
+	parents isEmpty ifTrue: [^self].
+	
+	parents do: [ :parent | ^parent roots].! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:09:20' prior: 50557768!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+	
+	parents do: [ :parent | ^parent roots].! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:00' prior: 50557774!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+	^self roots
+	
+	parents collect: [ :parent | ^parent roots].! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:04' prior: 50557780!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+	^self roots
+	
+	parents collect: [ :parent | parent roots].! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:11' prior: 50557787!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+	^self roots
+	
+	parents collect: [ :parent | parent roots] flatten.! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:20' prior: 50557794!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	
+	(parents collect: [ :parent | parent roots]) flatten.! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:23' prior: 50557801!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	
+	^(parents collect: [ :parent | parent roots]) flatten.! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:11:24' prior: 50557808!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	^(parents collect: [ :parent | parent roots]) flatten.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:12:14' prior: 50557753 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:12:34' prior: 50557823 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	(aPortfolio = self or: [self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:12:44' prior: 50557832 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio hasAsset: self) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	([self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:12:48' prior: 50557847 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:anAsset | aPortfolio hasAsset: anAsset]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:09' prior: 50557861 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:aRoot | aPortfolio hasAsset: aRoot]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:12' prior: 50557873 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: aRoot]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:14' prior: 50557885 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([self hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:38' prior: 50557896 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([aPortfolio hasAsset: aPortfolio] or: [aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:40' prior: 50557907 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([aPortfolio hasAsset: self] or: [aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:13:50' prior: 50557919 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	([aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:14:02' prior: 50557930 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:14:29'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:15:18'!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio2 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:15:53' prior: 50557953!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio2 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:01' prior: 50557968!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
 	portfolio1 _ Portfolio new.
 	portfolio2 _ Portfolio new.
 	portfolio3 _ Portfolio new.
-	portfolio2 add: portfolio1.
-	portfolio3 add: portfolio2.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
 	
 	self 
-		should: [ portfolio1 add: portfolio3 ]
+		should: [ portfolio2 add: account. ]
 		raise: Error
-		withMessageText: Portfolio canNotAddErrorMessage !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 10:59:39'!
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:16' prior: 50557983!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	
+	self 
+		should: [ portfolio3 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:24' prior: 50557999!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	portfolio3 add: account.
+	
+	self 
+		should: [ portfolio3 add: account. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:30' prior: 50558015!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	portfolio3 add: account.
+	
+	self 
+		should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withMessageText: ReceptiveAccount canNotAddErrorMessage ! !
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:16:34' prior: 50558032!
+test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor
+	| portfolio1 portfolio2 portfolio3 account |
+	portfolio1 _ Portfolio new.
+	portfolio2 _ Portfolio new.
+	portfolio3 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2.
+	portfolio3 add: account.
+	
+	self 
+		should: [ portfolio2 add: portfolio3. ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage ! !
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:16:37'!
+FAILURE!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:16:37'!
+FAILURE!
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:16:57' prior: 50557732 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
+
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+
+x _ Set new.										"allocate collection"!
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:20:22'!
+allAssets
+
+	| assetsSet |
+	
+	assetsSet := Set with: self.
+	
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:21:07' prior: 50558085!
+allAssets
+
+	| assetsSet |
+	
+	assetsSet := Set with: self.
+	
+	assets do: [ :anAsset | assetsSet union: anAsset allAssets ]
+	
+	! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'ms 10/17/2022 15:21:37'!
+allAssets
+	
+	^Set new! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 15:21:38' prior: 50558097!
+allAssets
+	
+	^Set new.! !
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:22:41' prior: 50558090!
+allAssets
+	
+	^assets inject: [Set with: self] into: [ :aSet :anAsset | aSet union: anAsset allAssets ]
+	
+	! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:25:04' prior: 50558074 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(self allAssets anySatisfy: [:childAsset | ])
+	"(aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio."! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:26:18'!
+set: aSet intersectsWith: anotherSet 
+	(self allAssets anySatisfy: [:childAsset | ])
+	"(aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio."! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:30:35' prior: 50558112 overrides: 50557402!
+addToPortfolio: aPortfolio 
+
+	(self allAssets anySatisfy: 
+	[:childAsset | aPortfolio roots anySatisfy: 
+		[:aPortfolioRoot | aPortfolioRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:30:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:30:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:31:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:31:52'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'ms 10/17/2022 15:34:33' prior: 50558101!
+allAssets
+	
+	^Set with: self.! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:34:52'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:34:52'!
+FAILURE!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:34:52'!
+ERROR!
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:34:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:35:02'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'ms 10/17/2022 15:35:40' prior: 50558105!
+allAssets
+	
+	^assets inject: (Set with: self) into: [ :aSet :anAsset | aSet union: anAsset allAssets ]
+	
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:35:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:35:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:35:41'!
+FAILURE!
+
+childAsset = self!
+
+aPortfolio = self!
+
+aPortfolio roots!
+
+(aPortfolio roots at:0) = aPortfolio!
+
+(aPortfolio roots at:0) !
+
+(aPortfolio roots at:1) = aPortfolio !
+
+aPortfolioRoot = childAsset!
+!Portfolio methodsFor: 'testing' stamp: 'ms 10/17/2022 15:44:48' prior: 50557436 overrides: 50557407!
+hasAsset: anAssetToFind
+	^ self = anAssetToFind or: [assets anySatisfy: [:anAsset | anAsset = anAssetToFind or: [anAsset hasAsset: anAssetToFind ]]].! !
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:44:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:44:54'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:45:28' prior: 50557572!
+testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep
+	| parentPortfolio1 parentPortfolio2 childPortfolio1 childPortfolio2 account |
+	parentPortfolio1 _ Portfolio new.
+	parentPortfolio2 _ Portfolio new.
+	childPortfolio1 _ Portfolio new.
+	childPortfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	parentPortfolio1 add: childPortfolio1.
+	parentPortfolio2 add: childPortfolio2.
+	childPortfolio2 add: account.
+	childPortfolio1 add: account.	
+	self 
+		should: [ parentPortfolio1 add: parentPortfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage! !
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+
+!testRun: #PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:45:28'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'ms 10/17/2022 15:45:40'!
+test20PortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep
+	| parentPortfolio1 parentPortfolio2 childPortfolio1 childPortfolio2 account |
+	parentPortfolio1 _ Portfolio new.
+	parentPortfolio2 _ Portfolio new.
+	childPortfolio1 _ Portfolio new.
+	childPortfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	parentPortfolio1 add: childPortfolio1.
+	parentPortfolio2 add: childPortfolio2.
+	childPortfolio2 add: account.
+	childPortfolio1 add: account.	
+	self 
+		should: [ parentPortfolio1 add: parentPortfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage! !
+
+!methodRemoval: PortfolioTest #testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:45:43'!
+testXXPortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep
+	| parentPortfolio1 parentPortfolio2 childPortfolio1 childPortfolio2 account |
+	parentPortfolio1 _ Portfolio new.
+	parentPortfolio2 _ Portfolio new.
+	childPortfolio1 _ Portfolio new.
+	childPortfolio2 _ Portfolio new.
+	account _ ReceptiveAccount new.
+	parentPortfolio1 add: childPortfolio1.
+	parentPortfolio2 add: childPortfolio2.
+	childPortfolio2 add: account.
+	childPortfolio1 add: account.	
+	self 
+		should: [ parentPortfolio1 add: parentPortfolio2 ]
+		raise: Error
+		withMessageText: Portfolio canNotAddErrorMessage!
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:49:15' prior: 50557940 overrides: 50557402!
+addToPortfolio: aPortfolio 
+	(self allAssets anySatisfy: 
+	[:childAsset | aPortfolio roots anySatisfy: 
+		[:aPortfolioRoot | aPortfolioRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'ms 10/17/2022 15:49:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:49:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:49:22'!
+PASSED!
+!Asset methodsFor: 'adding' stamp: 'ms 10/17/2022 15:51:45'!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	self safeAdd: anAsset.
+	parents add: self.
+! !
+!Asset methodsFor: 'adding' stamp: 'ms 10/17/2022 15:51:54'!
+roots! !
+!Asset methodsFor: 'adding' stamp: 'ms 10/17/2022 15:52:21' prior: 50558681!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	^(parents collect: [ :parent | parent roots]) flatten.! !
+
+!methodRemoval: Asset #addToPortfolio: stamp: 'ms 10/17/2022 15:52:43'!
+addToPortfolio: aPortfolio
+	self subclassResponsibility 
+!
+
+!methodRemoval: ReceptiveAccount #addToPortfolio: stamp: 'ms 10/17/2022 15:52:50'!
+addToPortfolio: aPortfolio 
+	(self allAssets anySatisfy: 
+	[:childAsset | aPortfolio roots anySatisfy: 
+		[:aPortfolioRoot | aPortfolioRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.!
+
+!methodRemoval: Portfolio #addToPortfolio: stamp: 'ms 10/17/2022 15:52:54'!
+addToPortfolio: aPortfolio 
+
+	(self allAssets anySatisfy: 
+	[:childAsset | aPortfolio roots anySatisfy: 
+		[:aPortfolioRoot | aPortfolioRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio.!
+
+!methodRemoval: Portfolio #add: stamp: 'ms 10/17/2022 15:52:56'!
+add: anAsset
+	anAsset addToPortfolio: self.!
+
+!methodRemoval: Portfolio #set:intersectsWith: stamp: 'ms 10/17/2022 15:53:20'!
+set: aSet intersectsWith: anotherSet 
+	(self allAssets anySatisfy: [:childAsset | ])
+	"(aPortfolio roots anySatisfy: [:aRoot | aRoot hasAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	
+	aPortfolio safeAdd: self.
+	parents add: aPortfolio."!
+!Asset methodsFor: 'adding' stamp: 'ms 10/17/2022 15:55:11' prior: 50558671!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	parents add: anAsset.
+	anAsset addParent: self.
+! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:55:28' overrides: 50558732!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	parents add: anAsset.
+	anAsset addParent: self.
+! !
+!ReceptiveAccount methodsFor: 'adding' stamp: 'ms 10/17/2022 15:55:29' overrides: 50558732!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	parents add: anAsset.
+	anAsset addParent: self.
+! !
+
+!methodRemoval: Asset #add: stamp: 'ms 10/17/2022 15:55:29'!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	parents add: anAsset.
+	anAsset addParent: self.
+!
+
+!methodRemoval: ReceptiveAccount #add: stamp: 'ms 10/17/2022 15:55:34'!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	parents add: anAsset.
+	anAsset addParent: self.
+!
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:55:42' prior: 50558743!
+add: anAsset
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: self class canNotAddErrorMessage ].
+	
+	assets add: anAsset.
+	anAsset addParent: self.
+! !
+
+!methodRemoval: Asset #roots stamp: 'ms 10/17/2022 15:56:05'!
+roots
+
+	parents isEmpty ifTrue: [^OrderedCollection with: self].
+
+	^(parents collect: [ :parent | parent roots]) flatten.!
+
+!methodRemoval: Portfolio #safeAdd: stamp: 'ms 10/17/2022 15:56:24'!
 safeAdd: anAsset
-	assets add: anAsset.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:00:09' prior: 50552540!
+	assets add: anAsset.!
+!Asset methodsFor: 'nil' stamp: 'ms 10/17/2022 15:56:51'!
+addParent: aPortfolio
+	
+	parents add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:58:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:58:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:58:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:58:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:58:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:58:26'!
+FAILURE!
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:58:46' prior: 50558784!
 add: anAsset
-	anAsset addToPorfolio: self.
-	(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasImmediateAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	assets add: anAsset.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:00:16' prior: 50552678!
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [anAsset error: self class canNotAddErrorMessage ].
+	
+	assets add: anAsset.
+	anAsset addParent: self.
+! !
+!Portfolio methodsFor: 'adding' stamp: 'ms 10/17/2022 15:58:52' prior: 50558888!
 add: anAsset
-	anAsset addToPorfolio: self.
-	(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasImmediateAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ].! !
-!Asset methodsFor: 'nil' stamp: 'pdb 10/16/2022 11:00:53'!
-addToPortfolio
+	
+	(anAsset allAssets anySatisfy: 
+	[:childAsset | self roots anySatisfy: 
+		[:aRoot | aRoot hasAsset: childAsset ]]) ifTrue: [self error: anAsset class canNotAddErrorMessage ].
+	
+	assets add: anAsset.
+	anAsset addParent: self.
+! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotAddAccountMultipleTimes stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfolioCanNotAddPortfolioThatSharesAccount stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test17PortfolioCanNotAddAccountAlreadyFoundInChildPortfolio stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test18PortfolioCanNotAddAccountAlreadyFoundInParentPortfolio stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test19PortfolioCanNotAddPortfolioThatHasSameAccountAsAncestor stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test20PortfolioCanNotAddPortfolioThatSharesAccountOneLevelDeep stamp: 'ms 10/17/2022 15:58:55'!
+PASSED!
+!Asset methodsFor: 'accessing' stamp: 'ms 10/17/2022 16:04:25'!
+allAssets
+	
 	self subclassResponsibility ! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:01:33' prior: 50552690!
-add: anAsset
-	anAsset addToPorfolio: self.
-	"(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasImmediateAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ]."! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:01:36'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:01:36'!
-FAILURE!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:01:36'!
-ERROR!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:01:42'!
-ERROR!
-!Asset methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:02:07'!
-addToPortfolio: aPortfolio
+!Asset methodsFor: 'balance' stamp: 'ms 10/17/2022 16:05:03'!
+balance
+	
 	self subclassResponsibility ! !
+!Asset methodsFor: 'transactions' stamp: 'ms 10/17/2022 16:06:15'!
+transactions
 
-!methodRemoval: Asset #addToPortfolio stamp: 'pdb 10/16/2022 11:02:10'!
-addToPortfolio
-	self subclassResponsibility !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:02:19'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:02:19'!
-FAILURE!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:02:19'!
-ERROR!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:02:21'!
-ERROR!
-!Asset methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:03:03' prior: 50552769!
-addToPortfolio: aPortfolio
 	self subclassResponsibility ! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:03:10' prior: 50552705!
-add: anAsset
-	anAsset addToPortfolio: self.
-	"(anAsset = self) ifTrue: [self error: self class canNotAddErrorMessage ].
-	((anAsset isKindOf: Portfolio) and: [anAsset hasImmediateAsset: self]) ifTrue: [self error: self class canNotAddErrorMessage ]."! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:03:11'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:03:11'!
-ERROR!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:03:12'!
-FAILURE!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:03:12'!
-ERROR!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:03:14'!
-ERROR!
-!ReceptiveAccount methodsFor: 'private' stamp: 'pdb 10/16/2022 11:03:52' overrides: 50552831!
-addToPortfolio: aPortfolio 
-	self shouldBeImplemented.! !
-!ReceptiveAccount methodsFor: 'private' stamp: 'pdb 10/16/2022 11:04:12' prior: 50552901 overrides: 50552831!
-addToPortfolio: aPortfolio 
-	aPortfolio safeAdd: self! !
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:04:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:04:17'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:04:17'!
-ERROR!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:04:17'!
-ERROR!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:04:17'!
-ERROR!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:04:17'!
-ERROR!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:04:17'!
-ERROR!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:04:17'!
-FAILURE!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:04:20'!
-ERROR!
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:04:33' overrides: 50552831!
-addToPortfolio: aPortfolio 
-	self shouldBeImplemented.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:05:02' prior: 50552836!
-add: anAsset
-	anAsset addToPortfolio: self.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:10:14' prior: 50552974!
-add: anAsset
-	anAsset addToPortfolio: self.! !
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:11:21' prior: 50552969 overrides: 50552831!
-addToPortfolio: aPortfolio 
-	(aPortfolio = self or: [self hasImmediateAsset: aPortfolio]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	aPortfolio safeAdd: self! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:11:26'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:11:26'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:11:26'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:11:27'!
-PASSED!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:11:27'!
-FAILURE!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:11:27'!
-FAILURE!
-!Portfolio methodsFor: 'testing' stamp: 'pdb 10/16/2022 11:15:04'!
-hasAsset: anAsset
-	^ assets includes: anAsset.! !
-!Portfolio methodsFor: 'testing' stamp: 'pdb 10/16/2022 11:19:18' prior: 50553046!
-hasAsset: anAssetToFind
-	^ assets anySatisfy: [:anAsset | anAsset = anAssetToFind or: [anAsset hasAsset: anAssetToFind ]].! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:19:20'!
-PASSED!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:19:20'!
-FAILURE!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:19:20'!
-FAILURE!
-!Asset methodsFor: 'as yet unclassified' stamp: 'pdb 10/16/2022 11:20:08'!
-hasAsset: anAssetToFind
+!Asset methodsFor: 'testing' stamp: 'ms 10/17/2022 16:06:50'!
+hasRegistered: aTransaction
 	self subclassResponsibility ! !
-!ReceptiveAccount methodsFor: 'testing' stamp: 'pdb 10/16/2022 11:21:01' overrides: 50553111!
-hasAsset: anAssetToFind
-	^false! !
+!Asset methodsFor: 'testing' stamp: 'ms 10/17/2022 16:06:51' prior: 50558994!
+hasRegistered: aTransaction
 
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
+	self subclassResponsibility ! !
+!Asset methodsFor: 'initialization' stamp: 'ms 10/17/2022 16:07:21' overrides: 16920235!
+initialize
 
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
 
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
 
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
+! !
+!Asset methodsFor: 'initialization' stamp: 'ms 10/17/2022 16:07:27' prior: 50559004 overrides: 16920235!
+initialize
 
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
+	self subclassResponsibility 
+! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'ms 10/17/2022 16:07:38' prior: 50557716 overrides: 50559008!
+initialize
 
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:21:15'!
-PASSED!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:21:15'!
-FAILURE!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:21:15'!
-FAILURE!
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:21:36' prior: 50552984 overrides: 50552831!
-addToPortfolio: aPortfolio 
-	(aPortfolio = self or: [self hasAsset: aPortfolio]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	aPortfolio safeAdd: self! !
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:21:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:21:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:21:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:21:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:21:50'!
-PASSED!
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:26:10' prior: 50553174 overrides: 50552831!
-addToPortfolio: aPortfolio 
-
-	aPortfolio safeAdd: self! !
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:26:10' prior: 50553233 overrides: 50552831!
-addToPortfolio: aPortfolio 
-
-	aPortfolio safeAdd: self! !
-!Portfolio methodsFor: 'private' stamp: 'pdb 10/16/2022 11:21:36' prior: 50553239 overrides: 50552831!
-addToPortfolio: aPortfolio 
-	(aPortfolio = self or: [self hasAsset: aPortfolio]) ifTrue: [self error: self class canNotAddErrorMessage ].
-	aPortfolio safeAdd: self! !
-
-!methodRemoval: Portfolio #hasImmediateAsset: stamp: 'pdb 10/16/2022 11:29:45'!
-hasImmediateAsset: anAsset
-	^ assets includes: anAsset.!
-
-!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test02PortfolioWithOneAccountHasSameBalance stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test03PortfolioWithTwoAccountsHasSumOfBalances stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test04PortfolioWithTwoAccountsOneNegativeHasSumOfBalances stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasSameTransactions stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test06PortfolioWithTwoAccountHasAllTransactions stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test07PortfolioHasRegisteredTransaction stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test08PortfolioHasNotRegisteredTransaction stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test09PortfolioWithOnePortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test10PortfolioWithPortfolioAndAccountHasSameBalance stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test11PortfolioWithMultiLevelPortfolioHasSameBalance stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test12PortfolioCanNotAddItself stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test13PortfolioCanNotAddParentPortfolio stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-!testRun: #PortfolioTest #test14PortfolioCanNotAddAncestorPortfolio stamp: 'pdb 10/16/2022 11:29:49'!
-PASSED!
-
-----SNAPSHOT----(16 October 2022 11:45:52) CuisUniversity-5481.image priorSource: 7223822!
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Asset class methodsFor: 'error description' stamp: 'ms 10/17/2022 16:09:45'!
+canNotAddErrorMessage
+	
+	self subclassResponsibility ! !
