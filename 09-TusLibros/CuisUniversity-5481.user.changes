@@ -7,1488 +7,2069 @@
 
 ----QUIT----(11 September 2022 19:10:10) CuisUniversity-5481.image priorSource: 7059465!
 
-----STARTUP---- (27 October 2022 20:43:33) as C:\Users\Patricio\Desktop\windows64\CuisUniversity-5481.image!
+----STARTUP---- (31 October 2022 18:07:33) as C:\Users\Patricio\Desktop\windows64\CuisUniversity-5481.image!
 
 
-TestCase subclass: #CartTest
+----End fileIn of C:\Users\Patricio\Desktop\Iteracion1\Iteracion1\TusLibros-18.st----!
+
+TestCase subclass: #CashierTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
+	category: 'TusLibros'!
 
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 20:45:02'!
-TestCase subclass: #CartTest
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'pdb 10/31/2022 18:10:43'!
+TestCase subclass: #CashierTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:11:43'!
+test01CanNotCheckoutEmptyCart
 
-!classDefinition: #Cart category: 'Cart' stamp: 'pdb 10/27/2022 20:47:31'!
-Object subclass: #Cart
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Cart'!
-!CartTest methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:47:16'!
-test01NewCartIsEmpty
-	|cart|
-	cart := Cart new.
-	self assert: cart isEmpty.! !
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:48:36'!
-isEmpty
-	^True! !
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:48:45' prior: 50552295!
-isEmpty
-	^true! !
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:49:10' prior: 50552298!
-isEmpty
-	"^true"! !
+	! !
+!Cart methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:12:59' prior: 50552307!
+initializeAcceptingItemsOf: aCatalog
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 20:49:14'!
-ERROR!
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:49:25' prior: 50552301!
-isEmpty
-	^true! !
+	catalog := aCatalog.
+	items := Bag new.! !
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 20:49:27'!
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:13:00'!
 PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 20:50:47'!
-test02AddingABookToNewCartLeavesItNonEmpty
-	|cart|
-	cart := Cart new.
-	self assert: cart isEmpty.! !
 
-!classDefinition: #Book category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 20:51:30'!
-Object subclass: #Book
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:13:00'!
+PASSED!
+!Cart methodsFor: 'adding' stamp: 'pdb 10/31/2022 18:13:58'!
+add:  anItem withOccurrences: aQuantity
+
+	self assertIsValidQuantity: aQuantity.
+	self assertIsValidItem: anItem.
+	items add: anItem withOccurrences: aQuantity.! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:15:30' prior: 50552361!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemSellByTheStore withOccurrences: 0 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:15:55' prior: 50552416!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore of:  2 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:16:22' prior: 50552524!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOcurrences:  2 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!methodRemoval: Cart #add:of: stamp: 'pdb 10/31/2022 18:16:41'!
+add: aQuantity of: anItem
+
+	self assertIsValidQuantity: aQuantity.
+	self assertIsValidItem: anItem.
+
+	1 to: aQuantity do: [ :aNumber | items add: anItem ]!
+!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:17:09' prior: 50552387!
+test08CartRemembersTheNumberOfAddedItems
+
+	| cart |
+	
+	cart := self createCart.
+	
+	cart add: self itemSellByTheStore withOccurrences: 2.
+	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+!Cart methodsFor: 'adding' stamp: 'pdb 10/31/2022 18:17:32' prior: 50552333!
+add: anItem
+
+	^ self add: anItem withOccurrences: 1 ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:17:39'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:17:41'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:17:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:17:41'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:17:53' prior: 50552537!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOccurrences:  2 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:17:54'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:17:58'!
+PASSED!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:19:45'!
+defaultCatalog
+	self itemSellByTheStore! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:20:58' prior: 50552646!
+defaultCatalog
+	^ Array withAll: self itemsSoldByTheStore! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:21:22'!
+itemsSoldByTheStore
+	^ Array with: 'item' with: 'item2'! !
+
+----End fileIn of C:\Users\Patricio\Desktop\windows64\Packages\TerseGuide.pck.st----!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:25:59'!
+defaultPriceList
+	^ Dictionary new; add: 'item1'->4; add: 'item1'->3; add: 'item1'->1; yourself.	! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:26:25' prior: 50552655!
+itemsSoldByTheStore
+	^ self defaultPriceList keys! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:27:31'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:28:23' prior: 50552468!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier|
+	cart := self createCart.
+	
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:35:37' prior: 50555594!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier charactersOf: cart and: card]  raise: Error withMessageText: 'No se puede hacer checkout de un carrito vacio.' 
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:35:51'!
+ERROR!
+
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'booksPriceList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCatalog category: 'TusLibros' stamp: 'pdb 10/31/2022 18:37:41'!
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'booksPriceList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCatalog category: 'TusLibros' stamp: 'pdb 10/31/2022 18:37:56'!
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCatalog class methodsFor: 'no messages' stamp: 'pdb 10/31/2022 18:38:55'!
+with: aDictionaryOfItemsAndPrices
+	
+	self initializeWith: aDictionaryOfItemsAndPrices copy.! !
+!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:40:53' prior: 50552446!
+defaultCatalog
+	
+	^TusLibrosCatalog with: (Dictionary new add: self itemSellByTheStore -> 10) new  ! !
+!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:40:54' prior: 50555644!
+defaultCatalog
+	
+	^TusLibrosCatalog with: (Dictionary new add: self itemSellByTheStore -> 10)  ! !
+!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:41:12' prior: 50552441!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog items! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:41:19'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:41:19'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:41:20'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:41:25'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:41:37'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:41:37'!
+ERROR!
+!TusLibrosCatalog class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 18:41:53' prior: 50555638!
+with: aDictionaryOfItemsAndPrices
+	
+	self new initializeWith: aDictionaryOfItemsAndPrices copy.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:42:00'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:42:00'!
+ERROR!
+
+!classDefinition: #TusLibrosCatalog category: 'TusLibros' stamp: 'pdb 10/31/2022 18:42:12'!
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'items renameMe1'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosCatalog methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:42:12'!
+initializeWith: aRenameMe1 
+	self shouldBeImplemented.
+	renameMe1 := aRenameMe1.! !
+!TusLibrosCatalog methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:42:39' prior: 50555738!
+initializeWith: aDictionaryOfItemsAndPrices 
+
+	items := aDictionaryOfItemsAndPrices.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:42:43'!
+ERROR!
+!TusLibrosCatalog class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 18:43:02' prior: 50555719!
+with: aDictionaryOfItemsAndPrices
+	
+	^self new initializeWith: aDictionaryOfItemsAndPrices copy.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:43:08'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:43:08'!
+ERROR!
+!TusLibrosCatalog methodsFor: 'accessing' stamp: 'pdb 10/31/2022 18:43:15'!
+items
+	self shouldBeImplemented.
+	^items! !
+!TusLibrosCatalog methodsFor: 'accessing' stamp: 'pdb 10/31/2022 18:43:24' prior: 50555766!
+items
+
+	^items keys.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:43:30'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:43:38'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:43:38'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:44:22'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:44:22'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:44:48'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:44:48'!
+ERROR!
+!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:45:56' prior: 50555650!
+defaultCatalog
+	
+	^TusLibrosCatalog with: (Dictionary new add: self itemSellByTheStore -> 10; yourself )  ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:46:23'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:46:25'!
+PASSED!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:46:36' prior: 50555589!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog items! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:47:18'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:47:18'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:47:52' prior: 50552650!
+defaultCatalog
+	^ TusLibrosCatalog with: self itemsSoldByTheStore! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:47:53'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:47:53'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:48:21' prior: 50555867!
+defaultCatalog
+	^ TusLibrosCatalog with: self defaultPriceList ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:48:22'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:48:22'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:48:38' prior: 50555579!
+defaultPriceList
+	^ Dictionary new add: 'item1'->4; add: 'item1'->3; add: 'item1'->1; yourself.	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:48:39'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:48:39'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:48:53'!
+createCashier
+	
+	^Cart acceptingItemsOf: self defaultCatalog items! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:50:30' prior: 50555901!
+createCashier
+	
+	"^Cashier withCatalog"! !
+!TusLibrosCatalog methodsFor: 'testing' stamp: 'pdb 10/31/2022 18:52:07'!
+includes: anItem
+	^items keys includes: anItem! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:52:32' prior: 50555856!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:52:33'!
+FAILURE!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:52:33'!
+FAILURE!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:52:38'!
+FAILURE!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:52:38'!
+FAILURE!
+!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:52:53' prior: 50555656!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:52:53'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:52:54'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 10/31/2022 18:54:35'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:56:27' prior: 50555600!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier charactersOf: cart and: card]  raise: Error withMessageText: cashier class cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'pdb 10/31/2022 18:57:32'!
+Object subclass: #Cashier
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 20:51:18' prior: 50552313!
-test02AddingABookToNewCartLeavesItNonEmpty
-	|cart|
-	cart := Cart new.
-	cart add: Book new.
-	self deny: cart isEmpty.! !
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:57:21' prior: 50555906!
+createCashier
+	
+	^Cashier withCatalog: self defaultCatalog.! !
 
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:51:35'!
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:57:42'!
 ERROR!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 20:52:06'!
-add: aBook 
-	self shouldBeImplemented.! !
 
-!classDefinition: #Cart category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 20:52:17'!
-Object subclass: #Cart
-	instanceVariableNames: 'empty'
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:57:42'!
+ERROR!
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 18:57:53'!
+withCatalog: aTusLibrosCatalog 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithCatalog: aTusLibrosCatalog ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 18:58:21' prior: 50556018!
+withCatalog: aCatalog 
+	^self new initializeWith: aCatalog ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:58:23'!
+ERROR!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'pdb 10/31/2022 18:58:56'!
+Object subclass: #Cashier
+	instanceVariableNames: 'catalog'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 20:52:15' prior: 50552336!
-add: aBook 
-	empty := false! !
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:58:56'!
+initializeWith: aCatalog 
+	self shouldBeImplemented.
+	catalog := aCatalog.! !
+!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:59:06' prior: 50556041!
+initializeWith: aCatalog 
+	catalog := aCatalog.! !
 
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:52:22'!
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 18:59:08'!
+ERROR!
+!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 18:59:40'!
+cannotCheckoutEmptyCartErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 19:00:05' prior: 50556055!
+cannotCheckoutEmptyCartErrorMessage
+	^ 'No se puede hacer checkout a un carrito vacío'! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:00:08'!
 FAILURE!
-!Cart methodsFor: 'initialization' stamp: 'pdb 10/27/2022 20:52:57' overrides: 16920235!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:00:38' prior: 50555989!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier charactersOf: cart and: card]  raise: Error - MessageNotUnderstood withMessageText: cashier class cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:00:40'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:01:15' prior: 50556069!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier checkout: cart withCard: card]  raise: Error - MessageNotUnderstood withMessageText: cashier class cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:01:22'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:01:39'!
+checkout: aCart withCard: aString 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:02:04' prior: 50556099!
+checkout: aCart withCard: aString 
+	self error: self class cannotCheckoutEmptyCartErrorMessage.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:02:05'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:02:05'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:02:14' prior: 50556084!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier checkout: cart withCard: card]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:02:16'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:02:16'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:04:50'!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier checkout: cart withCard: card] raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:05:27' prior: 50556134!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := 'dummy card'.
+	self should: [cashier checkout: cart withCard: card] raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:05:36' prior: 50556116!
+test01CanNotCheckoutEmptyCart
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := self createCard.
+	self should: [cashier checkout: cart withCard: card]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:06:47' prior: 50556147!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := self createCard.
+	cart add: (self defaultCatalog ).
+	self should: [cashier checkout: cart withCard: card] raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+!TusLibrosCatalog methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:09:35'!
+priceOf: anItem
+
+	^items at: anItem ifAbsent: [self error: 'El producto no se encuentra en el catalogo'].! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:10:09' prior: 50556172!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	|cart cashier card |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := self createCard.
+	cart add: (self defaultCatalog items at: 1).
+	self should: [cashier checkout: cart withCard: card] raise: Error - MessageNotUnderstood withMessageText: Cashier cannotCheckoutEmptyCartErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:12:14' prior: 50556192!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	|cart cashier card product |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := self createCard.
+	product := self defaultCatalog items at: 1.
+	cart add: product.
+	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkout: cart withCard: card).
+	
+	! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:12:56'!
+createCard
+	
+	^'dummy card'! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:13:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:13:04'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:13:04'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:13:20' prior: 50556206!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	| cart cashier card product |
+	cart := self createCart.
+	cashier := self createCashier.
+	card := self createCard.
+	product := self defaultCatalog items at: 1.
+	cart add: product.
+	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkout: cart withCard: card).
+	
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:13:52' prior: 50556104!
+checkout: aCart withCard: aString 
+	
+	self error: self class cannotCheckoutEmptyCartErrorMessage.! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:14:25' prior: 50556246!
+checkout: aCart withCard: aString 
+	
+	aCart isEmpty ifTrue: [self error: self class cannotCheckoutEmptyCartErrorMessage].! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:14:53' prior: 50556252!
+checkout: aCart withCard: aString 
+	
+	| total |
+	aCart isEmpty ifTrue: [self error: self class cannotCheckoutEmptyCartErrorMessage].
+	
+	total := self total.! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:15:26' prior: 50556259!
+checkout: aCart withCard: aString 
+	
+	| total |
+	aCart isEmpty ifTrue: [self error: self class cannotCheckoutEmptyCartErrorMessage].
+	
+	total := self total.
+	self debit: total from: aString.
+	^total.! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:15:57'!
+debit: aQuantity from: aCard 
+	
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:18:02'!
+total
+
+	
+	! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'cart catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'pdb 10/31/2022 19:18:06'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 19:19:44'!
+initializeWithCatalog: aCatalog forCart: aCart
+	catalog := aCatalog.
+	cart:=aCart.! !
+
+!methodRemoval: Cashier #initializeWith: stamp: 'pdb 10/31/2022 19:19:47'!
+initializeWith: aCatalog 
+	catalog := aCatalog.!
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:20:49'!
+withCatalog: aCatalog forCart: aCart
+	^self new initializeWith: aCatalog ! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:21:29' prior: 50556267!
+checkout: aCart withCard: aString 
+	
+	| total |
+
+	total := self total.
+	self debit: total from: aString.
+	^total.! !
+
+!methodRemoval: Cashier class #withCatalog: stamp: 'pdb 10/31/2022 19:21:41'!
+withCatalog: aCatalog 
+	^self new initializeWith: aCatalog !
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:21:54' prior: 50556304!
+withCatalog: aCatalog forCart: aCart
+
+	aCart isEmpty ifTrue: [self error: self cannotCheckoutEmptyCartErrorMessage].
+	^self new initializeWith: aCatalog ! !
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:22:57' prior: 50556321!
+withCatalog: aCatalog forCart: aCart
+
+	aCart isEmpty ifTrue: [self error: self cannotCheckoutEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:23:18'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:23:18'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:23:21'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:25:23' prior: 50556007!
+createCashier
+	
+	^Cashier withCatalog: self defaultCatalog forCart: self createCard.! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:25:35' prior: 50556347!
+createCashier
+	
+	^Cashier withCatalog: self defaultCatalog forCart: self createCart.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:25:36'!
+ERROR!
+!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 19:26:51'!
+cannotInitializeWithEmptyCartErrorMessage
+	^ 'No se puede inicializar un cajero con un carrito vacío'! !
+
+!methodRemoval: Cashier class #cannotCheckoutEmptyCartErrorMessage stamp: 'pdb 10/31/2022 19:26:54'!
+cannotCheckoutEmptyCartErrorMessage
+	^ 'No se puede hacer checkout a un carrito vacío'!
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:27:02' prior: 50556329!
+withCatalog: aCatalog forCart: aCart
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:27:13'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:27:13'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:28:30' prior: 50556160!
+test01CanNotCheckoutEmptyCart
+
+	
+
+	self should: [self createCashier]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotInitializeWithEmptyCartErrorMessage 
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:28:38' prior: 50556390!
+test01CanNotCheckoutEmptyCart
+
+	self should: [self createCashier]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotInitializeWithEmptyCartErrorMessage 
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:28:40'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:28:40'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:28:40'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:28:40'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:29:21'!
+createCashier: aCart
+	
+	^Cashier withCatalog: self defaultCatalog forCart: self createCart.! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:29:34' prior: 50556420!
+createCashier: aCart
+	
+	^Cashier withCatalog: self defaultCatalog forCart: aCart .! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:29:36' prior: 50556426!
+createCashier: aCart
+	
+	^Cashier withCatalog: self defaultCatalog forCart: aCart.! !
+
+!methodRemoval: CashierTest #createCashier stamp: 'pdb 10/31/2022 19:29:41'!
+createCashier
+	
+	^Cashier withCatalog: self defaultCatalog forCart: self createCart.!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:30:56' prior: 50556399!
+test01CanNotCheckoutEmptyCart
+	
+	| cart |
+	
+	cart := self createCart.
+
+	self should: [self createCashier: cart]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotInitializeWithEmptyCartErrorMessage 
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:30:59'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:30:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:30:59'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:30:59'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:31:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:31:15'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:31:15'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:31:15'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:31:49'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:32:25' prior: 50556233!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	| cart cashier card product |
+	cart := self createCart.
+	product := self defaultCatalog items at: 1.
+	cart add: product.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkout: cart withCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:32:41' prior: 50556482!
+test02CheckoutCartWithOneItemReturnsTotal
+
+	| cart cashier card product |
+	cart := self createCart.
+	product := self defaultCatalog items at: 1.
+	cart add: product.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkoutWithCard: card).
+	
+	! !
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:32:44'!
+ERROR!
+
+!methodRemoval: Cashier #checkout:withCard: stamp: 'pdb 10/31/2022 19:32:49'!
+checkout: aCart withCard: aString 
+	
+	| total |
+
+	total := self total.
+	self debit: total from: aString.
+	^total.!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:33:43'!
+total: aCart
+	
+	^aCart 
+	
+	! !
+!Cart methodsFor: 'queries' stamp: 'pdb 10/31/2022 19:34:15'!
+items
+
+	^items! !
+
+!methodRemoval: Cashier #total stamp: 'pdb 10/31/2022 19:34:26'!
+total
+
+	
+	!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:35:24' prior: 50556518!
+total: aCart
+	
+	^aCart items inject: 0 into: [ :subTotal :anItem | catalog priceOf: anItem + subTotal ]
+	
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:36:46'!
+checkoutWithCard: aCard
+	
+	| total |
+	
+	total := self total.
+	self debit: total from: aCard.
+	
+	^total
+	
+	! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:36:52'!
+total
+	
+	^cart items inject: 0 into: [ :subTotal :anItem | catalog priceOf: anItem + subTotal ]
+	
+	! !
+
+!methodRemoval: Cashier #total: stamp: 'pdb 10/31/2022 19:36:54'!
+total: aCart
+	
+	^aCart items inject: 0 into: [ :subTotal :anItem | catalog priceOf: anItem + subTotal ]
+	
+	!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:36:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:36:59'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:36:59'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:37:18'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:37:18'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:38:10'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:38:36' prior: 50556539!
+total
+	
+	^cart items inject: 0 into: [ :subTotal :anItem | (catalog priceOf: anItem) + subTotal ]
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:38:37'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:38:37'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:39:28'!
+test03CheckoutCartWithManyItemsReturnsTotal
+
+	| cart cashier card product |
+	cart := self createCart.
+	product := self defaultCatalog items at: 1.
+	cart add: product.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkoutWithCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:41:54' prior: 50556583!
+test03CheckoutCartWithManyItemsReturnsTotal
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + self defaultCatalog priceOf: product2) equals: (cashier checkoutWithCard: card).
+	
+	! !
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:41:56'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:42:35'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:42:35'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:42:35'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:42:35'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:43:41' prior: 50555889!
+defaultPriceList
+	^ Dictionary new; add: 'item1'->4; add: 'item1'->3; add: 'item1'->1; yourself.	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:43:42'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:43:42'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:43:42'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:44:06'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:44:06'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:44:06'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:44:08'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:44:36' prior: 50556630!
+defaultPriceList
+	^ (Dictionary new) add: 'item1'->4; add: 'item1'->3; add: 'item1'->1; yourself.	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:44:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:44:38'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:44:38'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:44:38'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:45:07' prior: 50556659!
+defaultPriceList
+	^ Dictionary new add: 'item1'->4; add: 'item2'->3; add: 'item3'->1; yourself.	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:45:08'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:45:08'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:45:08'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:45:08'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:45:27' prior: 50556596!
+test03CheckoutCartWithManyItemsReturnsTotal
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:45:29'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 19:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 19:45:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 19:45:32'!
+PASSED!
+
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'pdb 10/31/2022 19:54:13'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:56:10'!
+withExpirationDate: anExporationDate andNumber: aCreditCArdNUmber forOwner: anOwnerName
+	"hay validaciones pero entendemos que son de la interfaz"
+
+	^self new initializewithExpirationDate: anExporationDate andNumber: aCreditCArdNUmber forOwner: anOwnerName! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 19:57:32' prior: 50556742!
+withExpirationDate: anExporationDate andNumber: aCreditCardNumber forOwner: anOwnerName
+	"hay validaciones pero entendemos que son de la interfaz"
+
+	^self new initializewithExpirationDate: anExporationDate andNumber: aCreditCardNumber forOwner: anOwnerName! !
+!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:58:14'!
+number
+	^number ! !
+!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:58:20'!
+expirationDate
+	^expirationDate ! !
+!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:58:26'!
+owner
+	^owner ! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 20:06:24' prior: 50556219!
+createCard
+	
+	^CreditCard withExpirationDate: Date tomorrow andNumber: 0 forOwner: ''! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:01:05'!
+withNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName
+	"hay validaciones pero entendemos que son de la interfaz"
+
+	^self new initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName! !
+
+!methodRemoval: CreditCard class #withExpirationDate:andNumber:forOwner: stamp: 'pdb 10/31/2022 21:01:08'!
+withExpirationDate: anExporationDate andNumber: aCreditCardNumber forOwner: anOwnerName
+	"hay validaciones pero entendemos que son de la interfaz"
+
+	^self new initializewithExpirationDate: anExporationDate andNumber: aCreditCardNumber forOwner: anOwnerName!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:01:44' prior: 50556776!
+createCard
+	
+	^CreditCard withNumber: 0 andExpirationDate: Date tomorrow forOwner: ''! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:02:23'!
+test03CannotCheckoutCartWithExpiredCard
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:02:31'!
+test03CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+
+!methodRemoval: CashierTest #test03CannotCheckoutCartWithExpiredCard stamp: 'pdb 10/31/2022 21:02:37'!
+test03CannotCheckoutCartWithExpiredCard
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:02:42'!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+
+!methodRemoval: CashierTest #test03CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:02:44'!
+test03CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:03:11'!
+ERROR!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'pdb 10/31/2022 21:03:27'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate number owner creditCardNumber'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'pdb 10/31/2022 21:03:27'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate number owner creditCardNumber ownerName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:03:27'!
+initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName 
+	self shouldBeImplemented.
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	ownerName := anOwnerName.! !
+!CreditCard methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:03:32' prior: 50556916!
+initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName 
+
+	creditCardNumber := aCreditCardNumber.
+	expirationDate := anExpirationDate.
+	ownerName := anOwnerName.! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:03:38'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:04:21' prior: 50556861!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:04:55' prior: 50556940!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCardFor: Date yesterday.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:06:41' prior: 50556957!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCardFor: Date yesterday.
+	self should: [ cashier checkoutWithCard: card ] raise: Error - MessageNotUnderstood withMessageText: Cashier assignmentNotFoundErrorMessage.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:06:53' prior: 50556975!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCardFor: Date yesterday.
+	self should: [ cashier checkoutWithCard: card ] 
+		raise: Error - MessageNotUnderstood 
+		withMessageText: Cashier assignmentNotFoundErrorMessage.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:07:37' prior: 50556993!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCardFor: Date yesterday.
+	self should: [ cashier checkoutWithCard: card ] raise: Error - MessageNotUnderstood withMessageText: Cashier creditCardExpiredErrorMessage.
+	
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:08:16'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:08:24'!
+createCardFor: aDate 
+	self shouldBeImplemented.! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:08:52' prior: 50557032!
+createCardFor: aDate 
+	
+	^CreditCard withNumber: 0 andExpirationDate: aDate forOwner: ''. 
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:08:55'!
+ERROR!
+!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 21:09:02'!
+creditCardExpiredErrorMessage
+	self shouldBeImplemented.! !
+!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 21:09:25' prior: 50557047!
+creditCardExpiredErrorMessage
+	^'Cannot use an expired credit card.'.! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:09:27'!
+FAILURE!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:10:06' prior: 50556533!
+checkoutWithCard: aCard
+	
+	| total |
+	
+	self assertCardIsNotExpired: aCard.
+	
+	total := self total.
+	self debit: total from: aCard.
+	
+	^total
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:10:09'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:10:09'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:10:09'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:10:09'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:10:57'!
+assertCardIsNotCurrentlyExpired: aCard
+	
+	aCard isExpiredOn! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:11:50' prior: 50557082!
+assertCardIsNotCurrentlyExpired: aCard
+	
+	(aCard isExpiredOn: Date today) ifTrue: [^self error: self class creditCardExpiredErrorMessage ]! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:11:51'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:11:51'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:11:51'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:11:51'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:11:58'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:11:58'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:12:13' prior: 50557061!
+checkoutWithCard: aCard
+	
+	| total |
+	
+	self assertCardIsNotCurrentlyExpired: aCard.
+	
+	total := self total.
+	self debit: total from: aCard.
+	
+	^total
+	
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:12:15'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:12:15'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:12:15'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:12:15'!
+ERROR!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:12:18'!
+ERROR!
+!CreditCard methodsFor: 'testing' stamp: 'pdb 10/31/2022 21:12:25'!
+isExpiredOn: aDate 
+	self shouldBeImplemented.! !
+!CreditCard methodsFor: 'testing' stamp: 'pdb 10/31/2022 21:12:45' prior: 50557139!
+isExpiredOn: aDate 
+	
+	^expirationDate  < aDate! !
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:12:48'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:12:55'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:12:55'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:12:55'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:12:55'!
+PASSED!
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:18:43'!
+withCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor! !
+
+!methodRemoval: Cashier class #withCatalog:forCart:withMerchantProcessor: stamp: 'pdb 10/31/2022 21:19:36'!
+withCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor!
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:20:27'!
+withCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor 
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart ! !
+
+!methodRemoval: Cashier class #withCatalog:forCart: stamp: 'pdb 10/31/2022 21:20:27'!
+withCatalog: aCatalog forCart: aCart
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart !
+!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:20:39' prior: 50557189!
+withCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor 
+
+	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
+	^self new initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor! !
+!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:20:56'!
+initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor
+	catalog := aCatalog.
+	cart:=aCart.! !
+
+!methodRemoval: Cashier #initializeWithCatalog:forCart: stamp: 'pdb 10/31/2022 21:20:58'!
+initializeWithCatalog: aCatalog forCart: aCart
+	catalog := aCatalog.
+	cart:=aCart.!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'pdb 10/31/2022 21:21:20'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart catalog merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:21:18' prior: 50557219!
+initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor
+	catalog := aCatalog.
+	cart := aCart.
+	merchantProcessor := aMerchantProcessor ! !
+!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:21:36' prior: 50556276!
+debit: aQuantity from: aCard 
+	merchantProcessor debit: aQuantity from: aCard! !
+
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'pdb 10/31/2022 21:26:18'!
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'no messages' stamp: 'pdb 10/31/2022 21:27:55'!
+debit: anAmount from: aCreditCard
+	
+	! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:30:26' prior: 50557264!
+debit: anAmount from: aCreditCard
+	(aCreditCard number = '1111111111111111') ifTrue: [self error: self class tarjetaRobadaErrorMessage]
+	! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:34:19' prior: 50557269!
+debit: anAmount from: aCreditCard
+	(aCreditCard number = '1111111111111111') ifTrue: [self error: self class tarjetaRobadaErrorMessage].
+	(aCreditCard number = '2222222222222222') ifTrue: [self error: self class saldoInsuficienteErrorMessage].
+	! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:35:34' prior: 50556782!
+withNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName
+	"validar el owner name (no vacio post trim) y el credit card number que esperamos que sea un string con longitud 16 y que sean todos digitos"
+
+	^self new initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:36:43' prior: 50556432!
+createCashier: aCart
+	
+	^Cashier withCatalog: self defaultCatalog forCart: aCart withMerchantProcessor: MockMerchantProcessor new.! !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'pdb 10/31/2022 21:37:29'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'mockMP'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/31/2022 21:37:28' overrides: 16961394!
+setUp
+	mockMP = MockMerchantProcessor new.! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:37:39' prior: 50557302!
+createCashier: aCart
+	
+	^Cashier withCatalog: self defaultCatalog forCart: aCart withMerchantProcessor: mockMP.! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:38:00'!
+test05CheckoutCartWithStolenCardThrowsException
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCardFor: Date yesterday.
+	self should: [ cashier checkoutWithCard: card ] raise: Error - MessageNotUnderstood withMessageText: Cashier creditCardExpiredErrorMessage.
+	
+	! !
+!MockMerchantProcessor class methodsFor: 'no messages' stamp: 'pdb 10/31/2022 21:39:48'!
+stolenCard
+	^CreditCard withNumber: '' andExpirationDate: Date tomorrow forOwner: 'patooooo'! !
+!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:40:07' prior: 50557346!
+stolenCard
+	^CreditCard withNumber: '1111111111111111' andExpirationDate: Date tomorrow forOwner: 'patooooo'! !
+!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:41:39'!
+noFundsCard
+	^CreditCard withNumber: '2222222222222222' andExpirationDate: Date tomorrow forOwner: 'patooooo'! !
+!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:42:10'!
+expiredCard
+	^CreditCard withNumber: '2222222222222222' andExpirationDate: Date yesterday forOwner: 'patooooo'! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:43:19' prior: 50557277!
+debit: anAmount from: aCreditCard
+	(aCreditCard == self class stolenCard) ifTrue: [self error: self class tarjetaRobadaErrorMessage].
+	(aCreditCard == self class noFundsCard) ifTrue: [self error: self class saldoInsuficienteErrorMessage].
+	! !
+
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: 'invalidCall'
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: 'invalidCall'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'pdb 10/31/2022 21:44:00'!
+Object subclass: #MockMerchantProcessor
+	instanceVariableNames: 'invalidCall'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MockMerchantProcessor methodsFor: 'nil' stamp: 'pdb 10/31/2022 21:44:36' overrides: 16920235!
 initialize
-	empty := true! !
+	invalidCall := false! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:45:46' prior: 50557374!
+debit: anAmount from: aCreditCard
+	(aCreditCard == self class stolenCard) ifTrue: [self error: self class tarjetaRobadaErrorMessage].
+	(aCreditCard == self class noFundsCard) ifTrue: [self error: self class saldoInsuficienteErrorMessage].
+	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true]! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:45:52' prior: 50557407!
+debit: anAmount from: aCreditCard
+	(aCreditCard == self class stolenCard) ifTrue: [self error: self class tarjetaRobadaErrorMessage].
+	(aCreditCard == self class noFundsCard) ifTrue: [self error: self class saldoInsuficienteErrorMessage].
+	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true].! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:46:06'!
+invalidCall
+	^invalidCall! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:46:54' prior: 50557328!
+test05CheckoutCartWithStolenCardThrowsException
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 20:52:59'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:52:59'!
-FAILURE!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:52:59'!
-FAILURE!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 20:53:12' prior: 50552347!
-add: aBook 
-	empty := false.! !
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:53:19'!
-FAILURE!
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 20:53:35' prior: 50552307!
-isEmpty
-	^empty! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 20:53:38'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 20:53:38'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 20:59:25'!
-test03CanNotAddBookOutsideCatalogToCart
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
 	
-	| cart catalog |
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor stolenCard ] raise: Error - MessageNotUnderstood withMessageText: Cashier creditCardExpiredErrorMessage.
 	
-	cart := Cart new.
-	catalog := Catalog with: (OrderedCollection new).
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 20:59:59' prior: 50552384!
-test03CanNotAddBookOutsideCatalogToCart
-	
-	| cart catalog |
-	
-	catalog := Catalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
+	! !
 
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:00:12' prior: 50552394!
-test03CanNotAddBookOutsideCatalogToCart
-	
-	| cart catalog |
-	
-	catalog := Catalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
+Object subclass: #MerchantProcessor
+	instanceVariableNames: 'invalidCall'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
 
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:00:17'!
-ERROR!
-!Catalog class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:02:08'!
-with: anOrderedCollection 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWith: anOrderedCollection ! !
-!Catalog class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:02:08' prior: 50552419!
-with: anOrderedCollection 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWith: anOrderedCollection ! !
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'pdb 10/31/2022 21:47:48'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: 'invalidCall'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
 
-!methodRemoval: Catalog class #create stamp: 'pdb 10/27/2022 21:03:39'!
-create
-	
-	^ self new!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'invalidCall'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
 
-!methodRemoval: Catalog class #with: stamp: 'pdb 10/27/2022 21:03:39'!
-with: anOrderedCollection 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWith: anOrderedCollection !
-
-!classDefinition: #BookCatalog category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:04:04'!
-Object subclass: #BookCatalog
+Object subclass: #MerchantProcessor
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:03:56' prior: 50552405!
-test03CanNotAddBookOutsideCatalogToCart
-	
-	| cart catalog |
-	
-	catalog := BookCatalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
+	category: 'TusLibros'!
 
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:04:11'!
-ERROR!
-!BookCatalog class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:04:17'!
-with: anOrderedCollection 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWith: anOrderedCollection ! !
-!BookCatalog class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:04:52' prior: 50552468!
-with: anOrderedCollection 
-	
-	^self new initializeWith: anOrderedCollection ! !
-
-Object subclass: #BookCatalog
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'pdb 10/31/2022 21:48:56'!
+Object subclass: #MerchantProcessor
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
+	category: 'TusLibros'!
 
-!classDefinition: #BookCatalog category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:05:26'!
-Object subclass: #BookCatalog
-	instanceVariableNames: ''
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'invalidCall'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
+	category: 'TusLibros'!
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:05:35'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:05:35'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:05:35'!
-ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:05:35'!
-ERROR!
-
-!classDefinition: #BookCatalog category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:05:51'!
-Object subclass: #BookCatalog
-	instanceVariableNames: 'orderedCollection'
+!classDefinition: #MockMerchantProcessor category: 'TusLibros' stamp: 'pdb 10/31/2022 21:49:01'!
+MerchantProcessor subclass: #MockMerchantProcessor
+	instanceVariableNames: 'invalidCall'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!BookCatalog methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:05:51'!
-initializeWith: anOrderedCollection 
-	self shouldBeImplemented.
-	orderedCollection := anOrderedCollection.! !
-!BookCatalog methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:05:57' prior: 50552514!
-initializeWith: anOrderedCollection 
+	category: 'TusLibros'!
+!MerchantProcessor class methodsFor: 'no messages' stamp: 'pdb 10/31/2022 21:49:54'!
+stolenCardErrorMessage
+	^'Tarjeta robada'! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:50:03' prior: 50557421!
+debit: anAmount from: aCreditCard
+	(aCreditCard == self class stolenCard) ifTrue: [self error: self class stolenCardErrorMessage].
+	(aCreditCard == self class noFundsCard) ifTrue: [self error: self class saldoInsuficienteErrorMessage].
+	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true].! !
+!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:50:55'!
+insufficientFundsErrorMessage
+	^'Saldo insuficiente'! !
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:51:03' prior: 50557502!
+debit: anAmount from: aCreditCard
+	(aCreditCard == self class stolenCard) ifTrue: [self error: self class stolenCardErrorMessage].
+	(aCreditCard == self class noFundsCard) ifTrue: [self error: self class insufficientFundsErrorMessage].
+	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true].! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:51:32' prior: 50557438!
+test05CheckoutCartWithStolenCardThrowsException
 
-! !
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor stolenCard ] raise: Error - MessageNotUnderstood withMessageText: MerchantProcessor stolenCardErrorMessage .
+	
+	! !
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:06:01'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:06:01'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:06:01'!
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:51:35'!
 ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:06:01'!
-ERROR!
-!Cart class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:06:09'!
-withCatalog: aBookCatalog 
-	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
-	self shouldBeImplemented.
-	^self new initializeWithCatalog: aBookCatalog ! !
-!Cart class methodsFor: 'instance creation' stamp: 'pdb 10/27/2022 21:06:23' prior: 50552538!
-withCatalog: aBookCatalog 
-
-	^self new initializeWithCatalog: aBookCatalog ! !
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:06:27'!
-ERROR!
-
-!classDefinition: #Cart category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:06:49'!
-Object subclass: #Cart
-	instanceVariableNames: 'empty bookCatalog'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!Cart methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:06:49'!
-initializeWithCatalog: aBookCatalog 
-	self shouldBeImplemented.
-	bookCatalog := aBookCatalog.! !
-!Cart methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:06:52' prior: 50552563!
-initializeWithCatalog: aBookCatalog 
-
-	bookCatalog := aBookCatalog.! !
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:06:55'!
-ERROR!
-!Cart class methodsFor: 'error description' stamp: 'pdb 10/27/2022 21:07:12'!
-invalidBookErrorMessage
-	self shouldBeImplemented.! !
-!Cart class methodsFor: 'error description' stamp: 'pdb 10/27/2022 21:07:44' prior: 50552577!
-invalidBookErrorMessage
-	^'Can not add a book from outside the catalog'.! !
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:07:48'!
-FAILURE!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:08:56' prior: 50552368!
-add: aBook 
-	
-	self assertBookInCatalog: aBook.
-
-	empty := false.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:09:00'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:09:00'!
-ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:09:00'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:09:00'!
-ERROR!
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 21:09:06'!
-assertBookInCatalog: aBook 
-	self shouldBeImplemented.! !
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 21:10:43' prior: 50552608!
-assertBookInCatalog: aBook 
-	
-	(bookCatalog has: aBook) ifFalse: [self error: self class invalidBookErrorMessage]! !
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:10:48'!
-ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:11:16'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:11:16'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:11:16'!
-ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:11:16'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:11:16'!
-ERROR!
-
-Object subclass: #BookCatalog
-	instanceVariableNames: 'books'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-
-!classDefinition: #BookCatalog category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:12:06'!
-Object subclass: #BookCatalog
-	instanceVariableNames: 'books'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!BookCatalog methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:12:28' prior: 50552521!
-initializeWith: aListOfBooks
-
-	books := aListOfBooks .
-
-! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:12:30'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:12:30'!
-ERROR!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:12:30'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:12:30'!
-ERROR!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:13:47' prior: 50552326!
-test02AddingABookToNewCartLeavesItNonEmpty
-	|cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.! !
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:13:53'!
-ERROR!
-!BookCatalog methodsFor: 'testing' stamp: 'pdb 10/27/2022 21:14:10'!
-has: aBook 
-	self shouldBeImplemented.! !
-!BookCatalog methodsFor: 'testing' stamp: 'pdb 10/27/2022 21:14:25' prior: 50552681!
-has: aBook 
-	
-	^books includes: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:14:29'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:14:29'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:14:29'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:16:25'!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	| cart catalog |
-	
-	catalog := BookCatalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:17:35' prior: 50552698!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	| cart catalog |
-	
-	catalog := BookCatalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
-	
-	self should:[cart add: Book new]  raise: Error description: Cart invalidBookErrorMessage.
-! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:18:38' prior: 50552709!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	|cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.
-	cart remove: book.
-	self assert: cart isEmpty.! !
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:19:23'!
-ERROR!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:19:35'!
-remove: aBook 
-	self shouldBeImplemented.! !
-
-!classDefinition: #Cart category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:20:39'!
-Object subclass: #Cart
-	instanceVariableNames: 'empty bookCatalog items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:20:37' prior: 50552735!
-remove: aBook 
-	items add: aBook.! !
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:20:40'!
-ERROR!
-!Cart methodsFor: 'testing' stamp: 'pdb 10/27/2022 21:21:01' prior: 50552375!
-isEmpty
-	^items isEmpty.! !
-
-!methodRemoval: Cart #initialize stamp: 'pdb 10/27/2022 21:21:24'!
-initialize
-	empty := true!
-!Cart methodsFor: 'initialization' stamp: 'pdb 10/27/2022 21:21:40' prior: 50552569!
-initializeWithCatalog: aBookCatalog 
-
-	bookCatalog := aBookCatalog.
-	items := OrderedCollection new.! !
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:22:08' prior: 50552591!
-add: aBook 
-	
-	self assertBookInCatalog: aBook.
-
-	items add aBook.! !
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:22:14' prior: 50552767!
-add: aBook 
-	
-	self assertBookInCatalog: aBook.
-
-	items add: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:22:16'!
-ERROR!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:22:16'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:22:16'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:22:16'!
-FAILURE!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:23:14' prior: 50552290!
-test01NewCartIsEmpty
-	|cart|
-	cart := Cart withCatalog: (BookCatalog with: OrderedCollection new).
-	self assert: cart isEmpty.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:23:15'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:23:15'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:23:15'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:23:15'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:23:15'!
-FAILURE!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:23:15'!
-FAILURE!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:23:22'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:23:22'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:23:22'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:23:22'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:23:22'!
-FAILURE!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:23:22'!
-FAILURE!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:24:10' prior: 50552747!
-remove: aBook 
-	items remove: aBook.! !
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:24:17'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:24:19'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:24:19'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:24:19'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:24:19'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:24:19'!
-PASSED!
-
-Object subclass: #Cart
-	instanceVariableNames: 'bookCatalog items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-
-!classDefinition: #Cart category: 'EjercicioTusLibros' stamp: 'pdb 10/27/2022 21:24:36'!
-Object subclass: #Cart
-	instanceVariableNames: 'bookCatalog items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:26:36'!
-test05CartCanHaveSameBookMultipleTimes
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.
-	cart remove: book.
-	self assert: cart isEmpty.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:26:56' prior: 50552869!
-test05CartCanHaveSameBookMultipleTimes
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.
-	cart remove: book.
-	self assert: cart isEmpty.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:27:35' prior: 50552881!
-test05CartCanHaveSameBookMultipleTimes
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	cart add: book.
-
-	self assert: (cart ocurrencesOf: book) equals: 2.! !
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:27:55'!
-ERROR!
-!Cart methodsFor: 'accessing' stamp: 'pdb 10/27/2022 21:28:42'!
-ocurrencesOf: aBook 
-	self shouldBeImplemented.! !
-!Cart methodsFor: 'accessing' stamp: 'pdb 10/27/2022 21:28:58' prior: 50552907!
-ocurrencesOf: aBook 
-	
-	items occurrencesOf: aBook.! !
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:29:03'!
-FAILURE!
-!Cart methodsFor: 'accessing' stamp: 'pdb 10/27/2022 21:29:15' prior: 50552912!
-ocurrencesOf: aBook 
-	
-	^items occurrencesOf: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:29:17'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:29:17'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:29:17'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:29:17'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:29:17'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:30:39'!
-test05CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-
-!testRun: #CartTest #test05CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:30:41'!
-ERROR!
-!Cart class methodsFor: 'error description' stamp: 'pdb 10/27/2022 21:30:52'!
-invalidBookRemoveErrorMessage
-	self shouldBeImplemented.! !
-!Cart class methodsFor: 'error description' stamp: 'pdb 10/27/2022 21:31:12' prior: 50552955!
-invalidBookRemoveErrorMessage
-	
-	^'Can not remove book if not in the cart'.! !
-
-!testRun: #CartTest #test05CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test05CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:31:16'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:31:29'!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-
-!methodRemoval: CartTest #test05CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:31:32'!
-test05CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:31:34'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:31:56'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:32:11' prior: 50552987!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Error description: 'e'.! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:32:12'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:32:18' prior: 50553016!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:32:44'!
-PASSED!
-
-----SNAPSHOT----(27 October 2022 21:33:59) CuisUniversity-5481.image priorSource: 7059698!
-
-(OrderedCollection new) remove:1!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:37:32' prior: 50553049!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-
-	self should: [cart remove: book] raise: Exception description: Cart invalidBookRemoveErrorMessage.! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:37:33'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:38:41' prior: 50553087!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self halt.
-	self should: [cart remove: book] raise: Exception description: Cart invalidBookRemoveErrorMessage.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:39:37' prior: 50553121!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self halt.
-	cart remove: book! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:40:06'!
-ERROR!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:38:41' prior: 50553133!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self halt.
-	self should: [cart remove: book] raise: Exception description: Cart invalidBookRemoveErrorMessage.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:41:58' prior: 50553146!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self halt.
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:42:02'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:42:04'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:42:09' prior: 50553158!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:42:10'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:42:11'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:42:45' prior: 50553192!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self halt.
-	self should: [cart remove: book] raise: Error description: Cart invalidBookRemoveErrorMessage.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:46:05' prior: 50553226!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self should: [cart remove: book] raise: Error withExceptionDo: [:anError | anError halt.]! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:48:08' prior: 50553238!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self should: [cart remove: book] raise: Error withExceptionDo: [:anError | self assert: anError description equals: Cart invalidBookRemoveErrorMessage ]! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:48:10'!
-FAILURE!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:49:03' prior: 50552835!
-remove: aBook 
-	(items includes: aBook) ifFalse: [self error: self class invalidBookRemoveErrorMessage ].
-	items remove: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:49:06'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:49:06'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:49:06'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:49:06'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:49:06'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:49:06'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:49:06'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:49:17'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:49:18'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:50:15'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:50:15'!
-FAILURE!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/27/2022 21:53:12' prior: 50553249!
-test06CanNotRemoveBookIfNotInCart
-	
-	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self should: [ cart remove: book ] raise: Error withMessageText: Cart invalidBookRemoveErrorMessage ! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:53:13'!
-PASSED!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:53:28' prior: 50553266!
-remove: aBook 
-	(items includes: aBook) ifFalse: [self error: self class invalidBookErrorMessage ].
-	items remove: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:53:29'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:53:29'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:53:29'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:53:29'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:53:29'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:53:29'!
-FAILURE!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:53:29'!
-FAILURE!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/27/2022 21:53:33' prior: 50553342!
-remove: aBook 
-	(items includes: aBook) ifFalse: [self error: self class invalidBookRemoveErrorMessage ].
-	items remove: aBook.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/27/2022 21:53:33'!
-PASSED!
-
-----QUIT----(27 October 2022 21:53:55) CuisUniversity-5481.image priorSource: 7085813!
-
-----STARTUP---- (30 October 2022 16:43:03) as C:\Users\Patricio\Desktop\windows64\CuisUniversity-5481.image!
-
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 16:44:49'!
-PASSED!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 16:49:02' overrides: 16961394!
+!CashierTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/31/2022 21:52:02' prior: 50557317 overrides: 16961394!
 setUp
-	"book := Book new."! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 16:52:50' prior: 50552668!
-test02AddingABookToNewCartLeavesItNonEmpty
-	|cart  catalog |
+	mockMP := MockMerchantProcessor new.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:52:03'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:52:03'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:52:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:52:03'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:52:03'!
+FAILURE!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:52:03'!
+FAILURE!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:53:04'!
+FAILURE!
+!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:53:27' prior: 50557521!
+debit: anAmount from: aCreditCard
+	(aCreditCard = self class stolenCard) ifTrue: [self error: self class stolenCardErrorMessage].
+	(aCreditCard = self class noFundsCard) ifTrue: [self error: self class insufficientFundsErrorMessage].
+	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true].! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 21:53:28'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 21:53:28'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 21:53:28'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 21:53:28'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:53:28'!
+FAILURE!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 21:53:28'!
+FAILURE!
+!CreditCard methodsFor: 'testing' stamp: 'pdb 10/31/2022 22:09:29' overrides: 16901772!
+= aCreditCard 
 	
-	"catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty."! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 16:53:06' prior: 50552720!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	|cart book catalog |
-	
-"	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.
-	cart remove: book.
-	self assert: cart isEmpty."! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 16:53:19' prior: 50552893!
-test05CartCanHaveSameBookMultipleTimes
-	
-"	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	cart add: book.
+	^(self expirationDate = aCreditCard expirationDate) and:[self number = aCreditCard number] and:[self owner = aCreditCard owner]! !
 
-	self assert: (cart ocurrencesOf: book) equals: 2."! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 16:53:26' prior: 50553308!
-test06CanNotRemoveBookIfNotInCart
-	
-"	| cart book catalog |
-	
-	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	self should: [ cart remove: book ] raise: Error withMessageText: Cart invalidBookRemoveErrorMessage "! !
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:00:00' prior: 50553407 overrides: 16961394!
-setUp
-	"book := Book new."! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:00:09' prior: 50553421!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	|cart catalog |
-	
-"	book := Book new.
-	catalog := BookCatalog with: (OrderedCollection with: book).
-	cart := Cart withCatalog: catalog.
-	cart add: book.
-	self deny: cart isEmpty.
-	cart remove: book.
-	self assert: cart isEmpty."! !
-
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/30/2022 17:00:26'!
-TestCase subclass: #CartTest
-	instanceVariableNames: 'book'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:00:24' prior: 50553458 overrides: 16961394!
-setUp
-	book := Book new.! !
-
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/30/2022 17:00:55'!
-TestCase subclass: #CartTest
-	instanceVariableNames: 'book emptyCatalog'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:00:53' prior: 50553482 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.! !
-
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/30/2022 17:01:16'!
-TestCase subclass: #CartTest
-	instanceVariableNames: 'book emptyCatalog filledCatalog'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:01:14' prior: 50553494 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.
-	filledCatalog := BookCatalog with: OrderedCollection with: book.! !
-
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/30/2022 17:01:56'!
-TestCase subclass: #CartTest
-	instanceVariableNames: 'book emptyCatalog filledCatalog cartWithEmptyCatalog'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:01:54' prior: 50553509 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.
-	filledCatalog := BookCatalog with: OrderedCollection with: book.
-	cartWithEmptyCatalog:= Cart withCatalog: emptyCatalog! !
-
-!classDefinition: #CartTest category: 'EjercicioTusLibros' stamp: 'pdb 10/30/2022 17:02:21'!
-TestCase subclass: #CartTest
-	instanceVariableNames: 'book emptyCatalog filledCatalog cartWithEmptyCatalog cartWithFilledCatalog'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'EjercicioTusLibros'!
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:02:19' prior: 50553526 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.
-	filledCatalog := BookCatalog with: OrderedCollection with: book.
-	cartWithEmptyCatalog:= Cart withCatalog: emptyCatalog.
-	cartWithFilledCatalog:= Cart withCatalog: emptyCatalog.! !
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:02:24' prior: 50553546 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.
-	filledCatalog := BookCatalog with: OrderedCollection with: book.
-	cartWithEmptyCatalog:= Cart withCatalog: emptyCatalog.
-	cartWithFilledCatalog:= Cart withCatalog: filledCatalog.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:02:40' prior: 50552790!
-test01NewCartIsEmpty
-
-	self assert: cartWithEmptyCatalog isEmpty.! !
-!CartTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/30/2022 17:02:57' prior: 50553558 overrides: 16961394!
-setUp
-	book := Book new.
-	emptyCatalog := BookCatalog with: OrderedCollection new.
-	filledCatalog := BookCatalog with: (OrderedCollection with: book).
-	cartWithEmptyCatalog:= Cart withCatalog: emptyCatalog.
-	cartWithFilledCatalog:= Cart withCatalog: filledCatalog.! !
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:02:58'!
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:09:38'!
 PASSED!
 
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:02:58'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:02:58'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:02:58'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:02:58'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:02:58'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:04:05' prior: 50553411!
-test02AddingABookToNewCartLeavesItNonEmpty
-
-	cartWithFilledCatalog add: book.
-	self deny: cartWithFilledCatalog isEmpty.! !
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:04:17'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:06:02' prior: 50552454!
-test03CanNotAddBookOutsideCatalogToCart
-	
-	| cart catalog |
-	
-	catalog := BookCatalog with: (OrderedCollection new).
-	cart := Cart withCatalog: catalog.
-	
-	self should: [cart add: Book new] raise: Error description: Cart invalidBookErrorMessage.
-! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:07:07' prior: 50553634!
-test03CanNotAddBookOutsideCatalogToCart
-	
-	self should: [cartWithEmptyCatalog add: book] raise: Error description: Cart invalidBookErrorMessage.
-! !
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:07:09'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:07:10'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:07:54' prior: 50553462!
-test04AddingABookAndRemovingItLeavsCartEmpty
-	
-	cartWithFilledCatalog add: book.
-	self deny: cartWithFilledCatalog isEmpty.
-	cartWithFilledCatalog remove: book.
-	self assert: cartWithFilledCatalog isEmpty.! !
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:07:55'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:08:18' prior: 50553433!
-test05CartCanHaveSameBookMultipleTimes
-	
-	cartWithFilledCatalog add: book.
-	cartWithFilledCatalog add: book.
-
-	self assert: (cartWithFilledCatalog ocurrencesOf: book) equals: 2.! !
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:08:19'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:08:58' prior: 50553445!
-test06CanNotRemoveBookIfNotInCart
-	
-	self should: [ cartWithFilledCatalog remove: book ] raise: Error withMessageText: Cart invalidBookRemoveErrorMessage! !
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:09:00'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:19:29'!
-test07CanNotRemoveBookIfNotInCart
-	
-	self should: [ cartWithFilledCatalog remove: book ] raise: Error withMessageText: Cart invalidBookRemoveErrorMessage! !
-
-!testRun: #CartTest #test07CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!testRun: #CartTest #test07CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:19:29'!
-PASSED!
-
-!methodRemoval: CartTest #test07CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:23:25'!
-test07CanNotRemoveBookIfNotInCart
-	
-	self should: [ cartWithFilledCatalog remove: book ] raise: Error withMessageText: Cart invalidBookRemoveErrorMessage!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:23:42'!
-test07CartCanAddSameBookMultipleTimes
-	
-	cartWithFilledCatalog add: book.
-	cartWithFilledCatalog add: book.
-
-	self assert: (cartWithFilledCatalog ocurrencesOf: book) equals: 2.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:23:53' prior: 50553807!
-test07CartCanAddSameBookMultipleTimes
-	
-	cartWithFilledCatalog add: book times: 2.
-
-	self assert: (cartWithFilledCatalog ocurrencesOf: book) equals: 2.! !
-
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:23:56'!
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:09:38'!
 ERROR!
-!Cart methodsFor: 'updating' stamp: 'pdb 10/30/2022 17:24:05'!
-add: aBook times: aSmallInteger 
-	self shouldBeImplemented.! !
-!Cart methodsFor: 'updating' stamp: 'pdb 10/30/2022 17:27:10' prior: 50553826!
-add: aBook times: aNumberOfTimes 
-	aNumberOfTimes timesRepeat: [self add: aBook ].! !
 
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:16'!
-PASSED!
-
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:27:24'!
-PASSED!
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:28:33'!
-test08CartCanListContents
-	
-	cartWithFilledCatalog add: book times: 2.
-
-	self assert: (cartWithFilledCatalog ocurrencesOf: book) equals: 2.! !
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/30/2022 17:40:56' prior: 50553887!
-test08CartCanListContents
-
-	|cart book1 book2 book3|
-	
-	book1 := Book new.
-	book2 := Book new.
-	book3 := Book new.
-	cart := Cart withCatalog: (BookCatalog with: (OrderedCollection with: book1 with: book2 with: book3)).
-	cart add: book1.
-	cart add: book2.
-	cart add: book3.
-	cart add: book1.		
-	self assert: (cart contents) equals: (OrderedCollection with: book1 with: book2 with: book3 with: book1).! !
-
-!testRun: #CartTest #test08CartCanListContents stamp: 'pdb 10/30/2022 17:40:59'!
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:09:38'!
 ERROR!
-!Cart methodsFor: 'accessing' stamp: 'pdb 10/30/2022 17:41:08'!
-contents
-	self shouldBeImplemented.! !
-!Cart methodsFor: 'accessing' stamp: 'pdb 10/30/2022 17:42:22' prior: 50553912!
-contents
-	^items copy! !
 
-!testRun: #CartTest #test01NewCartIsEmpty stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:09:38'!
 PASSED!
 
-!testRun: #CartTest #test02AddingABookToNewCartLeavesItNonEmpty stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:09:38'!
 PASSED!
 
-!testRun: #CartTest #test03CanNotAddBookOutsideCatalogToCart stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:09:43'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:12:15' prior: 50556805!
+createCard
+	
+	^CreditCard withNumber: 0 andExpirationDate: Date tomorrow forOwner: 'lala'! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:12:27' prior: 50557648!
+createCard
+	
+	^CreditCard withNumber: '00000000000000' andExpirationDate: Date tomorrow forOwner: 'lala'! !
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:12:49' prior: 50557037!
+createCardFor: aDate 
+	^CreditCard withNumber: '00000000000000' andExpirationDate: aDate tomorrow forOwner: 'lala'
+
+	! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:12:51'!
 PASSED!
 
-!testRun: #CartTest #test04AddingABookAndRemovingItLeavsCartEmpty stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:12:51'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:12:51'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:12:51'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:12:51'!
 PASSED!
 
-!testRun: #CartTest #test05CartCanHaveSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:12:54'!
+ERROR!
+
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate creditCardNumber ownerName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'pdb 10/31/2022 22:15:21'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expirationDate creditCardNumber ownerName'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 22:15:43' prior: 50556765!
+number
+	^creditCardNumber ! !
+!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 22:15:56' prior: 50556772!
+owner
+	^creditCardNumber ! !
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:16:11'!
 PASSED!
 
-!testRun: #CartTest #test06CanNotRemoveBookIfNotInCart stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:16:11'!
 PASSED!
 
-!testRun: #CartTest #test07CartCanAddSameBookMultipleTimes stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:16:11'!
 PASSED!
 
-!testRun: #CartTest #test08CartCanListContents stamp: 'pdb 10/30/2022 17:42:24'!
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:16:11'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:16:11'!
 PASSED!
 
-----QUIT----(30 October 2022 17:43:38) CuisUniversity-5481.image priorSource: 7095872!
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:16:11'!
+ERROR!
+!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:16:20' prior: 50557661!
+createCardFor: aDate 
+	^CreditCard withNumber: '00000000000000' andExpirationDate: aDate forOwner: 'lala'
+
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:16:22'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:16:24'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:16:24'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:16:24'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:16:24'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:16:24'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:18:40'!
+test06CheckoutCartWithFundlessCardThrowsException
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor noFundsCard ] raise: Error - MessageNotUnderstood 	withMessageText: MerchantProcessor insufficientFundsErrorMessage 	.
+	
+	! !
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 10/31/2022 22:18:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 10/31/2022 22:18:42'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:19:10'!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor noFundsCard ] raise: Error - MessageNotUnderstood 	withMessageText: MerchantProcessor insufficientFundsErrorMessage 	.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:21:44' prior: 50557800!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] raise: Error - MessageNotUnderstood 		withExceptionDo: [:anError | ].
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:23:58' prior: 50557011!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | self assert: anError messageText equals: Cashier creditCardExpiredErrorMessage. 
+						   self deny: mockMP invalidCall ].
+	
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutCartWithExpiredCardDoesNotReachMP stamp: 'pdb 10/31/2022 22:24:02'!
+PASSED!
+
+----QUIT----(31 October 2022 22:24:34) CuisUniversity-5481.image priorSource: 7059698!
