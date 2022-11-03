@@ -2073,3 +2073,625 @@ PASSED!
 PASSED!
 
 ----QUIT----(31 October 2022 22:24:34) CuisUniversity-5481.image priorSource: 7059698!
+
+----STARTUP---- (3 November 2022 14:16:27) as C:\Users\Patricio\Desktop\windows64\CuisUniversity-5481.image!
+
+
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosCatalog category: 'TusLibros' stamp: 'pdb 11/3/2022 14:16:57'!
+Object subclass: #TusLibrosCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutCartWithExpiredCardDoesNotReachMP stamp: 'pdb 11/3/2022 14:17:31'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:19:11' prior: 50557818!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] raise: Error - MessageNotUnderstood 		withExceptionDo: [:anError | self assert: mockMP invalidCall].
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:24:14' prior: 50557951!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | self deny: mockMP invalidCall ].
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:24:36' prior: 50557835!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
+	raise: Error - MessageNotUnderstood 
+	withMessageText: Cashier creditCardExpiredErrorMessage
+	
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutCartWithExpiredCardDoesNotReachMP stamp: 'pdb 11/3/2022 14:24:39'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:25:36' prior: 50556699!
+test03CheckoutCartWithManyItemsReturnsTotal
+
+	| cart cashier card product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	card := self createCard.
+	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:25:55' prior: 50557987!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	| cart cashier product1 |
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
+	raise: Error - MessageNotUnderstood 
+	withMessageText: Cashier creditCardExpiredErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:11' prior: 50557534!
+test05CheckoutCartWithStolenCardThrowsException
+
+	| cart cashier product1|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self should: [ cashier checkoutWithCard: MockMerchantProcessor stolenCard ] raise: Error - MessageNotUnderstood withMessageText: MerchantProcessor stolenCardErrorMessage .
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:22' prior: 50558064!
+test05CheckoutCartWithStolenCardThrowsException
+
+	| cart cashier product1|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor stolenCard ] 
+	raise: Error - MessageNotUnderstood 
+	withMessageText: MerchantProcessor stolenCardErrorMessage .
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:37' prior: 50557758!
+test06CheckoutCartWithFundlessCardThrowsException
+
+	| cart cashier product1 product2|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	product2 := self defaultCatalog items at: 2.
+	cart add: product1; add: product2.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor noFundsCard ] 
+	raise: Error - MessageNotUnderstood 	
+	withMessageText: MerchantProcessor insufficientFundsErrorMessage 	.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:51' prior: 50557969!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1|
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | self deny: mockMP invalidCall ].
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:59' prior: 50558094!
+test06CheckoutCartWithFundlessCardThrowsException
+
+	| cart cashier product1 |
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: MockMerchantProcessor noFundsCard ] 
+	raise: Error - MessageNotUnderstood 	
+	withMessageText: MerchantProcessor insufficientFundsErrorMessage 	.
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:28:30'!
+expectErrorMessage: anErrorMessage whenUsingCard: aCreditCard
+
+	| cart cashier product1 |
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: aCreditCard ] 
+	raise: Error - MessageNotUnderstood 
+	withMessageText: anErrorMessage
+	
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:29:27' prior: 50558049!
+test04CheckoutCartWithExpiredCardThrowsException
+
+	self expectErrorMessage: Cashier creditCardExpiredErrorMessage whenUsingCard: MockMerchantProcessor expiredCard.
+	
+	! !
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutCartWithExpiredCardDoesNotReachMP stamp: 'pdb 11/3/2022 14:29:29'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:02' prior: 50558079!
+test05CheckoutCartWithStolenCardThrowsException
+
+	self expectErrorMessage: MerchantProcessor stolenCardErrorMessage whenUsingCard: MockMerchantProcessor stolenCard.
+	! !
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:23' prior: 50558127!
+test06CheckoutCartWithFundlessCardThrowsException
+
+	self expectErrorMessage: MerchantProcessor insufficientFundsErrorMessage whenUsingCard: MockMerchantProcessor noFundsCard.! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:31:15' prior: 50552374!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [ cart add: self itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:31:21' prior: 50552511!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemSellByTheStore withOccurrences: 0 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:31:25' prior: 50552603!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOccurrences:  2 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:33:01'!
+block: aBlockThatThrows shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: aBlockThatThrows
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: aBlockThatHandlesError! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:33:12' prior: 50558248!
+block: aBlockThatThrows shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	self 
+		should: aBlockThatThrows
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: aBlockThatHandlesError! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:38:14'!
+addingItem: anItem withOcurrences: aNumberOfOccurrences shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	| cart |
+	
+	cart := self createCart.
+
+	self 
+		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: aBlockThatHandlesError! !
+
+!methodRemoval: CartTest #block:shouldThrowWithExceptionDo: stamp: 'pdb 11/3/2022 14:38:16'!
+block: aBlockThatThrows shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	self 
+		should: aBlockThatThrows
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: aBlockThatHandlesError!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:39:23' prior: 50558209!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	self addingItem: self itemNotSellByTheStore withOcurrences: 1 shouldThrowWithExceptionDo: [ :anError :aCart |
+			self assert: anError messageText equals: aCart invalidItemErrorMessage.
+			self assert: aCart isEmpty ].! !
+!CartTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:41:26' prior: 50558266!
+addingItem: anItem withOcurrences: aNumberOfOccurrences shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	| cart |
+	
+	cart := self createCart.
+
+	self 
+		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |			aBlockThatHandlesError value: anError value: cart] ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 11/3/2022 14:41:28'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:42:30' prior: 50558222!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemSellByTheStore withOccurrences: 0 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ].
+		
+		self addingItem: self itemSellByTheStore withOcurrences: 0 shouldThrowWithExceptionDo: [ :anError :aCart |
+			self assert: anError messageText equals: aCart invalidQuantityErrorMessage.
+			self assert: aCart isEmpty ].! !
+!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:45'!
+invalidItemErrorMessage
+	
+	^'Item is not in catalog'! !
+
+!methodRemoval: Cart #invalidItemErrorMessage stamp: 'pdb 11/3/2022 14:42:45'!
+invalidItemErrorMessage
+	
+	^'Item is not in catalog'!
+!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:56'!
+invalidQuantityErrorMessage
+	
+	^'Invalid number of items'! !
+
+!methodRemoval: Cart #invalidQuantityErrorMessage stamp: 'pdb 11/3/2022 14:42:56'!
+invalidQuantityErrorMessage
+	
+	^'Invalid number of items'!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:43:32' prior: 50558287!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	self addingItem: self itemNotSellByTheStore withOcurrences: 1 shouldThrowWithExceptionDo: [ :anError :aCart |
+			self assert: anError messageText equals: Cart invalidItemErrorMessage.
+			self assert: aCart isEmpty ].! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:43:40' prior: 50558337!
+test04CanNotAddNonPositiveNumberOfItems
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemSellByTheStore withOccurrences: 0 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ].
+		
+		self addingItem: self itemSellByTheStore withOcurrences: 0 shouldThrowWithExceptionDo: [ :anError :aCart |
+			self assert: anError messageText equals: Cart invalidQuantityErrorMessage.
+			self assert: aCart isEmpty ].! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:43:50' prior: 50558235!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	| cart |
+	
+	cart := self createCart.
+	
+	self 
+		should: [cart add: self itemNotSellByTheStore withOccurrences:  2 ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: Cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
+!CartTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:45:48'!
+assertAddingItem: anItem withOcurrences: aNumberOfOccurrences leavesCartEmptyAndThrowsErrorWithMessage: anErrorMessage
+
+	| cart |
+	
+	cart := self createCart.
+
+	self 
+		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |		self assert: anError messageText equals: anErrorMessage. self assert: cart isEmpty ] ! !
+
+!methodRemoval: CartTest #addingItem:withOcurrences:shouldThrowWithExceptionDo: stamp: 'pdb 11/3/2022 14:45:53'!
+addingItem: anItem withOcurrences: aNumberOfOccurrences shouldThrowWithExceptionDo: aBlockThatHandlesError
+
+	| cart |
+	
+	cart := self createCart.
+
+	self 
+		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |			aBlockThatHandlesError value: anError value: cart] !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:46:41' prior: 50558375!
+test02CanNotAddItemsThatDoNotBelongToStore
+
+	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 1 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:21' prior: 50558386!
+test04CanNotAddNonPositiveNumberOfItems
+		
+	self assertAddingItem: self itemSellByTheStore withOcurrences: 0 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidQuantityErrorMessage.! !
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:47:22'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:54' prior: 50558406!
+test05CanNotAddMoreThanOneItemNotSellByTheStore
+
+	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 2 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:47:55'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 11/3/2022 14:48:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:48:03'!
+ERROR!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 11/3/2022 14:48:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:48:03'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:48:03'!
+ERROR!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 11/3/2022 14:48:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 11/3/2022 14:48:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 11/3/2022 14:48:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:48:05'!
+ERROR!
+!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:30' prior: 50552294!
+assertIsValidItem: anItem
+
+	(catalog includes: anItem) ifFalse: [ self error: self class invalidItemErrorMessage ]! !
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:48:31'!
+PASSED!
+!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:48' prior: 50552300!
+assertIsValidQuantity: aQuantity
+
+	aQuantity strictlyPositive ifFalse: [ self error: self class invalidQuantityErrorMessage ]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 11/3/2022 14:48:49'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutEmptyCart stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test02CheckoutCartWithOneItemReturnsTotal stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckoutCartWithManyItemsReturnsTotal stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutCartWithExpiredCardThrowsException stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckoutCartWithStolenCardThrowsException stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test06CheckoutCartWithFundlessCardThrowsException stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!
+
+!testRun: #CashierTest #test07CheckoutCartWithExpiredCardDoesNotReachMP stamp: 'pdb 11/3/2022 14:48:52'!
+PASSED!

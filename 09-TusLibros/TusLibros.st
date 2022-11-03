@@ -10,19 +10,10 @@ test01NewCartsAreCreatedEmpty
 
 	self assert: self createCart isEmpty! !
 
-!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:45'!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:46:41'!
 test02CanNotAddItemsThatDoNotBelongToStore
 
-	| cart |
-	
-	cart := self createCart.
-	
-	self 
-		should: [ cart add: self itemNotSellByTheStore ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = cart invalidItemErrorMessage.
-			self assert: cart isEmpty ]! !
+	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 1 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
 
 !CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:43'!
 test03AfterAddingAnItemTheCartIsNotEmptyAnymore
@@ -34,33 +25,15 @@ test03AfterAddingAnItemTheCartIsNotEmptyAnymore
 	cart add: self itemSellByTheStore.
 	self deny: cart isEmpty ! !
 
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:15:30'!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:21'!
 test04CanNotAddNonPositiveNumberOfItems
+		
+	self assertAddingItem: self itemSellByTheStore withOcurrences: 0 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidQuantityErrorMessage.! !
 
-	| cart |
-	
-	cart := self createCart.
-	
-	self 
-		should: [cart add: self itemSellByTheStore withOccurrences: 0 ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = cart invalidQuantityErrorMessage.
-			self assert: cart isEmpty ]! !
-
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:17:53'!
+!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:54'!
 test05CanNotAddMoreThanOneItemNotSellByTheStore
 
-	| cart |
-	
-	cart := self createCart.
-	
-	self 
-		should: [cart add: self itemNotSellByTheStore withOccurrences:  2 ]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = cart invalidItemErrorMessage.
-			self assert: cart isEmpty ]! !
+	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 2 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
 
 !CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:43'!
 test06CartRemembersAddedItems
@@ -91,6 +64,18 @@ test08CartRemembersTheNumberOfAddedItems
 	cart add: self itemSellByTheStore withOccurrences: 2.
 	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
 
+
+!CartTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:45:48'!
+assertAddingItem: anItem withOcurrences: aNumberOfOccurrences leavesCartEmptyAndThrowsErrorWithMessage: anErrorMessage
+
+	| cart |
+	
+	cart := self createCart.
+
+	self 
+		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |		self assert: anError messageText equals: anErrorMessage. self assert: cart isEmpty ] ! !
 
 !CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:52:53'!
 createCart
@@ -149,6 +134,22 @@ defaultCatalog
 defaultPriceList
 	^ Dictionary new add: 'item1'->4; add: 'item2'->3; add: 'item3'->1; yourself.	! !
 
+!CashierTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:28:30'!
+expectErrorMessage: anErrorMessage whenUsingCard: aCreditCard
+
+	| cart cashier product1 |
+	cart := self createCart.
+	product1 := self defaultCatalog items at: 1.
+	cart add: product1.
+	cashier := self createCashier: cart.
+	
+	self 
+	should: [ cashier checkoutWithCard: aCreditCard ] 
+	raise: Error - MessageNotUnderstood 
+	withMessageText: anErrorMessage
+	
+	! !
+
 !CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:26:25'!
 itemsSoldByTheStore
 	^ self defaultPriceList keys! !
@@ -183,7 +184,7 @@ test02CheckoutCartWithOneItemReturnsTotal
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:45:27'!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:25:36'!
 test03CheckoutCartWithManyItemsReturnsTotal
 
 	| cart cashier card product1 product2|
@@ -192,68 +193,43 @@ test03CheckoutCartWithManyItemsReturnsTotal
 	product2 := self defaultCatalog items at: 2.
 	cart add: product1; add: product2.
 	cashier := self createCashier: cart.
+	
 	card := self createCard.
 	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
 	
 	! !
 
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:23:58'!
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:29:27'!
 test04CheckoutCartWithExpiredCardThrowsException
 
-	| cart cashier product1 product2|
+	self expectErrorMessage: Cashier creditCardExpiredErrorMessage whenUsingCard: MockMerchantProcessor expiredCard.
+	
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:02'!
+test05CheckoutCartWithStolenCardThrowsException
+
+	self expectErrorMessage: MerchantProcessor stolenCardErrorMessage whenUsingCard: MockMerchantProcessor stolenCard.
+	! !
+
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:23'!
+test06CheckoutCartWithFundlessCardThrowsException
+
+	self expectErrorMessage: MerchantProcessor insufficientFundsErrorMessage whenUsingCard: MockMerchantProcessor noFundsCard.! !
+
+!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:51'!
+test07CheckoutCartWithExpiredCardDoesNotReachMP
+
+	| cart cashier product1|
 	cart := self createCart.
 	product1 := self defaultCatalog items at: 1.
-	product2 := self defaultCatalog items at: 2.
-	cart add: product1; add: product2.
+	cart add: product1.
 	cashier := self createCashier: cart.
 	
 	self 
 	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
 	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError | self assert: anError messageText equals: Cashier creditCardExpiredErrorMessage. 
-						   self deny: mockMP invalidCall ].
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 21:51:32'!
-test05CheckoutCartWithStolenCardThrowsException
-
-	| cart cashier product1 product2|
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	product2 := self defaultCatalog items at: 2.
-	cart add: product1; add: product2.
-	cashier := self createCashier: cart.
-	
-	self should: [ cashier checkoutWithCard: MockMerchantProcessor stolenCard ] raise: Error - MessageNotUnderstood withMessageText: MerchantProcessor stolenCardErrorMessage .
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:18:40'!
-test06CheckoutCartWithFundlessCardThrowsException
-
-	| cart cashier product1 product2|
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	product2 := self defaultCatalog items at: 2.
-	cart add: product1; add: product2.
-	cashier := self createCashier: cart.
-	
-	self should: [ cashier checkoutWithCard: MockMerchantProcessor noFundsCard ] raise: Error - MessageNotUnderstood 	withMessageText: MerchantProcessor insufficientFundsErrorMessage 	.
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 22:21:44'!
-test07CheckoutCartWithExpiredCardDoesNotReachMP
-
-	| cart cashier product1 product2|
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	product2 := self defaultCatalog items at: 2.
-	cart add: product1; add: product2.
-	cashier := self createCashier: cart.
-	
-	self should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] raise: Error - MessageNotUnderstood 		withExceptionDo: [:anError | ].
+	withExceptionDo: [:anError | self deny: mockMP invalidCall ].
 	
 	! !
 
@@ -265,26 +241,15 @@ Object subclass: #Cart
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:45'!
-invalidItemErrorMessage
-	
-	^'Item is not in catalog'! !
-
-!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:45'!
-invalidQuantityErrorMessage
-	
-	^'Invalid number of items'! !
-
-
-!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 17:51'!
+!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:30'!
 assertIsValidItem: anItem
 
-	(catalog includes: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
+	(catalog includes: anItem) ifFalse: [ self error: self class invalidItemErrorMessage ]! !
 
-!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 17:51'!
+!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:48'!
 assertIsValidQuantity: aQuantity
 
-	aQuantity strictlyPositive ifFalse: [ self error: self invalidQuantityErrorMessage ]! !
+	aQuantity strictlyPositive ifFalse: [ self error: self class invalidQuantityErrorMessage ]! !
 
 
 !Cart methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:12:59'!
@@ -338,6 +303,17 @@ Cart class
 acceptingItemsOf: aCatalog
 
 	^self new initializeAcceptingItemsOf: aCatalog ! !
+
+
+!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:45'!
+invalidItemErrorMessage
+	
+	^'Item is not in catalog'! !
+
+!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:56'!
+invalidQuantityErrorMessage
+	
+	^'Invalid number of items'! !
 
 
 !classDefinition: #Cashier category: 'TusLibros'!
@@ -521,7 +497,7 @@ stolenCard
 
 !classDefinition: #TusLibrosCatalog category: 'TusLibros'!
 Object subclass: #TusLibrosCatalog
-	instanceVariableNames: 'items renameMe1'
+	instanceVariableNames: 'items'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
