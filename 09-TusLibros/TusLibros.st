@@ -1,237 +1,312 @@
 !classDefinition: #CartTest category: 'TusLibros'!
 TestCase subclass: #CartTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'testObjectsFactory'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:08'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:10'!
 test01NewCartsAreCreatedEmpty
 
-	self assert: self createCart isEmpty! !
+	self assert: testObjectsFactory createCart isEmpty! !
 
-!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:46:41'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:10'!
 test02CanNotAddItemsThatDoNotBelongToStore
 
-	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 1 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
+	| cart |
+	
+	cart := testObjectsFactory createCart.
+	
+	self 
+		should: [ cart add: testObjectsFactory itemNotSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
 
-!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:43'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:10'!
 test03AfterAddingAnItemTheCartIsNotEmptyAnymore
 
 	| cart |
 	
-	cart := self createCart.
+	cart := testObjectsFactory createCart.
 	
-	cart add: self itemSellByTheStore.
+	cart add: testObjectsFactory itemSellByTheStore.
 	self deny: cart isEmpty ! !
 
-!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:21'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:10'!
 test04CanNotAddNonPositiveNumberOfItems
-		
-	self assertAddingItem: self itemSellByTheStore withOcurrences: 0 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidQuantityErrorMessage.! !
 
-!CartTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:47:54'!
+	| cart |
+	
+	cart := testObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 0 of: testObjectsFactory itemSellByTheStore ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidQuantityErrorMessage.
+			self assert: cart isEmpty ]! !
+
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:10'!
 test05CanNotAddMoreThanOneItemNotSellByTheStore
 
-	self assertAddingItem: self itemNotSellByTheStore withOcurrences: 2 leavesCartEmptyAndThrowsErrorWithMessage: Cart invalidItemErrorMessage.! !
+	| cart |
+	
+	cart := testObjectsFactory createCart.
+	
+	self 
+		should: [cart add: 2 of: testObjectsFactory itemNotSellByTheStore  ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = cart invalidItemErrorMessage.
+			self assert: cart isEmpty ]! !
 
-!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:43'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:11'!
 test06CartRemembersAddedItems
 
 	| cart |
 	
-	cart := self createCart.
+	cart := testObjectsFactory createCart.
 	
-	cart add: self itemSellByTheStore.
-	self assert: (cart includes: self itemSellByTheStore)! !
+	cart add: testObjectsFactory itemSellByTheStore.
+	self assert: (cart includes: testObjectsFactory itemSellByTheStore)! !
 
-!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 17:43'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:11'!
 test07CartDoesNotHoldNotAddedItems
 
 	| cart |
 	
-	cart := self createCart.
+	cart := testObjectsFactory createCart.
 	
-	self deny: (cart includes: self itemSellByTheStore)! !
+	self deny: (cart includes: testObjectsFactory itemSellByTheStore)! !
 
-!CartTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 18:17:09'!
+!CartTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:11'!
 test08CartRemembersTheNumberOfAddedItems
 
 	| cart |
 	
-	cart := self createCart.
+	cart := testObjectsFactory createCart.
 	
-	cart add: self itemSellByTheStore withOccurrences: 2.
-	self assert: (cart occurrencesOf: self itemSellByTheStore) = 2! !
+	cart add: 2 of: testObjectsFactory itemSellByTheStore.
+	self assert: (cart occurrencesOf: testObjectsFactory itemSellByTheStore) = 2! !
 
 
-!CartTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:45:48'!
-assertAddingItem: anItem withOcurrences: aNumberOfOccurrences leavesCartEmptyAndThrowsErrorWithMessage: anErrorMessage
+!CartTest methodsFor: 'setup' stamp: 'HernanWilkinson 6/17/2013 18:09'!
+setUp 
 
-	| cart |
-	
-	cart := self createCart.
-
-	self 
-		should: [ cart add: anItem withOccurrences: aNumberOfOccurrences]
-		raise: Error - MessageNotUnderstood
-		withExceptionDo: [ :anError |		self assert: anError messageText equals: anErrorMessage. self assert: cart isEmpty ] ! !
-
-!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:52:53'!
-createCart
-	
-	^Cart acceptingItemsOf: self defaultCatalog! !
-
-!CartTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:45:56'!
-defaultCatalog
-	
-	^TusLibrosCatalog with: (Dictionary new add: self itemSellByTheStore -> 10; yourself )  ! !
-
-!CartTest methodsFor: 'support' stamp: 'HernanWilkinson 6/17/2013 17:44'!
-itemNotSellByTheStore
-	
-	^'invalidBook'! !
-
-!CartTest methodsFor: 'support' stamp: 'HernanWilkinson 6/17/2013 17:43'!
-itemSellByTheStore
-	
-	^ 'validBook'! !
+	testObjectsFactory := StoreTestObjectsFactory new.! !
 
 
 !classDefinition: #CashierTest category: 'TusLibros'!
 TestCase subclass: #CashierTest
-	instanceVariableNames: 'mockMP'
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:12:27'!
-createCard
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:50'!
+test01CanNotCheckoutAnEmptyCart
+
+	| salesBook |
 	
-	^CreditCard withNumber: '00000000000000' andExpirationDate: Date tomorrow forOwner: 'lala'! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 22:16:20'!
-createCardFor: aDate 
-	^CreditCard withNumber: '00000000000000' andExpirationDate: aDate forOwner: 'lala'
-
-	! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:52:32'!
-createCart
-	
-	^Cart acceptingItemsOf: self defaultCatalog! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 21:37:39'!
-createCashier: aCart
-	
-	^Cashier withCatalog: self defaultCatalog forCart: aCart withMerchantProcessor: mockMP.! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:48:21'!
-defaultCatalog
-	^ TusLibrosCatalog with: self defaultPriceList ! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 19:45:07'!
-defaultPriceList
-	^ Dictionary new add: 'item1'->4; add: 'item2'->3; add: 'item3'->1; yourself.	! !
-
-!CashierTest methodsFor: 'support' stamp: 'pdb 11/3/2022 14:28:30'!
-expectErrorMessage: anErrorMessage whenUsingCard: aCreditCard
-
-	| cart cashier product1 |
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	cart add: product1.
-	cashier := self createCashier: cart.
-	
+	salesBook := OrderedCollection new.
 	self 
-	should: [ cashier checkoutWithCard: aCreditCard ] 
-	raise: Error - MessageNotUnderstood 
-	withMessageText: anErrorMessage
+		should: [ Cashier 
+			toCheckout: testObjectsFactory createCart 
+			charging: testObjectsFactory notExpiredCreditCard 
+			throught: self
+			on: testObjectsFactory today
+			registeringOn:  salesBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage.
+			self assert: salesBook isEmpty ]! !
+
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+test02CalculatedTotalIsCorrect
+
+	| cart cashier |
 	
-	! !
+	cart := testObjectsFactory createCart.
+	cart add: 2 of: testObjectsFactory itemSellByTheStore.
+	
+	cashier :=  Cashier
+		toCheckout: cart 
+		charging: testObjectsFactory notExpiredCreditCard 
+		throught: self
+		on: testObjectsFactory today 
+		registeringOn: OrderedCollection new.
+		
+	self assert: cashier checkOut = (testObjectsFactory itemSellByTheStorePrice * 2)! !
 
-!CashierTest methodsFor: 'support' stamp: 'pdb 10/31/2022 18:26:25'!
-itemsSoldByTheStore
-	^ self defaultPriceList keys! !
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+test03CanNotCheckoutWithAnExpiredCreditCart
+
+	| cart salesBook |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	salesBook := OrderedCollection new.
+	
+	self
+		should: [ Cashier 
+				toCheckout: cart 
+				charging: testObjectsFactory expiredCreditCard 
+				throught: self
+				on: testObjectsFactory today
+				registeringOn: salesBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
+			self assert: salesBook isEmpty ]! !
+
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:04'!
+test04CheckoutRegistersASale
+
+	| cart cashier salesBook total |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	salesBook := OrderedCollection new.
+ 
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: testObjectsFactory notExpiredCreditCard
+		throught: self
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	total := cashier checkOut.
+					
+	self assert: salesBook size = 1.
+	self assert: salesBook first total = total.! !
+
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:00'!
+test05CashierChargesCreditCardUsingMerchantProcessor
+
+	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+ 
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: self
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	debitBehavior := [ :anAmount :aCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	total := cashier checkOut.
+					
+	self assert: debitedCreditCard = creditCard.
+	self assert: debitedAmout = total.! !
+
+!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:59'!
+test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
+
+	| cart cashier salesBook creditCard |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+ 	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: self
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	self 
+		should: [cashier checkOut ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier creditCardHasNoCreditErrorMessage.
+			self assert: salesBook isEmpty ]! !
 
 
-!CashierTest methodsFor: 'setUp/tearDown' stamp: 'pdb 10/31/2022 21:52:02'!
+!CashierTest methodsFor: 'setup' stamp: 'HernanWilkinson 6/17/2013 19:03'!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	debitBehavior := [ :anAmount :aCreditCard | ]! !
+
+
+!CashierTest methodsFor: 'merchant processor protocol' stamp: 'HernanWilkinson 6/17/2013 19:02'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
+
+!classDefinition: #StoreInterfaceTest category: 'TusLibros'!
+TestCase subclass: #StoreInterfaceTest
+	instanceVariableNames: 'interface testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 20:43:58'!
+test01ValidIdAndPasswordCreatesCartSuccessfully
+
+	| cartId |
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	self assert: (interface listCart: cartId) isEmpty! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 21:08:38'!
+test02InvalidIdAndPasswordThrowsError
+
+	self should: [interface createCartWithId: self invalidClientId andPassword: self invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 21:15:59'!
+test03AddToCartAddsItemSuccesfully
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4).! !
+
+
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/3/2022 20:47:05'!
 setUp
-	mockMP := MockMerchantProcessor new.! !
-
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:30:56'!
-test01CanNotCheckoutEmptyCart
 	
-	| cart |
+	testObjectsFactory := StoreTestObjectsFactory new.
+	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog.! !
+
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:56:37'!
+authenticateClientId: aClientId andPassword: aPassword 
+	^aClientId = self validClientId  and: [aPassword = self validClientPassword ]! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:44:55'!
+createCatalog
+	self shouldBeImplemented.! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:09:46'!
+invalidClientId
+	^'cuca'! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:10:04'!
+invalidClientPassword
+	^'monga'.! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:42:27'!
+validClientId
+	^'catramado'! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:41:00'!
+validClientPassword
 	
-	cart := self createCart.
-
-	self should: [self createCashier: cart]  raise: Error - MessageNotUnderstood withMessageText: Cashier cannotInitializeWithEmptyCartErrorMessage 
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 10/31/2022 19:32:41'!
-test02CheckoutCartWithOneItemReturnsTotal
-
-	| cart cashier card product |
-	cart := self createCart.
-	product := self defaultCatalog items at: 1.
-	cart add: product.
-	cashier := self createCashier: cart.
-	card := self createCard.
-	self assert: (self defaultCatalog priceOf: product) equals: (cashier checkoutWithCard: card).
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:25:36'!
-test03CheckoutCartWithManyItemsReturnsTotal
-
-	| cart cashier card product1 product2|
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	product2 := self defaultCatalog items at: 2.
-	cart add: product1; add: product2.
-	cashier := self createCashier: cart.
-	
-	card := self createCard.
-	self assert: ((self defaultCatalog priceOf: product1) + (self defaultCatalog priceOf: product2)) equals: (cashier checkoutWithCard: card).
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:29:27'!
-test04CheckoutCartWithExpiredCardThrowsException
-
-	self expectErrorMessage: Cashier creditCardExpiredErrorMessage whenUsingCard: MockMerchantProcessor expiredCard.
-	
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:02'!
-test05CheckoutCartWithStolenCardThrowsException
-
-	self expectErrorMessage: MerchantProcessor stolenCardErrorMessage whenUsingCard: MockMerchantProcessor stolenCard.
-	! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:30:23'!
-test06CheckoutCartWithFundlessCardThrowsException
-
-	self expectErrorMessage: MerchantProcessor insufficientFundsErrorMessage whenUsingCard: MockMerchantProcessor noFundsCard.! !
-
-!CashierTest methodsFor: 'tests' stamp: 'pdb 11/3/2022 14:26:51'!
-test07CheckoutCartWithExpiredCardDoesNotReachMP
-
-	| cart cashier product1|
-	cart := self createCart.
-	product1 := self defaultCatalog items at: 1.
-	cart add: product1.
-	cashier := self createCashier: cart.
-	
-	self 
-	should: [ cashier checkoutWithCard: MockMerchantProcessor expiredCard ] 
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError | self deny: mockMP invalidCall ].
-	
-	! !
+	^'culiiiii'! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -241,28 +316,39 @@ Object subclass: #Cart
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:30'!
+!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:45'!
+invalidItemErrorMessage
+	
+	^'Item is not in catalog'! !
+
+!Cart methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:45'!
+invalidQuantityErrorMessage
+	
+	^'Invalid number of items'! !
+
+
+!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 18:06'!
 assertIsValidItem: anItem
 
-	(catalog includes: anItem) ifFalse: [ self error: self class invalidItemErrorMessage ]! !
+	(catalog includesKey: anItem) ifFalse: [ self error: self invalidItemErrorMessage ]! !
 
-!Cart methodsFor: 'assertions' stamp: 'pdb 11/3/2022 14:48:48'!
+!Cart methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 17:51'!
 assertIsValidQuantity: aQuantity
 
-	aQuantity strictlyPositive ifFalse: [ self error: self class invalidQuantityErrorMessage ]! !
+	aQuantity strictlyPositive ifFalse: [ self error: self invalidQuantityErrorMessage ]! !
 
 
-!Cart methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:12:59'!
+!Cart methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 17:48'!
 initializeAcceptingItemsOf: aCatalog
 
 	catalog := aCatalog.
-	items := Bag new.! !
+	items := OrderedCollection new.! !
 
 
-!Cart methodsFor: 'queries' stamp: 'pdb 10/31/2022 19:34:15'!
+!Cart methodsFor: 'queries' stamp: 'pdb 11/3/2022 21:03:02'!
 items
 
-	^items! !
+	^items copy! !
 
 !Cart methodsFor: 'queries' stamp: 'HernanWilkinson 6/17/2013 17:45'!
 occurrencesOf: anItem
@@ -281,17 +367,24 @@ isEmpty
 	^items isEmpty ! !
 
 
-!Cart methodsFor: 'adding' stamp: 'pdb 10/31/2022 18:17:32'!
+!Cart methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 19:09'!
+total
+
+	^ items sum: [ :anItem | catalog at: anItem ]! !
+
+
+!Cart methodsFor: 'adding' stamp: 'HernanWilkinson 6/17/2013 17:44'!
 add: anItem
 
-	^ self add: anItem withOccurrences: 1 ! !
+	^ self add: 1 of: anItem ! !
 
-!Cart methodsFor: 'adding' stamp: 'pdb 10/31/2022 18:13:58'!
-add:  anItem withOccurrences: aQuantity
+!Cart methodsFor: 'adding' stamp: 'HernanWilkinson 6/17/2013 17:51'!
+add: aQuantity of: anItem
 
 	self assertIsValidQuantity: aQuantity.
 	self assertIsValidItem: anItem.
-	items add: anItem withOccurrences: aQuantity.! !
+
+	1 to: aQuantity do: [ :aNumber | items add: anItem ]! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -304,61 +397,55 @@ acceptingItemsOf: aCatalog
 
 	^self new initializeAcceptingItemsOf: aCatalog ! !
 
-
-!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:45'!
-invalidItemErrorMessage
-	
-	^'Item is not in catalog'! !
-
-!Cart class methodsFor: 'error messages' stamp: 'pdb 11/3/2022 14:42:56'!
-invalidQuantityErrorMessage
-	
-	^'Invalid number of items'! !
-
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: 'cart catalog merchantProcessor'
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cashier methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:21:18'!
-initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor
-	catalog := aCatalog.
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:08'!
+calculateTotal
+
+	total := cart total.
+	! !
+
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:07'!
+createSale
+
+	^ Sale of: total
+! !
+
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+debitTotal
+
+	merchantProcessor debit: total from: creditCard.
+	! !
+
+!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+registerSale
+
+	salesBook add: self createSale! !
+
+
+!Cashier methodsFor: 'checkout' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+checkOut
+
+	self calculateTotal.
+	self debitTotal.
+	self registerSale.
+
+	^ total! !
+
+
+!Cashier methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:53'!
+initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook
+	
 	cart := aCart.
-	merchantProcessor := aMerchantProcessor ! !
-
-
-!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:11:50'!
-assertCardIsNotCurrentlyExpired: aCard
-	
-	(aCard isExpiredOn: Date today) ifTrue: [^self error: self class creditCardExpiredErrorMessage ]! !
-
-!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:12:13'!
-checkoutWithCard: aCard
-	
-	| total |
-	
-	self assertCardIsNotCurrentlyExpired: aCard.
-	
-	total := self total.
-	self debit: total from: aCard.
-	
-	^total
-	
-	! !
-
-!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 21:21:36'!
-debit: aQuantity from: aCard 
-	merchantProcessor debit: aQuantity from: aCard! !
-
-!Cashier methodsFor: 'checkout' stamp: 'pdb 10/31/2022 19:38:36'!
-total
-	
-	^cart items inject: 0 into: [ :subTotal :anItem | (catalog priceOf: anItem) + subTotal ]
-	
-	! !
+	creditCard := aCreditCard.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -366,59 +453,59 @@ total
 Cashier class
 	instanceVariableNames: ''!
 
-!Cashier class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:20:39'!
-withCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor 
+!Cashier class methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 18:22'!
+assertIsNotEmpty: aCart 
+	
+	aCart isEmpty ifTrue: [self error: self cartCanNotBeEmptyErrorMessage ]! !
 
-	aCart isEmpty ifTrue: [self error: self cannotInitializeWithEmptyCartErrorMessage].
-	^self new initializeWithCatalog: aCatalog forCart: aCart withMerchantProcessor: aMerchantProcessor! !
+!Cashier class methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 18:23'!
+assertIsNotExpired: aCreditCard on: aDate
+	
+	(aCreditCard isExpiredOn: aDate) ifTrue: [ self error: self canNotChargeAnExpiredCreditCardErrorMessage ]! !
 
 
-!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 19:26:51'!
-cannotInitializeWithEmptyCartErrorMessage
-	^ 'No se puede inicializar un cajero con un carrito vacío'! !
+!Cashier class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook
+	
+	self assertIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard on: aDate.
+	
+	^self new initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook! !
 
-!Cashier class methodsFor: 'error messages' stamp: 'pdb 10/31/2022 21:09:25'!
-creditCardExpiredErrorMessage
-	^'Cannot use an expired credit card.'.! !
+
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 18:21'!
+canNotChargeAnExpiredCreditCardErrorMessage
+	
+	^'Can not charge an expired credit card'! !
+
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 17:56'!
+cartCanNotBeEmptyErrorMessage
+	
+	^'Can not check out an empty cart'! !
+
+!Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 19:02'!
+creditCardHasNoCreditErrorMessage
+	
+	^'Credit card has no credit'! !
 
 
 !classDefinition: #CreditCard category: 'TusLibros'!
 Object subclass: #CreditCard
-	instanceVariableNames: 'expirationDate creditCardNumber ownerName'
+	instanceVariableNames: 'expiration'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:58:20'!
-expirationDate
-	^expirationDate ! !
-
-!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 22:15:43'!
-number
-	^creditCardNumber ! !
-
-!CreditCard methodsFor: 'accessing' stamp: 'pdb 10/31/2022 22:15:56'!
-owner
-	^creditCardNumber ! !
-
-
-!CreditCard methodsFor: 'initialization' stamp: 'pdb 10/31/2022 21:03:32'!
-initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName 
-
-	creditCardNumber := aCreditCardNumber.
-	expirationDate := anExpirationDate.
-	ownerName := anOwnerName.! !
-
-
-!CreditCard methodsFor: 'testing' stamp: 'pdb 10/31/2022 22:09:29'!
-= aCreditCard 
-	
-	^(self expirationDate = aCreditCard expirationDate) and:[self number = aCreditCard number] and:[self owner = aCreditCard owner]! !
-
-!CreditCard methodsFor: 'testing' stamp: 'pdb 10/31/2022 21:12:45'!
+!CreditCard methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 18:39'!
 isExpiredOn: aDate 
 	
-	^expirationDate  < aDate! !
+	^expiration start < (Month month: aDate monthIndex year: aDate yearNumber) start ! !
+
+
+!CreditCard methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:38'!
+initializeExpiringOn: aMonth 
+	
+	expiration := aMonth ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -426,110 +513,152 @@ isExpiredOn: aDate
 CreditCard class
 	instanceVariableNames: ''!
 
-!CreditCard class methodsFor: 'instance creation' stamp: 'pdb 10/31/2022 21:35:34'!
-withNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName
-	"validar el owner name (no vacio post trim) y el credit card number que esperamos que sea un string con longitud 16 y que sean todos digitos"
-
-	^self new initializeWithNumber: aCreditCardNumber andExpirationDate: anExpirationDate forOwner: anOwnerName! !
-
-
-!classDefinition: #MerchantProcessor category: 'TusLibros'!
-Object subclass: #MerchantProcessor
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MerchantProcessor class' category: 'TusLibros'!
-MerchantProcessor class
-	instanceVariableNames: ''!
-
-!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:50:55'!
-insufficientFundsErrorMessage
-	^'Saldo insuficiente'! !
-
-!MerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:49:54'!
-stolenCardErrorMessage
-	^'Tarjeta robada'! !
-
-
-!classDefinition: #MockMerchantProcessor category: 'TusLibros'!
-MerchantProcessor subclass: #MockMerchantProcessor
-	instanceVariableNames: 'invalidCall'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:53:27'!
-debit: anAmount from: aCreditCard
-	(aCreditCard = self class stolenCard) ifTrue: [self error: self class stolenCardErrorMessage].
-	(aCreditCard = self class noFundsCard) ifTrue: [self error: self class insufficientFundsErrorMessage].
-	(aCreditCard isExpiredOn: Date today) ifTrue: [invalidCall  := true].! !
-
-!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:44:36'!
-initialize
-	invalidCall := false! !
-
-!MockMerchantProcessor methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:46:06'!
-invalidCall
-	^invalidCall! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MockMerchantProcessor class' category: 'TusLibros'!
-MockMerchantProcessor class
-	instanceVariableNames: ''!
-
-!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:42:10'!
-expiredCard
-	^CreditCard withNumber: '2222222222222222' andExpirationDate: Date yesterday forOwner: 'patooooo'! !
-
-!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:41:39'!
-noFundsCard
-	^CreditCard withNumber: '2222222222222222' andExpirationDate: Date tomorrow forOwner: 'patooooo'! !
-
-!MockMerchantProcessor class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 21:40:07'!
-stolenCard
-	^CreditCard withNumber: '1111111111111111' andExpirationDate: Date tomorrow forOwner: 'patooooo'! !
-
-
-!classDefinition: #TusLibrosCatalog category: 'TusLibros'!
-Object subclass: #TusLibrosCatalog
-	instanceVariableNames: 'items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!TusLibrosCatalog methodsFor: 'initialization' stamp: 'pdb 10/31/2022 18:42:39'!
-initializeWith: aDictionaryOfItemsAndPrices 
-
-	items := aDictionaryOfItemsAndPrices.! !
-
-
-!TusLibrosCatalog methodsFor: 'testing' stamp: 'pdb 10/31/2022 18:52:07'!
-includes: anItem
-	^items keys includes: anItem! !
-
-
-!TusLibrosCatalog methodsFor: 'accessing' stamp: 'pdb 10/31/2022 18:43:24'!
-items
-
-	^items keys.! !
-
-!TusLibrosCatalog methodsFor: 'accessing' stamp: 'pdb 10/31/2022 19:09:35'!
-priceOf: anItem
-
-	^items at: anItem ifAbsent: [self error: 'El producto no se encuentra en el catalogo'].! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TusLibrosCatalog class' category: 'TusLibros'!
-TusLibrosCatalog class
-	instanceVariableNames: ''!
-
-!TusLibrosCatalog class methodsFor: 'as yet unclassified' stamp: 'pdb 10/31/2022 18:43:02'!
-with: aDictionaryOfItemsAndPrices
+!CreditCard class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:38'!
+expiringOn: aMonth 
 	
-	^self new initializeWith: aDictionaryOfItemsAndPrices copy.! !
+	^self new initializeExpiringOn: aMonth! !
+
+
+!classDefinition: #Sale category: 'TusLibros'!
+Object subclass: #Sale
+	instanceVariableNames: 'total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!Sale methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 18:48'!
+total
+	
+	^ total! !
+
+
+!Sale methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:47'!
+initializeTotal: aTotal
+
+	total := aTotal ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Sale class' category: 'TusLibros'!
+Sale class
+	instanceVariableNames: ''!
+
+!Sale class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:47'!
+of: aTotal
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal ! !
+
+
+!classDefinition: #StoreInterface category: 'TusLibros'!
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!StoreInterface methodsFor: 'initialization' stamp: 'pdb 11/3/2022 20:52:58'!
+initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+	merchantProcessor := aMerchantProcessor.
+	clientAuthenticator := aClientAuthenticator.
+	catalog := aCatalog.
+	idCounter := 0.
+	cartSessions := Dictionary new.! !
+
+!StoreInterface methodsFor: 'initialization' stamp: 'pdb 11/3/2022 21:03:52'!
+listCart: aSmallInteger 
+	^Dictionary new.! !
+
+
+!StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 21:17:23'!
+addToCart: aCartId book: aBook withQuantity: aQuantity 
+	
+	(cartSessions at: aCartId) add: aQuantity of: aBook.! !
+
+!StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 20:57:32'!
+createCartWithId: aClientId andPassword: aPassword 
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	idCounter := idCounter + 1.
+	cartSessions add: (idCounter->(Cart acceptingItemsOf: catalog)).
+	^idCounter.! !
+
+
+!StoreInterface methodsFor: 'authentication' stamp: 'pdb 11/3/2022 20:57:16'!
+assertCorrectClientId: aString andPassword: aString2 
+	(clientAuthenticator authenticateClientId: aString andPassword: aString2) ifFalse: [self error: self class incorrectAuthenticationErrorMessage].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'StoreInterface class' category: 'TusLibros'!
+StoreInterface class
+	instanceVariableNames: ''!
+
+!StoreInterface class methodsFor: 'instance creation' stamp: 'pdb 11/3/2022 20:47:41'!
+withMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+
+	^self new initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog ! !
+
+
+!StoreInterface class methodsFor: 'error description' stamp: 'pdb 11/3/2022 21:09:21'!
+incorrectAuthenticationErrorMessage
+	^'Invalid id or password'.! !
+
+
+!classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+itemNotSellByTheStore
+	
+	^'invalidBook'! !
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+itemSellByTheStore
+	
+	^ 'validBook'! !
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+itemSellByTheStorePrice
+	
+	^10! !
+
+
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+createCart
+	
+	^Cart acceptingItemsOf: self defaultCatalog! !
+
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		yourself ! !
+
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'HernanWilkinson 6/17/2013 18:37'!
+expiredCreditCard
+	
+	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber - 1)! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'HernanWilkinson 6/17/2013 18:36'!
+notExpiredCreditCard
+	
+	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber + 1)! !
+
+
+!StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:37'!
+initialize
+
+	today := DateAndTime now! !
+
+
+!StoreTestObjectsFactory methodsFor: 'date' stamp: 'HernanWilkinson 6/17/2013 18:37'!
+today
+	
+	^ today! !
