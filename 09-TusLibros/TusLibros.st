@@ -248,7 +248,7 @@ debit: anAmount from: aCreditCard
 
 !classDefinition: #StoreInterfaceTest category: 'TusLibros'!
 TestCase subclass: #StoreInterfaceTest
-	instanceVariableNames: 'interface testObjectsFactory'
+	instanceVariableNames: 'interface testObjectsFactory debitBehavior'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -265,7 +265,7 @@ test02InvalidIdAndPasswordThrowsError
 
 	self should: [interface createCartWithId: self invalidClientId andPassword: self invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 21:15:59'!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:25:46'!
 test03AddToCartAddsItemSuccesfully
 
 	| cartId |
@@ -273,14 +273,99 @@ test03AddToCartAddsItemSuccesfully
 	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
-	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4).! !
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:55:18'!
+test04TryingToListInvalidCartIdThrowsError
+
+	self should: [interface listCart: testObjectsFactory invalidCartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:35'!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:20:28'!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory invalidCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:54:13'!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory invalidCartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:54'!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:09:00'!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory invalidCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCardCcoToLongErrorMessage .! !
 
 
-!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/3/2022 20:47:05'!
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 17:59:05'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 18:15:38'!
 setUp
 	
 	testObjectsFactory := StoreTestObjectsFactory new.
-	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog.! !
+	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog.
+	debitBehavior := [ :anAmount :aCreditCard | ].! !
 
 
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:56:37'!
@@ -491,7 +576,7 @@ creditCardHasNoCreditErrorMessage
 
 !classDefinition: #CreditCard category: 'TusLibros'!
 Object subclass: #CreditCard
-	instanceVariableNames: 'expiration'
+	instanceVariableNames: 'expiration ccn cco'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -502,10 +587,12 @@ isExpiredOn: aDate
 	^expiration start < (Month month: aDate monthIndex year: aDate yearNumber) start ! !
 
 
-!CreditCard methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:38'!
-initializeExpiringOn: aMonth 
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:27:17'!
+initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco   
 	
-	expiration := aMonth ! !
+	expiration := aMonth.
+	ccn := aCcn.
+	cco := aCco! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -513,10 +600,22 @@ initializeExpiringOn: aMonth
 CreditCard class
 	instanceVariableNames: ''!
 
-!CreditCard class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:38'!
-expiringOn: aMonth 
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:34:10'!
+assertValidCcn: aCcn
+	((aCcn size = 16) and: [(aCcn allSatisfy: [:aChar | aChar isDigit])]) ifFalse: [self error: self invalidCcnErrorMessage]! !
+
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'ms 11/4/2022 18:28:41'!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+
+	self assertValidCcn: aCcn.
 	
-	^self new initializeExpiringOn: aMonth! !
+	^self new initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco! !
+
+
+!CreditCard class methodsFor: 'error messages' stamp: 'ms 11/4/2022 18:34:51'!
+invalidCcnErrorMessage
+	^'Invalid credit card number'! !
 
 
 !classDefinition: #Sale category: 'TusLibros'!
@@ -552,28 +651,53 @@ of: aTotal
 
 !classDefinition: #StoreInterface category: 'TusLibros'!
 Object subclass: #StoreInterface
-	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store catalog cartSessions idCounter'
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!StoreInterface methodsFor: 'initialization' stamp: 'pdb 11/3/2022 20:52:58'!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:10:33'!
 initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
 	merchantProcessor := aMerchantProcessor.
 	clientAuthenticator := aClientAuthenticator.
 	catalog := aCatalog.
 	idCounter := 0.
-	cartSessions := Dictionary new.! !
+	cartSessions := Dictionary new.
+	salesBook := OrderedCollection new.! !
 
-!StoreInterface methodsFor: 'initialization' stamp: 'pdb 11/3/2022 21:03:52'!
-listCart: aSmallInteger 
-	^Dictionary new.! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:35:27'!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+	^cart items 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].! !
 
 
 !StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 21:17:23'!
 addToCart: aCartId book: aBook withQuantity: aQuantity 
 	
 	(cartSessions at: aCartId) add: aQuantity of: aBook.! !
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 19:06:39'!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	self assertValidCco: aCco.
+	
+	cart := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
 
 !StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 20:57:32'!
 createCartWithId: aClientId andPassword: aPassword 
@@ -587,6 +711,12 @@ createCartWithId: aClientId andPassword: aPassword
 !StoreInterface methodsFor: 'authentication' stamp: 'pdb 11/3/2022 20:57:16'!
 assertCorrectClientId: aString andPassword: aString2 
 	(clientAuthenticator authenticateClientId: aString andPassword: aString2) ifFalse: [self error: self class incorrectAuthenticationErrorMessage].! !
+
+
+!StoreInterface methodsFor: 'testing' stamp: 'ms 11/4/2022 19:07:53'!
+assertValidCco: aCco 
+	
+	(aCco size > 30) ifTrue: [self error: self class invalidCardCcoToLongErrorMessage]! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -603,6 +733,19 @@ withMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog:
 !StoreInterface class methodsFor: 'error description' stamp: 'pdb 11/3/2022 21:09:21'!
 incorrectAuthenticationErrorMessage
 	^'Invalid id or password'.! !
+
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 19:08:16'!
+invalidCardCcoToLongErrorMessage
+	
+	^'Card CCO is to long'! !
+
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 17:34:48'!
+invalidCartIdErrorMessage
+	^'Invalid Cart Id'! !
+
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 18:19:48'!
+invalidCcnErrorMessage
+	^'Invalid credit card number'! !
 
 
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
@@ -641,15 +784,43 @@ defaultCatalog
 		yourself ! !
 
 
-!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'HernanWilkinson 6/17/2013 18:37'!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:00:49'!
 expiredCreditCard
 	
-	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber - 1)! !
+	^CreditCard expiringOn: self invalidCced withCcn: self validCcn andCco: self validCco! !
 
-!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'HernanWilkinson 6/17/2013 18:36'!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:54:45'!
+invalidCartId
+	^-1! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:01:53'!
+invalidCced
+	^(Month month: today monthIndex year: today yearNumber - 1)! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:27'!
+invalidCcn
+	^'abc'! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:05:35'!
+invalidCco
+	^'abc;slkjdflaskjfglakjfamsdnfkasnflkjgl;ksjdlf;kgjls;dfkjgl;sdkjfgl;skdjfgl;kj'! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:02:58'!
 notExpiredCreditCard
 	
-	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber + 1)! !
+	^CreditCard expiringOn: self validCced withCcn: self validCcn andCco: self validCco! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:59'!
+validCced
+	^(Month month: self today monthIndex year: self today yearNumber + 1)! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:55:39'!
+validCcn
+	^'4567891098765432'.! !
+
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:22:14'!
+validCco
+	^'Martin Saied'! !
 
 
 !StoreTestObjectsFactory methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:37'!

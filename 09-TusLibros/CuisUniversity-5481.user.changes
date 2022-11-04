@@ -673,3 +673,2327 @@ FAILURE!
 FAILURE!
 
 ----QUIT----(3 November 2022 21:18:26) CuisUniversity-5481.image priorSource: 7059698!
+
+----STARTUP---- (4 November 2022 17:13:00) as /Users/msaied/Documents/UBA/inge1/Imagenes/TusLibros/CuisUniversity-5481.image!
+
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/TusLibros/TusLibros.st----!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:14:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:14:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:14:42'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:14:42'!
+FAILURE!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:17:25' prior: 50552879!
+listCart: aCartId 
+	^Dictionary new.! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:18:13' prior: 50553008!
+listCart: aCartId 
+	
+	cartSessions at: aCartId ! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:18:17' prior: 50553013!
+listCart: aCartId 
+	
+	| cart |
+	cart := cartSessions at: aCartId ! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:18:21' prior: 50553018!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId ! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:18:25' prior: 50553024!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:19:47' prior: 50553030!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart listCart.! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:22:30' prior: 50553036!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: Dictionary new 
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: 0) + 1
+		].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:22:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:22:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:22:42'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:22:42'!
+ERROR!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:22:58' prior: 50553042!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: Dictionary new 
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [^0]) + 1
+		].! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:23:03' prior: 50553065!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: Dictionary new 
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1
+		].! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:23:15' prior: 50553075!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1
+		].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:23:17'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:23:17'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:23:17'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:23:17'!
+ERROR!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/Imagenes/TusLibros/Packages/TerseGuide.pck.st----!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:24:53' prior: 50553085!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1.
+		].! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:24:59' prior: 50556029!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.
+	
+	^cart items 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:25:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:25:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:01'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:01'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:25:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:25:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:21'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:21'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:25:46' prior: 50552556!
+test03AddToCartAddsItemSuccesfully
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:25:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:25:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:25:47'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:31:30'!
+test04TryingToListInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:32:23'!
+invalidCartId
+	^-1! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:34:18' prior: 50556106!
+test04TryingToListInvalidCartIdThrowsError
+
+	self should: [interface listCart: self invalidCartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:34:23'!
+ERROR!
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 17:34:32'!
+invalidCartIdErrorMessage
+	self shouldBeImplemented.! !
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 17:34:48' prior: 50556138!
+invalidCartIdErrorMessage
+	^'Invalid Cart Id'! !
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:34:49'!
+FAILURE!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:35:27' prior: 50556039!
+listCart: aCartId 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+	^cart items 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:35:28'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:35:28'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:35:28'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:35:28'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:35:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:35:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:35:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:35:39'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:37:08'!
+test05CheckoutCartReturnsTransactionId
+	
+	! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:37:43' prior: 50556192!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:40:27' prior: 50556197!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:41:54'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:42:05'!
+validCcn
+	self shouldBeImplemented.! !
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:42:45' prior: 50556233!
+validCcn
+	^'4567891098765432'.! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:42:48'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:42:57'!
+validCced
+	self shouldBeImplemented.! !
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:43:08' prior: 50556245!
+validCced
+	^'1224'! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:43:11'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:43:16'!
+validCco
+	self shouldBeImplemented.! !
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:43:28' prior: 50556257!
+validCco
+	^'Martin Saied'! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:43:44'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:43:44'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:43:49'!
+checkOutCart: aSmallInteger withCcn: aString withCced: aString3 withCco: aString4 
+	self shouldBeImplemented.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:44:04' prior: 50556273!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	self shouldBeImplemented.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:47:24' prior: 50556280!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart |
+	
+	cart := cartSessions at: aCartId.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:47:51' prior: 50556286!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:48:28' prior: 50556293!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	"cashier := Cashier toCheckout:  charging: cart total throught: creditCart on:  registeringOn: "! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:49:43' prior: 50556302!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: cart total throught: creditCard on: merchantProcessor registeringOn: OrderedCollection new.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:50:22' prior: 50556314!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: merchantProcessor registeringOn: OrderedCollection new.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:50:47' prior: 50556327!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier initializeToCheckout: cart charging: creditCard throught: merchantProcessor registeringOn: OrderedCollection new.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:52:11' prior: 50556341!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: Date today registeringOn: OrderedCollection new.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:52:57' prior: 50556354!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: OrderedCollection new.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:53:11' prior: 50556367!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: OrderedCollection new.
+	
+	cashier ! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:53:39' prior: 50556380!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: OrderedCollection new.
+	
+	cashier checkOut.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 17:53:47' prior: 50556394!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: OrderedCollection new.
+	
+	^cashier checkOut.! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:54:11'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:54:11'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:54:45' prior: 50556250!
+validCced
+	^DateAndTime yesterday! !
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 17:55:33'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 17:55:33'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 17:55:33'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 17:55:33'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 17:55:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:55:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:55:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:55:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:55:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:55:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:55:36'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:56:48' prior: 50556429!
+validCced
+	^(Month month: testObjectsFactory today monthIndex year: testObjectsFactory today yearNumber + 1)! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:56:56'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:56:56'!
+ERROR!
+
+!classDefinition: #StoreInterfaceTest category: 'TusLibros' stamp: 'ms 11/4/2022 17:59:06'!
+TestCase subclass: #StoreInterfaceTest
+	instanceVariableNames: 'interface testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 17:59:05'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 17:59:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 17:59:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 17:59:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 17:59:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:59:10'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 17:59:10'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:00:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:00:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:00:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:00:10'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:00:10'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:00:10'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:01:05' prior: 50556212!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:01:11'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 18:01:46' prior: 50556408!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: OrderedCollection new.
+	
+	cashier checkOut.! !
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreInterface category: 'TusLibros' stamp: 'ms 11/4/2022 18:04:15'!
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store salesBook catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts store salesBook catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreInterface category: 'TusLibros' stamp: 'ms 11/4/2022 18:10:05'!
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:10:29' prior: 50552868!
+initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+	merchantProcessor := aMerchantProcessor.
+	clientAuthenticator := aClientAuthenticator.
+	catalog := aCatalog.
+	idCounter := 0.
+	cartSessions := Dictionary new.
+	salesBook  := OrderedCollection  new.! !
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:10:33' prior: 50556655!
+initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+	merchantProcessor := aMerchantProcessor.
+	clientAuthenticator := aClientAuthenticator.
+	catalog := aCatalog.
+	idCounter := 0.
+	cartSessions := Dictionary new.
+	salesBook := OrderedCollection new.! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:11:49'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:11:50'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 18:12:21' prior: 50556582!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:12:32' prior: 50556556!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | | debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:12:42'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:12:47' prior: 50556703!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | 
+			| debitedAmout debitedCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:12:51' prior: 50556744!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | 
+			].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:12:54' prior: 50556765!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:12:54'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:13:59'!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:14:13'!
+test07CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:14:19'!
+test07CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:14:26'!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:14:46'!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+
+!methodRemoval: StoreInterfaceTest #test07CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:14:50'!
+test07CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:15:00'!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+
+!methodRemoval: StoreInterfaceTest #test07CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:15:03'!
+test07CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:15:31' prior: 50556820!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 18:15:38' prior: 50552571 overrides: 16961394!
+setUp
+	
+	testObjectsFactory := StoreTestObjectsFactory new.
+	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog.
+	debitBehavior := [ :anAmount :aCreditCard | ].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:15:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:15:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:15:46'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:16:00' prior: 50556782!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:17:48' prior: 50556956!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: self validCcn 
+		withCced: self validCced 
+		withCco: self validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:18:51' prior: 50557030!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: self invalidCcn 
+		withCced: self validCced 
+		withCco: self validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:19:02'!
+ERROR!
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 18:19:17'!
+invalidCcnErrorMessage
+	self shouldBeImplemented.! !
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 18:19:48' prior: 50557069!
+invalidCcnErrorMessage
+	^'Invalid credit card number'! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:19:50'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:20:28' prior: 50557048!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory invalidCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:20:42'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:21:08'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:15'!
+invalidCcn
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:27' prior: 50557109!
+invalidCcn
+	^'abc'! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:21:28'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:49'!
+validCced
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:21:59' prior: 50557121!
+validCced
+	^(Month month: self today monthIndex year: self today yearNumber + 1)! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:22:00'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:22:05'!
+validCco
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:22:14' prior: 50557135!
+validCco
+	^'Martin Saied'! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:22:16'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:22:24'!
+FAILURE!
+!CreditCard class methodsFor: 'instance creation' stamp: 'ms 11/4/2022 18:24:25'!
+expiringOn: aMonth withCcn: aCcn  
+	
+	^self new initializeExpiringOn: aMonth! !
+
+!methodRemoval: CreditCard class #expiringOn: stamp: 'ms 11/4/2022 18:24:25'!
+expiringOn: aMonth 
+	
+	^self new initializeExpiringOn: aMonth!
+!CreditCard class methodsFor: 'instance creation' stamp: 'ms 11/4/2022 18:25:17'!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+	
+	^self new initializeExpiringOn: aMonth! !
+
+!methodRemoval: CreditCard class #expiringOn:withCcn: stamp: 'ms 11/4/2022 18:25:17'!
+expiringOn: aMonth withCcn: aCcn  
+	
+	^self new initializeExpiringOn: aMonth!
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:26:00'!
+initializeExpiringOn: aMonth withCcn: aCcn  
+	
+	expiration := aMonth ! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:26:00' prior: 50557193!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+	
+	^self new initializeExpiringOn: aMonth withCcn: aCcn! !
+
+!methodRemoval: CreditCard #initializeExpiringOn: stamp: 'ms 11/4/2022 18:26:00'!
+initializeExpiringOn: aMonth 
+	
+	expiration := aMonth !
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:26:09' prior: 50557204!
+initializeExpiringOn: aMonth withCcn: aCcn  
+	
+	expiration := aMonth ! !
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:26:27' prior: 50557221!
+initializeExpiringOn: aMonth withCcn: aCcn  
+	
+	expiration := aMonth! !
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:26:50'!
+initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco   
+	
+	expiration := aMonth! !
+!CreditCard class methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:26:50' prior: 50557210!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+	
+	^self new initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco! !
+
+!methodRemoval: CreditCard #initializeExpiringOn:withCcn: stamp: 'ms 11/4/2022 18:26:50'!
+initializeExpiringOn: aMonth withCcn: aCcn  
+	
+	expiration := aMonth!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ms 11/4/2022 18:27:19'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration ccn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'ms 11/4/2022 18:27:20'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration ccn cco'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:27:17' prior: 50557232!
+initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco   
+	
+	expiration := aMonth.
+	ccn := aCcn.
+	cco := aCco! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'ms 11/4/2022 18:28:05' prior: 50557238!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+
+	self assertValidCcn: aCcn.
+	self assertValidCco: aCco.
+	
+	^self new initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'ms 11/4/2022 18:28:41' prior: 50557271!
+expiringOn: aMonth withCcn: aCcn andCco: aCco   
+
+	self assertValidCcn: aCcn.
+	
+	^self new initializeExpiringOn: aMonth withCcn: aCcn andCco: aCco! !
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:30:36'!
+assertValidCcn: aCcn
+	(aCcn size = 30) not or: [aCcn allSatisfy: [:aChar | aChar isDigit]]! !
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:31:34' prior: 50557288!
+assertValidCcn: aCcn
+	((aCcn size = 30) not or: [aCcn allSatisfy: [:aChar | aChar isDigit] not]) ifTrue: [self error: self invalidCcnErrorMessage]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:31:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:31:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:31:39'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:31:39'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:31:44'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 18:32:22' prior: 50556688!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:32:31'!
+ERROR!
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:32:56' prior: 50557294!
+assertValidCcn: aCcn
+	((aCcn size = 16) not or: [aCcn allSatisfy: [:aChar | aChar isDigit] not]) ifTrue: [self error: self invalidCcnErrorMessage]! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:32:58'!
+ERROR!
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:33:22' prior: 50557356!
+assertValidCcn: aCcn
+	((aCcn size = 16) not or: [(aCcn allSatisfy: [:aChar | aChar isDigit]) not]) ifTrue: [self error: self invalidCcnErrorMessage]! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:33:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:33:26'!
+ERROR!
+!CreditCard class methodsFor: 'assertions' stamp: 'ms 11/4/2022 18:34:10' prior: 50557367!
+assertValidCcn: aCcn
+	((aCcn size = 16) and: [(aCcn allSatisfy: [:aChar | aChar isDigit])]) ifFalse: [self error: self invalidCcnErrorMessage]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:34:18'!
+ERROR!
+!CreditCard class methodsFor: 'error messages' stamp: 'ms 11/4/2022 18:34:32'!
+invalidCcnErrorMessage
+	self shouldBeImplemented.! !
+!CreditCard class methodsFor: 'error messages' stamp: 'ms 11/4/2022 18:34:51' prior: 50557425!
+invalidCcnErrorMessage
+	^'Invalid credit card number'! !
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:34:53'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:34:59'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:53:31' prior: 50556871!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory invalidCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:53:45' prior: 50557471!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory invalidCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:54:00' prior: 50557492!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:54:13' prior: 50557513!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory invalidCartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:54:14'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:54:45'!
+invalidCartId
+	^-1! !
+
+!methodRemoval: StoreInterfaceTest #invalidCartId stamp: 'ms 11/4/2022 18:55:08'!
+invalidCartId
+	^-1!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:55:18' prior: 50556125!
+test04TryingToListInvalidCartIdThrowsError
+
+	self should: [interface listCart: testObjectsFactory invalidCartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:55:19'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:55:39'!
+validCcn
+	^'4567891098765432'.! !
+
+!methodRemoval: StoreInterfaceTest #validCcn stamp: 'ms 11/4/2022 18:55:44'!
+validCcn
+	^'4567891098765432'.!
+
+!methodRemoval: StoreInterfaceTest #validCced stamp: 'ms 11/4/2022 18:55:47'!
+validCced
+	^(Month month: testObjectsFactory today monthIndex year: testObjectsFactory today yearNumber + 1)!
+
+!methodRemoval: StoreInterfaceTest #validCco stamp: 'ms 11/4/2022 18:55:49'!
+validCco
+	^'Martin Saied'!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:55:53'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:55:53'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:12' prior: 50556922!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory  validCced 
+		withCco: testObjectsFactory  validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:16' prior: 50557640!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:56:16'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:56:16'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:56:24'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:56:24'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:31' prior: 50557014!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory  validCcn 
+		withCced: testObjectsFactory  validCced 
+		withCco: testObjectsFactory  validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:35' prior: 50557720!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:47' prior: 50556888!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:56:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:48'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:56:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:58'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:56:58'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 18:57:32' prior: 50557337!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:57:37'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:57:55' prior: 50557754!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:58:01' prior: 50557843!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco) 
+	equals: 1.! !
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:58:04'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:58:14'!
+invalidCced
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:58:46' prior: 50552975!
+notExpiredCreditCard
+	
+	^CreditCard expiringOn: (Month month: today monthIndex year: today yearNumber + 1)! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:58:58' prior: 50557884!
+invalidCced
+	(Month month: today monthIndex year: today yearNumber + 1)! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 18:59:02' prior: 50557896!
+invalidCced
+	(Month month: today monthIndex year: today yearNumber - 1)! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/4/2022 18:59:06'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 18:59:06'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 18:59:31'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 18:59:32'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 18:59:32'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 18:59:32'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 18:59:32'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 18:59:32'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 18:59:36'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 18:59:36'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:00:29' prior: 50552968!
+expiredCreditCard
+	
+	^CreditCard expiringOn: self invalidCced withCcn: self validCcn  andCco: self validCco! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:00:30' prior: 50558010!
+expiredCreditCard
+	
+	^CreditCard expiringOn: self invalidCced withCcn: self validCcn andCco: self validCco! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:00:42' prior: 50558017!
+expiredCreditCard
+	
+	^CreditCard expiringOn: self validCced withCcn: self validCcn andCco: self validCco! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:00:49' prior: 50558024!
+expiredCreditCard
+	
+	^CreditCard expiringOn: self invalidCced withCcn: self validCcn andCco: self validCco! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:01:00' prior: 50557889!
+notExpiredCreditCard
+	
+	^CreditCard expiringOn: self invalidCced withCcn: self validCcn andCco: self validCco! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:01:03'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/4/2022 19:01:08'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 19:01:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:01:10'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 19:01:10'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 19:01:10'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 19:01:10'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 19:01:10'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:01:15'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:01:15'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:01:53' prior: 50557902!
+invalidCced
+	^(Month month: today monthIndex year: today yearNumber - 1)! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:02:01'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 19:02:33'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:02:33'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 19:02:33'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 19:02:33'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 19:02:33'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 19:02:33'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:02:38'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:02:38'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:02:58' prior: 50558038!
+notExpiredCreditCard
+	
+	^CreditCard expiringOn: self validCced withCcn: self validCcn andCco: self validCco! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 19:02:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:02:59'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/4/2022 19:03:05'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/4/2022 19:03:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:03:09'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:03:15'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:03:15'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:01' prior: 50557862!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+		self should: [interface checkOutCart: testObjectsFactory cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:03' prior: 50558373!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:24' prior: 50558395!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier .! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:43' prior: 50558417!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:04:44'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:51' prior: 50558438!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:54' prior: 50558464!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:04:55'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:05:10' prior: 50557659!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory invalidCco) 
+	equals: 1.! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:05:32'!
+invalidCco
+	^'abc;slkjdflaskjfglakjfgl;ksjdlf;kgjls;dfkjgl;sdkjfgl;skdjfgl;kj'! !
+!StoreTestObjectsFactory methodsFor: 'credit card' stamp: 'ms 11/4/2022 19:05:35' prior: 50558561!
+invalidCco
+	^'abc;slkjdflaskjfglakjfamsdnfkasnflkjgl;ksjdlf;kgjls;dfkjgl;sdkjfgl;skdjfgl;kj'! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 19:05:51' prior: 50557822!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	cart := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 19:06:39' prior: 50558573!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| cart creditCard cashier |
+	
+	self assertValidCco: aCco.
+	
+	cart := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	^salesBook size! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:06:41'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:06:41'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:06:41'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:06:41'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:06:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:06:54'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:06:55'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:06:55'!
+ERROR!
+!StoreInterface methodsFor: 'testing' stamp: 'ms 11/4/2022 19:07:08'!
+assertValidCco: aString 
+	self shouldBeImplemented.! !
+!StoreInterface methodsFor: 'testing' stamp: 'ms 11/4/2022 19:07:53' prior: 50558653!
+assertValidCco: aCco 
+	
+	(aCco size > 30) ifTrue: [self error: self class invalidCardCcoToLongErrorMessage]! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:07:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:07:59'!
+ERROR!
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 19:08:04'!
+invalidCardCcoToLongErrorMessage
+	self shouldBeImplemented.! !
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/4/2022 19:08:16' prior: 50558707!
+invalidCardCcoToLongErrorMessage
+	
+	^'Card CCO is to long'! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:08:20'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:09:00' prior: 50558543!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory invalidCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCardCcoToLongErrorMessage .! !
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/4/2022 19:09:01'!
+PASSED!
