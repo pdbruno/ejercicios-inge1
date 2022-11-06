@@ -1,4 +1,4 @@
-!classDefinition: #CartTest category: 'TusLibros'!
+09-TusLibros/TusLibros.st!classDefinition: #CartTest category: 'TusLibros'!
 TestCase subclass: #CartTest
 	instanceVariableNames: 'testObjectsFactory'
 	classVariableNames: ''
@@ -248,7 +248,7 @@ debit: anAmount from: aCreditCard
 
 !classDefinition: #StoreInterfaceTest category: 'TusLibros'!
 TestCase subclass: #StoreInterfaceTest
-	instanceVariableNames: 'interface testObjectsFactory debitBehavior'
+	instanceVariableNames: 'interface testObjectsFactory debitBehavior timeShift'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -280,7 +280,7 @@ test04TryingToListInvalidCartIdThrowsError
 
 	self should: [interface listCart: testObjectsFactory invalidCartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:56:35'!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:34:20'!
 test05CheckoutCartReturnsTransactionId
 
 	| cartId |
@@ -354,19 +354,62 @@ test09CheckoutWithInvalidCcoThrowsError
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory invalidCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCardCcoToLongErrorMessage .! !
 
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:11:12'!
+test10AddToCartInvalidAfter31Minutes
 
-!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 17:59:05'!
-debit: anAmount from: aCreditCard 
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	
+	self advance31Mins.
 
-	^debitBehavior value: anAmount value: aCreditCard ! !
+	self should: [interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
 
-!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/4/2022 18:15:38'!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:10:43'!
+test11ListCartInvalidAfter31Minutes
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface listCart: cartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:15:47'!
+test12CheckoutCartInvalidAfter31Minutes
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+
+!StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/6/2022 17:37:52'!
 setUp
 	
 	testObjectsFactory := StoreTestObjectsFactory new.
-	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog.
-	debitBehavior := [ :anAmount :aCreditCard | ].! !
+	interface := StoreInterface withMP: self clientAuthenticator: self andCatalog: testObjectsFactory defaultCatalog andClockService: self.
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	timeShift := Duration zero.! !
 
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 18:03:39'!
+advance30Mins
+	timeShift  := Duration minutes: 31! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 18:03:42'!
+advance31Mins
+	timeShift  := Duration minutes: 31! !
 
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:56:37'!
 authenticateClientId: aClientId andPassword: aPassword 
@@ -376,6 +419,11 @@ authenticateClientId: aClientId andPassword: aPassword
 createCatalog
 	self shouldBeImplemented.! !
 
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/4/2022 17:59:05'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:09:46'!
 invalidClientId
 	^'cuca'! !
@@ -383,6 +431,10 @@ invalidClientId
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:10:04'!
 invalidClientPassword
 	^'monga'.! !
+
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 17:51:03'!
+now
+	^DateAndTime now + timeShift.! !
 
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:42:27'!
 validClientId
@@ -483,6 +535,48 @@ acceptingItemsOf: aCatalog
 	^self new initializeAcceptingItemsOf: aCatalog ! !
 
 
+!classDefinition: #CartSession category: 'TusLibros'!
+Object subclass: #CartSession
+	instanceVariableNames: 'id createdAt cart clientId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!CartSession methodsFor: 'initialization' stamp: 'ms 11/6/2022 18:21:15'!
+initializeWithCart: aCart at: aTimestamp forClient: aClientId
+	id := Random new next.
+	cart := aCart.
+	createdAt := aTimestamp.
+	clientId :=aClientId! !
+
+
+!CartSession methodsFor: 'accessing' stamp: 'ms 11/6/2022 17:43:58'!
+cart
+	^cart! !
+
+!CartSession methodsFor: 'accessing' stamp: 'ms 11/6/2022 17:43:22'!
+cartId
+	^id ! !
+
+!CartSession methodsFor: 'accessing' stamp: 'ms 11/6/2022 18:30:51'!
+clientId
+	^clientId! !
+
+!CartSession methodsFor: 'accessing' stamp: 'ms 11/6/2022 17:51:33'!
+createdAt
+	^createdAt copy.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'CartSession class' category: 'TusLibros'!
+CartSession class
+	instanceVariableNames: ''!
+
+!CartSession class methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:21:41'!
+withCart: aCart at: aTimestamp forClient: aClientId
+	^self new initializeWithCart: aCart at: aTimestamp forClient: aClientId! !
+
+
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
 	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
@@ -538,8 +632,8 @@ initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor r
 Cashier class
 	instanceVariableNames: ''!
 
-!Cashier class methodsFor: 'assertions' stamp: 'HernanWilkinson 6/17/2013 18:22'!
-assertIsNotEmpty: aCart 
+!Cashier class methodsFor: 'assertions' stamp: 'ms 11/6/2022 18:05:16'!
+assertIsNotEmpty: aCart
 	
 	aCart isEmpty ifTrue: [self error: self cartCanNotBeEmptyErrorMessage ]! !
 
@@ -651,61 +745,72 @@ of: aTotal
 
 !classDefinition: #StoreInterface category: 'TusLibros'!
 Object subclass: #StoreInterface
-	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter'
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter clockService clientsTransactions'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 18:10:33'!
-initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/6/2022 18:31:38'!
+initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog andClockService: aClockService  
 	merchantProcessor := aMerchantProcessor.
 	clientAuthenticator := aClientAuthenticator.
+	clockService := aClockService.
 	catalog := aCatalog.
-	idCounter := 0.
 	cartSessions := Dictionary new.
-	salesBook := OrderedCollection new.! !
+	salesBook := OrderedCollection new.
+	clientsTransactions := Dictionary new.! !
 
-!StoreInterface methodsFor: 'initialization' stamp: 'ms 11/4/2022 17:35:27'!
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:14:03'!
+addToCart: aCartId book: aBook withQuantity: aQuantity 
+	|cartSession|
+	cartSession := cartSessions at: aCartId.
+	self assertTimeout: cartSession.
+	cartSession cart add: aQuantity of: aBook.! !
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:33:08'!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: (Random new next) -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:22:03'!
+createCartWithId: aClientId andPassword: aPassword 
+	|cartSession|
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	cartSession := CartSession withCart: (Cart acceptingItemsOf: catalog) at: clockService now forClient: aClientId. 
+	
+	cartSessions add: ((cartSession cartId)->cartSession).
+	^cartSession cartId.! !
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:03:18'!
 listCart: aCartId 
 	
-	| cart |
+	| cartSession |
 	
-	cart := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
 	
-	^cart items 
+
+	self assertTimeout: cartSession.
+	
+	^cartSession cart items 
 		inject: (Dictionary new)
 		into: [ :aDict :item | 
 			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
 		].! !
-
-
-!StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 21:17:23'!
-addToCart: aCartId book: aBook withQuantity: aQuantity 
-	
-	(cartSessions at: aCartId) add: aQuantity of: aBook.! !
-
-!StoreInterface methodsFor: 'interface' stamp: 'ms 11/4/2022 19:06:39'!
-checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
-	
-	| cart creditCard cashier |
-	
-	self assertValidCco: aCco.
-	
-	cart := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
-	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
-	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
-	
-	cashier checkOut.
-	
-	^salesBook size! !
-
-!StoreInterface methodsFor: 'interface' stamp: 'pdb 11/3/2022 20:57:32'!
-createCartWithId: aClientId andPassword: aPassword 
-	
-	self assertCorrectClientId: aClientId andPassword: aPassword.
-	idCounter := idCounter + 1.
-	cartSessions add: (idCounter->(Cart acceptingItemsOf: catalog)).
-	^idCounter.! !
 
 
 !StoreInterface methodsFor: 'authentication' stamp: 'pdb 11/3/2022 20:57:16'!
@@ -718,17 +823,30 @@ assertValidCco: aCco
 	
 	(aCco size > 30) ifTrue: [self error: self class invalidCardCcoToLongErrorMessage]! !
 
+
+!StoreInterface methodsFor: 'assertions' stamp: 'ms 11/6/2022 17:57:36'!
+assertTimeout: aCartSession 
+
+	((aCartSession createdAt + (Duration minutes: 30)) < clockService now) ifTrue: [self error: self class cartLifetimeTimeoutErrorMessage ]! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'StoreInterface class' category: 'TusLibros'!
 StoreInterface class
 	instanceVariableNames: ''!
 
-!StoreInterface class methodsFor: 'instance creation' stamp: 'pdb 11/3/2022 20:47:41'!
-withMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog 
+!StoreInterface class methodsFor: 'instance creation' stamp: 'ms 11/6/2022 17:21:16'!
+withMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog andClockService: aClockService  
 
-	^self new initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator andCatalog: aCatalog ! !
+	^self new initializeWithMP: aMerchantProcessor 
+			clientAuthenticator: aClientAuthenticator 
+			andCatalog: aCatalog 
+			andClockService: aClockService ! !
 
+
+!StoreInterface class methodsFor: 'error description' stamp: 'ms 11/6/2022 17:45:22'!
+cartLifetimeTimeoutErrorMessage
+	^'No puede usar un carrito despues de 30 minutos de su creacion'! !
 
 !StoreInterface class methodsFor: 'error description' stamp: 'pdb 11/3/2022 21:09:21'!
 incorrectAuthenticationErrorMessage
