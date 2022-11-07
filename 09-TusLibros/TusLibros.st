@@ -1,4 +1,4 @@
-09-TusLibros/TusLibros.st!classDefinition: #CartTest category: 'TusLibros'!
+!classDefinition: #CartTest category: 'TusLibros'!
 TestCase subclass: #CartTest
 	instanceVariableNames: 'testObjectsFactory'
 	classVariableNames: ''
@@ -253,55 +253,51 @@ TestCase subclass: #StoreInterfaceTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 20:43:58'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:32:08'!
 test01ValidIdAndPasswordCreatesCartSuccessfully
 
 	| cartId |
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	self assert: (interface listCart: cartId) isEmpty! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'pdb 11/3/2022 21:08:38'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:46'!
 test02InvalidIdAndPasswordThrowsError
 
-	self should: [interface createCartWithId: self invalidClientId andPassword: self invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.! !
+	self should: [interface createCartWithId: testObjectsFactory invalidClientId andPassword: testObjectsFactory invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 17:25:46'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:59:35'!
 test03AddToCartAddsItemSuccesfully
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:55:18'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/4/2022 18:55:18'!
 test04TryingToListInvalidCartIdThrowsError
 
 	self should: [interface listCart: testObjectsFactory invalidCartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:34:20'!
-test05CheckoutCartReturnsTransactionId
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:35'!
+test05CheckoutEmptyCartReturnsError
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
-	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	
-
-	
-	self assert: (interface checkOutCart: cartId 
-		withCcn: testObjectsFactory validCcn 
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
 		withCced: testObjectsFactory validCced 
-		withCco: testObjectsFactory validCco) 
-	equals: 1.! !
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier cartCanNotBeEmptyErrorMessage
+! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:20:28'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:32'!
 test06CheckoutWithInvalidCcnThrowsError
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 	self should: [interface checkOutCart: cartId 
@@ -309,12 +305,12 @@ test06CheckoutWithInvalidCcnThrowsError
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 18:54:13'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:28'!
 test07CheckoutWithInvalidCartIdThrowsError
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 		debitBehavior := [ :anAmount :aCreditCard | ].
@@ -324,12 +320,12 @@ test07CheckoutWithInvalidCartIdThrowsError
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:04:54'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:16'!
 test08CheckoutWithInvalidCcedThrowsError
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 	debitBehavior := [ :anAmount :aCreditCard | ].
@@ -339,12 +335,12 @@ test08CheckoutWithInvalidCcedThrowsError
 		withCced: testObjectsFactory invalidCced 
 		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/4/2022 19:09:00'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:12'!
 test09CheckoutWithInvalidCcoThrowsError
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 		debitBehavior := [ :anAmount :aCreditCard | ].
@@ -354,36 +350,36 @@ test09CheckoutWithInvalidCcoThrowsError
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory invalidCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCardCcoToLongErrorMessage .! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:11:12'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:09'!
 test10AddToCartInvalidAfter31Minutes
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	
 	
 	self advance31Mins.
 
 	self should: [interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:10:43'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:06'!
 test11ListCartInvalidAfter31Minutes
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 	self advance31Mins.
 
 	self should: [interface listCart: cartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
 
-!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 18:15:47'!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:02'!
 test12CheckoutCartInvalidAfter31Minutes
 
 	| cartId |
 	
-	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
 	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
 	
 	self advance31Mins.
@@ -392,6 +388,64 @@ test12CheckoutCartInvalidAfter31Minutes
 		withCcn: testObjectsFactory validCcn 
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:57'!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:50'!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:36'!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:29:13'!
+test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self should: [interface listPurchasesWithId: testObjectsFactory invalidClientId andPassword: testObjectsFactory invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.
+
+! !
 
 
 !StoreInterfaceTest methodsFor: 'setUp/tearDown' stamp: 'ms 11/6/2022 17:37:52'!
@@ -403,17 +457,13 @@ setUp
 	timeShift := Duration zero.! !
 
 
-!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 18:03:39'!
-advance30Mins
-	timeShift  := Duration minutes: 31! !
-
 !StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 18:03:42'!
 advance31Mins
 	timeShift  := Duration minutes: 31! !
 
-!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:56:37'!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 23:32:55'!
 authenticateClientId: aClientId andPassword: aPassword 
-	^aClientId = self validClientId  and: [aPassword = self validClientPassword ]! !
+	^aClientId = testObjectsFactory validClientId  and: [aPassword = testObjectsFactory validClientPassword ]! !
 
 !StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:44:55'!
 createCatalog
@@ -424,26 +474,9 @@ debit: anAmount from: aCreditCard
 
 	^debitBehavior value: anAmount value: aCreditCard ! !
 
-!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:09:46'!
-invalidClientId
-	^'cuca'! !
-
-!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 21:10:04'!
-invalidClientPassword
-	^'monga'.! !
-
 !StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 17:51:03'!
 now
 	^DateAndTime now + timeShift.! !
-
-!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:42:27'!
-validClientId
-	^'catramado'! !
-
-!StoreInterfaceTest methodsFor: 'support' stamp: 'pdb 11/3/2022 20:41:00'!
-validClientPassword
-	
-	^'culiiiii'! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -482,11 +515,6 @@ initializeAcceptingItemsOf: aCatalog
 	items := OrderedCollection new.! !
 
 
-!Cart methodsFor: 'queries' stamp: 'pdb 11/3/2022 21:03:02'!
-items
-
-	^items copy! !
-
 !Cart methodsFor: 'queries' stamp: 'HernanWilkinson 6/17/2013 17:45'!
 occurrencesOf: anItem
 
@@ -523,6 +551,12 @@ add: aQuantity of: anItem
 
 	1 to: aQuantity do: [ :aNumber | items add: anItem ]! !
 
+
+!Cart methodsFor: 'accessing' stamp: 'ms 11/6/2022 23:40:26'!
+injectItems: anInitialValue into: aBlockClosure 
+	
+	^items inject: anInitialValue into: aBlockClosure ! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Cart class' category: 'TusLibros'!
@@ -542,9 +576,9 @@ Object subclass: #CartSession
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CartSession methodsFor: 'initialization' stamp: 'ms 11/6/2022 18:21:15'!
+!CartSession methodsFor: 'initialization' stamp: 'ms 11/6/2022 23:26:18'!
 initializeWithCart: aCart at: aTimestamp forClient: aClientId
-	id := Random new next.
+	id := self generateRandomId.
 	cart := aCart.
 	createdAt := aTimestamp.
 	clientId :=aClientId! !
@@ -565,6 +599,12 @@ clientId
 !CartSession methodsFor: 'accessing' stamp: 'ms 11/6/2022 17:51:33'!
 createdAt
 	^createdAt copy.! !
+
+
+!CartSession methodsFor: 'private' stamp: 'ms 11/6/2022 23:26:52'!
+generateRandomId
+	
+	^100000000 atRandom.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -590,10 +630,11 @@ calculateTotal
 	total := cart total.
 	! !
 
-!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:07'!
+!Cashier methodsFor: 'checkout - private' stamp: 'ms 11/6/2022 23:49:47'!
 createSale
 
-	^ Sale of: total
+	^ Sale of: total 
+	with: (cart injectItems: OrderedCollection new into: [ :aCollection :anItem | aCollection add: anItem. aCollection ])
 ! !
 
 !Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
@@ -714,10 +755,15 @@ invalidCcnErrorMessage
 
 !classDefinition: #Sale category: 'TusLibros'!
 Object subclass: #Sale
-	instanceVariableNames: 'total'
+	instanceVariableNames: 'total items'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
+
+!Sale methodsFor: 'total' stamp: 'ms 11/7/2022 00:03:03'!
+injectItems: anInitialValue into: aBlockClosure 
+	
+	^items inject: anInitialValue into: aBlockClosure ! !
 
 !Sale methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 18:48'!
 total
@@ -725,10 +771,11 @@ total
 	^ total! !
 
 
-!Sale methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:47'!
-initializeTotal: aTotal
+!Sale methodsFor: 'initialization' stamp: 'ms 11/6/2022 22:50:56'!
+initializeTotal: aTotal withItems: aCollectionOfItems
 
-	total := aTotal ! !
+	total := aTotal. 
+	items := aCollectionOfItems! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -736,16 +783,16 @@ initializeTotal: aTotal
 Sale class
 	instanceVariableNames: ''!
 
-!Sale class methodsFor: 'instance creation' stamp: 'HernanWilkinson 6/17/2013 18:47'!
-of: aTotal
+!Sale class methodsFor: 'instance creation' stamp: 'ms 11/6/2022 22:52:08'!
+of: aTotal with: aCollectionOfItems
 
 	"should assert total is not negative or 0!!"
-	^self new initializeTotal: aTotal ! !
+	^self new initializeTotal: aTotal withItems: aCollectionOfItems ! !
 
 
 !classDefinition: #StoreInterface category: 'TusLibros'!
 Object subclass: #StoreInterface
-	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions idCounter clockService clientsTransactions'
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions clockService clientsTransactions'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -761,30 +808,74 @@ initializeWithMP: aMerchantProcessor clientAuthenticator: aClientAuthenticator a
 	clientsTransactions := Dictionary new.! !
 
 
-!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:14:03'!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:44:22'!
+calculateTotalForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]! !
+
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:51:09'!
+generateDictionaryOfItemsQuantity: aCollection
+
+	^aCollection 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:10:18'!
+getCartSessionForCartId: aCartId 
+	
+	| cartSession |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	
+	^cartSession
+	! !
+
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:06:29'!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) 
+		inject: OrderedCollection new 
+		into: [ :aCollection :aTransaction | 
+			aTransaction value 
+				injectItems: aCollection 
+				into: [ :aPartialResult :anItem | aPartialResult add: anItem. aPartialResult ]. 
+			]! !
+
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:12:11'!
+registerClientTransaction: cartSession
+
+	^ (clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last! !
+
+
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:10:43'!
 addToCart: aCartId book: aBook withQuantity: aQuantity 
 	|cartSession|
-	cartSession := cartSessions at: aCartId.
-	self assertTimeout: cartSession.
+	cartSession := self getCartSessionForCartId: aCartId.
 	cartSession cart add: aQuantity of: aBook.! !
 
-!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:33:08'!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:13:33'!
 checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
 	
 	| creditCard cashier cartSession |
 	
 	self assertValidCco: aCco.
 	
-	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
-	self assertTimeout: cartSession.
+	cartSession := self getCartSessionForCartId: aCartId.
 	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
-	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	cashier := Cashier toCheckout: cartSession cart 
+					charging: creditCard 
+					throught: merchantProcessor 
+					on: clockService now 
+					registeringOn: salesBook .
 	
 	cashier checkOut.
 	
-	(clientsTransactions at: cartSession clientId 
-	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: (Random new next) -> salesBook last.
-	^(clientsTransactions at: cartSession clientId ) last key
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId) last key.
 	! !
 
 !StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:22:03'!
@@ -796,21 +887,29 @@ createCartWithId: aClientId andPassword: aPassword
 	cartSessions add: ((cartSession cartId)->cartSession).
 	^cartSession cartId.! !
 
-!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 18:03:18'!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:10:58'!
 listCart: aCartId 
 	
-	| cartSession |
+	| cartSession itemsCollection |
 	
-	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
-	
+	cartSession := self getCartSessionForCartId: aCartId.
+	itemsCollection := cartSession cart 
+			injectItems: OrderedCollection new 
+			into: [ :aCollection :anItem | aCollection add: anItem . aCollection ].
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
 
-	self assertTimeout: cartSession.
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:44:26'!
+listPurchasesWithId: aClientId andPassword: aPassword
 	
-	^cartSession cart items 
-		inject: (Dictionary new)
-		into: [ :aDict :item | 
-			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
-		].! !
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := self purchasesForClientId: aClientId.
+	dictionary := self generateDictionaryOfItemsQuantity: allItems.
+	total := self calculateTotalForClientId: aClientId.
+	
+	^Array with: dictionary with: total	! !
 
 
 !StoreInterface methodsFor: 'authentication' stamp: 'pdb 11/3/2022 20:57:16'!
@@ -828,6 +927,12 @@ assertValidCco: aCco
 assertTimeout: aCartSession 
 
 	((aCartSession createdAt + (Duration minutes: 30)) < clockService now) ifTrue: [self error: self class cartLifetimeTimeoutErrorMessage ]! !
+
+!StoreInterface methodsFor: 'assertions' stamp: 'ms 11/6/2022 20:33:04'!
+generateRandomId
+
+	^1000000000000 atRandom.
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -951,3 +1056,22 @@ initialize
 today
 	
 	^ today! !
+
+
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:30:02'!
+invalidClientId
+	^'contramado'.! !
+
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:30:17'!
+invalidClientPassword
+	^'lopedevega'! !
+
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:28:03'!
+validClientId
+	
+	^'catramado'! !
+
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:28:28'!
+validClientPassword
+
+ 	^'boquita19'! !

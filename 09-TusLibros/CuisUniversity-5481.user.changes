@@ -4413,3 +4413,4086 @@ test05CheckoutCartReturnsTransactionId
 		withCced: testObjectsFactory validCced 
 		withCco: testObjectsFactory validCco) 
 	equals: 1.! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:18:39' prior: 50560665!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) 
+	equals: (interface listPurchases: self validClientId) .! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:22:09' prior: 50560682!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco).! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:22:41' prior: 50560701!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: Integer
+! !
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:22:42' prior: 50560718!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: Integer.
+! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:22:44'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:25:28' prior: 50560735!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallFloat64.
+! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 20:26:44' prior: 50560638!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: (Random new next) -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+
+!methodRemoval: StoreInterfaceTest #advance30Mins stamp: 'ms 11/6/2022 20:26:54'!
+advance30Mins
+	timeShift  := Duration minutes: 31!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 20:28:22' prior: 50560773!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+!StoreInterface methodsFor: 'assertions' stamp: 'ms 11/6/2022 20:30:57'!
+generateRandomId
+
+	^Random new next * 100000000000
+	! !
+!StoreInterface methodsFor: 'assertions' stamp: 'ms 11/6/2022 20:31:03' prior: 50560831!
+generateRandomId
+
+	^Random new next * 100000000000
+	! !
+!StoreInterface methodsFor: 'assertions' stamp: 'ms 11/6/2022 20:33:04' prior: 50560836!
+generateRandomId
+
+	^1000000000000 atRandom.
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:33:06'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:06'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:33:06'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:33:22' prior: 50560756!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: Integer.
+! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:33:23'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 20:33:30' prior: 50560892!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallInteger.
+! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 20:33:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 21:12:35'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:13:44'!
+test13ListPurchasesReturnsDictionaryAndTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:14:58'!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+!methodRemoval: StoreInterfaceTest #test13ListPurchasesReturnsDictionaryAndTotal stamp: 'ms 11/6/2022 21:15:09'!
+test13ListPurchasesReturnsDictionaryAndTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:15:13'!
+test14ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+!methodRemoval: StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 21:15:14'!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:15:18'!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+
+!methodRemoval: StoreInterfaceTest #test14ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 21:15:19'!
+test14ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:20:12' prior: 50561117!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (OrderedCollection with: (testObjectsFactory itemSellByTheStore -> 4) with: 100) equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 21:20:18' prior: 50561158!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (OrderedCollection with: (testObjectsFactory itemSellByTheStore -> 4) with: 100) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 21:20:20'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:20:27'!
+listPurchases: aString 
+	self shouldBeImplemented.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:21:25' prior: 50561203!
+listPurchases: aClientId
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:21:29' prior: 50561208!
+listPurchases: aClientId
+	
+	
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:21:31' prior: 50561212!
+listPurchases: aClientId
+	
+
+	
+	! !
+
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions clockService clientsTransactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StoreInterface category: 'TusLibros' stamp: 'ms 11/6/2022 21:21:41'!
+Object subclass: #StoreInterface
+	instanceVariableNames: 'merchantProcessor clientAuthenticator carts salesBook catalog cartSessions clockService clientsTransactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:22:41' prior: 50561216!
+listPurchases: aClientId
+	
+	(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:27:33' prior: 50561238!
+listPurchases: aClientId
+	
+	(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 21:27:36' prior: 50561245!
+listPurchases: aClientId
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction total ]
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:44:30'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:45:45' prior: 50561253!
+listPurchases: aClientId
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:45:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:45:46'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:45:46'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:47:18' prior: 50560804!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add:  salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:47:19' prior: 50561323!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:47:46' prior: 50561349!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:47:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:47:47'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:47:47'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 22:48:02' prior: 50561179!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (OrderedCollection with: (testObjectsFactory itemSellByTheStore -> 4) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:48:03'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:48:16' prior: 50561265!
+listPurchases: aClientId
+	
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:48:24' prior: 50561475!
+listPurchases: aClientId
+	
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!Cashier methodsFor: 'checkout - private' stamp: 'ms 11/6/2022 22:49:14' prior: 50552706!
+createSale
+
+	^ Sale of: total with: (cart items)
+! !
+!Sale class methodsFor: 'instance creation' stamp: 'ms 11/6/2022 22:50:18'!
+of: aTotal with: aCollectionOfBooks
+
+	"should assert total is not negative or 0!!"
+	^self new initializeToTrace: aTotal with: aCollectionOfBooks ! !
+
+!methodRemoval: Sale class #of: stamp: 'ms 11/6/2022 22:50:22'!
+of: aTotal
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal !
+!Sale methodsFor: 'initialization' stamp: 'ms 11/6/2022 22:50:40'!
+initializeTotal: aTotal withItems: aCollectionOfItems
+
+	total := aTotal ! !
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'ms 11/6/2022 22:50:59'!
+Object subclass: #Sale
+	instanceVariableNames: 'total items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'initialization' stamp: 'ms 11/6/2022 22:50:56' prior: 50561508!
+initializeTotal: aTotal withItems: aCollectionOfItems
+
+	total := aTotal. 
+	items := aCollectionOfItems! !
+!Sale class methodsFor: 'instance creation' stamp: 'ms 11/6/2022 22:51:08' prior: 50561496!
+of: aTotal with: aCollectionOfItems
+
+	"should assert total is not negative or 0!!"
+	^self new initializeToTrace: aTotal with: aCollectionOfItems ! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:51:43' prior: 50561483!
+listPurchases: aClientId
+	
+	self halt.
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:51:44'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:51:44'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:51:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:51:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:51:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:51:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:51:45'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:51:45'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:51:49'!
+ERROR!
+!Sale class methodsFor: 'instance creation' stamp: 'ms 11/6/2022 22:52:08' prior: 50561527!
+of: aTotal with: aCollectionOfItems
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal withItems: aCollectionOfItems ! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:52:44' prior: 50561535!
+listPurchases: aClientId
+	
+
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+
+!methodRemoval: Sale #initializeTotal: stamp: 'ms 11/6/2022 22:53:02'!
+initializeTotal: aTotal
+
+	total := aTotal !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:53:26' prior: 50561601!
+listPurchases: aClientId
+	
+
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:54:38' prior: 50561613!
+listPurchases: aClientId
+	
+	(clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:54:47' prior: 50561621!
+listPurchases: aClientId
+	
+	| allItems |
+	allItems = (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:54:53' prior: 50561634!
+listPurchases: aClientId
+	
+	| allItems |
+	
+	allItems = (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:55:21' prior: 50561647!
+listPurchases: aClientId
+	
+	| allItems dictionary |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:55:28' prior: 50561660!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	^(clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:55:51' prior: 50561679!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^{allItems, total}
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:55:57' prior: 50561698!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^{dictionary, total}
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:56:05'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:56:05'!
+ERROR!
+!Sale methodsFor: 'total' stamp: 'ms 11/6/2022 22:56:17'!
+items
+	
+	^ total! !
+!Sale methodsFor: 'total' stamp: 'ms 11/6/2022 22:56:19' prior: 50561744!
+items
+	
+	^ items! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:56:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:56:21'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:56:21'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:57:27' prior: 50561718!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aCollection :aTransaction | aCollection withAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^{dictionary, total}
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:57:37'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:57:37'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:57:53' prior: 50561800!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: [ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^{dictionary, total}
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:57:56' prior: 50561869!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^{dictionary, total}
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:57:57'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:57:57'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:57:57'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 22:58:07'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:58:07'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:58:07'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:59:14'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:59:14'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 22:59:36'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 22:59:58' prior: 50561889!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^#(dictionary, total)
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:00:09' prior: 50562019!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^#(dictionary, total)
+	
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:00:46' prior: 50562039!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^#(dictionary total)
+	
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:00:52'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:00:52'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:00:52'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:01:45' prior: 50562059!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:01:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:01:46'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:01:46'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:02:05' prior: 50561451!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (testObjectsFactory itemSellByTheStore -> 4) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:02:16' prior: 50562199!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:02:17'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:02:36'!
+FAILURE!
+
+Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4) with: 40!
+
+interface listPurchases: self validClientId!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:03:24' prior: 50562219!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:03:25'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:04:18'!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:04:52' prior: 50562322!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:04:57'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:05:06' prior: 50562344!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:05:15' prior: 50562373!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:05:21'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:05:55' prior: 50562395!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:06:06'!
+FAILURE!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:06:50' prior: 50562129!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items ].
+	self halt.
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:08:24' prior: 50562469!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+	self halt.
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:26'!
+PASSED!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:08:32' prior: 50562490!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:08:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:10:08'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:10:08'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:10:09'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:10:21'!
+test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:10:38' prior: 50562677!
+test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:10:45' prior: 50562710!
+test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:10:49' prior: 50562724!
+test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:10:50'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:11:13'!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!methodRemoval: StoreInterfaceTest #test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:11:13'!
+test14ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:12:22' prior: 50562553!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:24'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:24'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:24'!
+ERROR!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:12:45' prior: 50562771!
+listPurchases: aClientId
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:46'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:46'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:12:46'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:13:03' prior: 50562749!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: (Dictionary new; yourself) with: 80) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:13:04' prior: 50562932!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: (Dictionary new; yourself) with: 0) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:13:05'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:13:17' prior: 50562941!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: Dictionary with: 0) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:13:19' prior: 50562954!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:13:20'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:14:34'!
+test15ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchases: self validClientId)
+
+! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:15:10' prior: 50562851!
+listPurchases: aClientId 
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:15:31'!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!methodRemoval: StoreInterface #listPurchases: stamp: 'ms 11/6/2022 23:15:35'!
+listPurchases: aClientId 
+	
+	| allItems dictionary total |
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:16:02' prior: 50562252!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:16:08' prior: 50562432!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:16:11' prior: 50562963!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:16:14' prior: 50563029!
+test15ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:16:25' prior: 50563061!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+		self assertCorrectClientId: aClientId andPassword: aPassword.
+
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:16:29' prior: 50563184!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:16:32'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:16:32'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:16:33'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:16:59'!
+test15ListPurchasesWithInvalidClientIdAndPasswordReturnsError
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+
+!methodRemoval: StoreInterfaceTest #test15ListPurchasesWithInvalidClientIdAndPasswordReturnsError stamp: 'ms 11/6/2022 23:17:14'!
+test15ListPurchasesWithInvalidClientIdAndPasswordReturnsError
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:17:23'!
+test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+! !
+
+!methodRemoval: StoreInterfaceTest #test15ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:17:24'!
+test15ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: self validClientId andPassword: self validClientPassword )
+
+!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:17:53' prior: 50563315!
+test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self should: [interface listPurchasesWithId: self invalidClientId andPassword: self invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.
+
+! !
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:17:55'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:19:06'!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallInteger.
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:19:10' prior: 50563410!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallInteger.
+! !
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:19:10'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:19:39' prior: 50563427!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: testObjectsFactory invalidCartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:19:48' prior: 50563445!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.
+! !
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:19:49'!
+FAILURE!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:20:31' prior: 50563462!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier can
+! !
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:20:31'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:20:59' prior: 50563482!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier cartCanNotBeEmptyErrorMessage
+! !
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:20:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:21:00'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:21:24' prior: 50560913!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallInteger.
+! !
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:21:25'!
+PASSED!
+
+!methodRemoval: StoreInterfaceTest #test05CheckoutCartReturnsTransactionId stamp: 'ms 11/6/2022 23:22:13'!
+test05CheckoutCartReturnsTransactionId
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco) class equals: SmallInteger.
+!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:22:24'!
+test05CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier cartCanNotBeEmptyErrorMessage
+! !
+
+!methodRemoval: StoreInterfaceTest #test17CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:22:27'!
+test17CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: self validClientId andPassword: self validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier cartCanNotBeEmptyErrorMessage
+!
+!CartSession methodsFor: 'initialization' stamp: 'ms 11/6/2022 23:26:18' prior: 50560327!
+initializeWithCart: aCart at: aTimestamp forClient: aClientId
+	id := self generateRandomId.
+	cart := aCart.
+	createdAt := aTimestamp.
+	clientId :=aClientId! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:23'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:23'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:26:23'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:26:25'!
+ERROR!
+!CartSession methodsFor: 'private' stamp: 'ms 11/6/2022 23:26:42'!
+generateRandomId
+	self shouldBeImplemented.! !
+!CartSession methodsFor: 'private' stamp: 'ms 11/6/2022 23:26:52' prior: 50563782!
+generateRandomId
+	
+	^100000000 atRandom.! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:26:59'!
+PASSED!
+
+!methodRemoval: StoreInterfaceTest #validClientId stamp: 'ms 11/6/2022 23:27:19'!
+validClientId
+	^'catramado'!
+
+!methodRemoval: StoreInterfaceTest #validClientPassword stamp: 'ms 11/6/2022 23:27:21'!
+validClientPassword
+	
+	^'culiiiii'!
+
+!methodRemoval: StoreInterfaceTest #invalidClientId stamp: 'ms 11/6/2022 23:27:24'!
+invalidClientId
+	^'cuca'!
+
+!methodRemoval: StoreInterfaceTest #invalidClientPassword stamp: 'ms 11/6/2022 23:27:27'!
+invalidClientPassword
+	^'monga'.!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:27:37' prior: 50552535!
+test01ValidIdAndPasswordCreatesCartSuccessfully
+
+	| cartId |
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	self assert: (interface listCart: cartId) isEmpty! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:27:38'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:27:48'!
+validClientId
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:28:03' prior: 50563878!
+validClientId
+	
+	^'catramado'! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:28:05'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 23:28:13'!
+validClientPassword
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 23:28:25' prior: 50563891!
+validClientPassword
+ ^'boquita19'! !
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'ms 11/6/2022 23:28:28' prior: 50563896!
+validClientPassword
+
+ 	^'boquita19'! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:28:30'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:28:40'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:29:13' prior: 50563336!
+test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse
+
+	self should: [interface listPurchasesWithId: testObjectsFactory invalidClientId andPassword: testObjectsFactory invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.
+
+! !
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:29:45'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:29:52'!
+invalidClientId
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:30:02' prior: 50563930!
+invalidClientId
+	^'contramado'.! !
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:30:05'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:30:10'!
+invalidClientPassword
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'user' stamp: 'ms 11/6/2022 23:30:17' prior: 50563943!
+invalidClientPassword
+	^'lopedevega'! !
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:30:20'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:36' prior: 50563164!
+test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal
+
+	self assert: (Array with: Dictionary new with: 0) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:50' prior: 50563130!
+test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+		
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 8; yourself) with: 80) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:30:57' prior: 50563107!
+test13ListPurchasesReturnsCollectionWithTotal
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.
+	
+	self assert: (Array with: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself) with: 40) 
+		equals: (interface listPurchasesWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword )
+
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:02' prior: 50560220!
+test12CheckoutCartInvalidAfter31Minutes
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:06' prior: 50560057!
+test11ListCartInvalidAfter31Minutes
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self advance31Mins.
+
+	self should: [interface listCart: cartId.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:09' prior: 50560122!
+test10AddToCartInvalidAfter31Minutes
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	
+	
+	self advance31Mins.
+
+	self should: [interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface cartLifetimeTimeoutErrorMessage .! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:12' prior: 50558757!
+test09CheckoutWithInvalidCcoThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory invalidCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCardCcoToLongErrorMessage .! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:16' prior: 50558486!
+test08CheckoutWithInvalidCcedThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: cartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory invalidCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:28' prior: 50557534!
+test07CheckoutWithInvalidCartIdThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+		debitBehavior := [ :anAmount :aCreditCard | ].
+	
+	self should: [interface checkOutCart: testObjectsFactory invalidCartId
+		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCartIdErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:32' prior: 50557083!
+test06CheckoutWithInvalidCcnThrowsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self should: [interface checkOutCart: cartId 
+		withCcn: testObjectsFactory invalidCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface invalidCcnErrorMessage.! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:35' prior: 50563681!
+test05CheckoutEmptyCartReturnsError
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	
+	self should: [interface checkOutCart: cartId		withCcn: testObjectsFactory validCcn 
+		withCced: testObjectsFactory validCced 
+		withCco: testObjectsFactory validCco.] raise: Error - MessageNotUnderstood withMessageText: Cashier cartCanNotBeEmptyErrorMessage
+! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:42' prior: 50556077!
+test03AddToCartAddsItemSuccesfully
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:31:46' prior: 50552545!
+test02InvalidIdAndPasswordThrowsError
+
+	self should: [interface createCartWithId: testObjectsFactory invalidClientId andPassword: testObjectsFactory invalidClientPassword.] raise: Error - MessageNotUnderstood withMessageText: StoreInterface incorrectAuthenticationErrorMessage.! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:31:48'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:31:48'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:32:02'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:32:08' prior: 50563864!
+test01ValidIdAndPasswordCreatesCartSuccessfully
+
+	| cartId |
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	self assert: (interface listCart: cartId) isEmpty! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:32:09'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'support' stamp: 'ms 11/6/2022 23:32:55' prior: 50552579!
+authenticateClientId: aClientId andPassword: aPassword 
+	^aClientId = testObjectsFactory validClientId  and: [aPassword = testObjectsFactory validClientPassword ]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:32:55'!
+PASSED!
+
+----End fileIn of /Users/msaied/Documents/UBA/inge1/2022-2c/07-Portfolio2/Solucion/Portfolio2-Solucion.st----!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:39:01' prior: 50559737!
+listCart: aCartId 
+	
+	| cartSession |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	^cartSession cart injectItems: (Dictionary new) into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:39:21'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:39:21'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:39:21'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:39:23'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'ms 11/6/2022 23:39:42'!
+injectItems: aDictionary into: aBlockClosure 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accessing' stamp: 'ms 11/6/2022 23:40:26' prior: 50565405!
+injectItems: anInitialValue into: aBlockClosure 
+	
+	^items inject: anInitialValue into: aBlockClosure ! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:40:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:40:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:40:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:40:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:40:31'!
+PASSED!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:41:55' prior: 50563210!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ].
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:42:50'!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aCollection addAll: aTransaction value items. aCollection ]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:42:50' prior: 50565475!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := self purchasesForClientId: aClientId.
+
+	dictionary := allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		].
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:43:49'!
+generateDictionaryOfItemsQuantity: allItems
+
+	^ allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:43:49' prior: 50565511!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := self purchasesForClientId: aClientId.
+
+	dictionary := self generateDictionaryOfItemsQuantity: allItems.
+	
+	total := (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ].
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:43:57' prior: 50565531!
+generateDictionaryOfItemsQuantity: allItems
+
+	^allItems 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:44:22'!
+calculateTotalForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: 0 into: [ :aSubtotal :aTransaction | aSubtotal + aTransaction value total ]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:44:22' prior: 50565540!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := self purchasesForClientId: aClientId.
+
+	dictionary := self generateDictionaryOfItemsQuantity: allItems.
+	
+	total := self calculateTotalForClientId: aClientId.
+	
+	^Array with: dictionary with: total	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:44:26' prior: 50565575!
+listPurchasesWithId: aClientId andPassword: aPassword
+	
+	| allItems dictionary total |
+	
+	self assertCorrectClientId: aClientId andPassword: aPassword.
+	
+	allItems := self purchasesForClientId: aClientId.
+	dictionary := self generateDictionaryOfItemsQuantity: allItems.
+	total := self calculateTotalForClientId: aClientId.
+	
+	^Array with: dictionary with: total	! !
+!Cashier methodsFor: 'checkout - private' stamp: 'ms 11/6/2022 23:49:34' prior: 50561491!
+createSale
+
+	^ Sale of: total with: (cart injectItems: OrderedCollection new into: [ :aCollection :anItem | aCollection add: anItem. aCollection ])
+! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/6/2022 23:49:35'!
+PASSED!
+!Cashier methodsFor: 'checkout - private' stamp: 'ms 11/6/2022 23:49:41' prior: 50565605!
+createSale
+
+	^ Sale of: total with: 
+	(cart injectItems: OrderedCollection new into: [ :aCollection :anItem | aCollection add: anItem. aCollection ])
+! !
+!Cashier methodsFor: 'checkout - private' stamp: 'ms 11/6/2022 23:49:47' prior: 50565633!
+createSale
+
+	^ Sale of: total 
+	with: (cart injectItems: OrderedCollection new into: [ :aCollection :anItem | aCollection add: anItem. aCollection ])
+! !
+
+!methodRemoval: Cart #items stamp: 'ms 11/6/2022 23:49:52'!
+items
+
+	^items copy!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/6/2022 23:49:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ms 11/6/2022 23:49:59'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'ms 11/6/2022 23:50:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:50:04'!
+PASSED!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:51:09' prior: 50565558!
+generateDictionaryOfItemsQuantity: aCollection
+
+	^aCollection 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:52:28' prior: 50565331!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart injectItems: OrderedCollection new into: [ :aCollection :anItem | aCollection add: anItem . aCollection ].
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:52:31'!
+PASSED!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:52:45' prior: 50565789!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart 
+			injectItems: OrderedCollection new 
+			into: [ :aCollection :anItem | aCollection add: anItem . aCollection ].
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:54:04' prior: 50565780!
+generateDictionaryOfItemsQuantity: anItemsContainer
+	
+	
+	^anItemsContainer 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:54:20' prior: 50565863!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart .
+			
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:55:07' prior: 50565879!
+generateDictionaryOfItemsQuantity: anItemsContainer
+	
+	
+	^anItemsContainer 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:54:20' prior: 50565889!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart .
+			
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:54:20' prior: 50565912!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart .
+			
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/6/2022 23:52:45' prior: 50565925!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [self error: self class invalidCartIdErrorMessage ].
+	
+
+	self assertTimeout: cartSession.
+	
+	itemsCollection := cartSession cart 
+			injectItems: OrderedCollection new 
+			into: [ :aCollection :anItem | aCollection add: anItem . aCollection ].
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/6/2022 23:51:09' prior: 50565902!
+generateDictionaryOfItemsQuantity: aCollection
+
+	^aCollection 
+		inject: (Dictionary new)
+		into: [ :aDict :item | 
+			aDict at: item put: (aDict at: item ifAbsent: [0]) + 1. aDict
+		]! !
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:56:56'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:56:58'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:56:58'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:56:58'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:56:58'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:56:58'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:56:59'!
+PASSED!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:59:28' prior: 50564187!
+test03AddToCartAddsItemSuccesfully
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: -4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:59:29'!
+ERROR!
+!StoreInterfaceTest methodsFor: 'tests' stamp: 'ms 11/6/2022 23:59:35' prior: 50566035!
+test03AddToCartAddsItemSuccesfully
+
+	| cartId |
+	
+	cartId := interface createCartWithId: testObjectsFactory validClientId andPassword: testObjectsFactory validClientPassword.
+	interface addToCart: cartId book: testObjectsFactory itemSellByTheStore withQuantity: 4.
+	
+	self assert: (interface listCart: cartId) equals: (Dictionary new add: testObjectsFactory itemSellByTheStore -> 4; yourself).! !
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/6/2022 23:59:36'!
+PASSED!
+
+!methodRemoval: Sale #items stamp: 'ms 11/7/2022 00:00:45'!
+items
+	
+	^ items!
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:00:47'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:00:47'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:00:47'!
+PASSED!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:02:36' prior: 50565500!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aTransaction injectItems: aCollection into: [ :aPartialResult :items | aPartialResult addAll: items. aPartialResult ]. ]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:02:37'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:02:37'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:02:37'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:02:39'!
+ERROR!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:02:50' prior: 50566191!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) inject: OrderedCollection new into: 
+	[ :aCollection :aTransaction | aTransaction value injectItems: aCollection into: [ :aPartialResult :items | aPartialResult addAll: items. aPartialResult ]. ]! !
+!Sale methodsFor: 'total' stamp: 'ms 11/7/2022 00:03:03'!
+injectItems: anInitialValue into: aBlockClosure 
+	
+	^items inject: anInitialValue into: aBlockClosure ! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:03:09'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:03:09'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:03:09'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:03:10'!
+FAILURE!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:04:41' prior: 50566265!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) 
+		inject: OrderedCollection new 
+		into: [ :aCollection :aTransaction | 
+			aTransaction value 
+				injectItems: aCollection 
+				into: [ :aPartialResult :items | aPartialResult addAll: items. aPartialResult ]. 
+			]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:04:43'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:04:43'!
+FAILURE!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:04:43'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:04:46'!
+FAILURE!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:06:29' prior: 50566345!
+purchasesForClientId: aClientId
+
+	^ (clientsTransactions at: aClientId ifAbsent: [OrderedCollection new]) 
+		inject: OrderedCollection new 
+		into: [ :aCollection :aTransaction | 
+			aTransaction value 
+				injectItems: aCollection 
+				into: [ :aPartialResult :anItem | aPartialResult add: anItem. aPartialResult ]. 
+			]! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:06:30'!
+PASSED!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:08:51' prior: 50561375!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:09:32' prior: 50566491!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	(clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:09:36'!
+ERROR!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:09:36'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:09:38'!
+ERROR!
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:09:43'!
+getCartSessionForCartId: aSmallInteger 
+	self shouldBeImplemented.! !
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:10:13' prior: 50566603!
+getCartSessionForCartId: aCartId 
+	
+	| cartSession |
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	
+	^cartSession
+	! !
+!StoreInterface methodsFor: 'private' stamp: 'ms 11/7/2022 00:10:18' prior: 50566608!
+getCartSessionForCartId: aCartId 
+	
+	| cartSession |
+	
+	cartSession := cartSessions at: aCartId ifAbsent: [ self error: self class invalidCartIdErrorMessage ].
+	self assertTimeout: cartSession.
+	
+	^cartSession
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:10:43' prior: 50560148!
+addToCart: aCartId book: aBook withQuantity: aQuantity 
+	|cartSession|
+	cartSession := self getCartSessionForCartId: aCartId.
+	cartSession cart add: aQuantity of: aBook.! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:10:58' prior: 50565938!
+listCart: aCartId 
+	
+	| cartSession itemsCollection |
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	itemsCollection := cartSession cart 
+			injectItems: OrderedCollection new 
+			into: [ :aCollection :anItem | aCollection add: anItem . aCollection ].
+	^self generateDictionaryOfItemsQuantity: itemsCollection.! !
+
+!testRun: #StoreInterfaceTest #test01ValidIdAndPasswordCreatesCartSuccessfully stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test02InvalidIdAndPasswordThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test03AddToCartAddsItemSuccesfully stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test04TryingToListInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test05CheckoutEmptyCartReturnsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test06CheckoutWithInvalidCcnThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test07CheckoutWithInvalidCartIdThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test08CheckoutWithInvalidCcedThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test09CheckoutWithInvalidCcoThrowsError stamp: 'ms 11/7/2022 00:10:59'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test10AddToCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test11ListCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test12CheckoutCartInvalidAfter31Minutes stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test13ListPurchasesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test14ListPurchasesWithMultipleSalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test15ListPurchasesWithEmptySalesReturnsCollectionWithTotal stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+
+!testRun: #StoreInterfaceTest #test16ListPurchasesWithInvalidClientIdReturnsEmptyResponse stamp: 'ms 11/7/2022 00:11:00'!
+PASSED!
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:12:11'!
+registerClientTransaction: cartSession
+
+	^ (clientsTransactions at: cartSession clientId 
+	ifAbsent: [clientsTransactions at: cartSession clientId put: OrderedCollection new]) add: self generateRandomId -> salesBook last! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:12:11' prior: 50566518!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId ) last key
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:12:46' prior: 50566718!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId) last key
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:12:51' prior: 50566738!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: DateAndTime now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId) last key.
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:13:22' prior: 50566758!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart charging: creditCard throught: merchantProcessor on: clockService now registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId) last key.
+	! !
+!StoreInterface methodsFor: 'interface' stamp: 'ms 11/7/2022 00:13:33' prior: 50566778!
+checkOutCart: aCartId withCcn: aCcn withCced: aCced withCco: aCco 
+	
+	| creditCard cashier cartSession |
+	
+	self assertValidCco: aCco.
+	
+	cartSession := self getCartSessionForCartId: aCartId.
+	creditCard := CreditCard expiringOn: aCced withCcn: aCcn andCco: aCco.
+	cashier := Cashier toCheckout: cartSession cart 
+					charging: creditCard 
+					throught: merchantProcessor 
+					on: clockService now 
+					registeringOn: salesBook .
+	
+	cashier checkOut.
+	
+	self registerClientTransaction: cartSession.
+	^(clientsTransactions at: cartSession clientId) last key.
+	! !
