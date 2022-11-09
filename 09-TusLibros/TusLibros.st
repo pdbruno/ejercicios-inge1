@@ -1701,7 +1701,7 @@ withCartSessionIdentifiedAs: aCartId do: aBlock
 ! !
 
 
-!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:41'!
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'pdb 11/9/2022 16:38:42'!
 add: anAmount of: aBook toCartIdentifiedAs: aCartId
 
 	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession addToCart: anAmount of: aBook ]! !
