@@ -5,80 +5,352 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'pdb 11/10/2022 21:34:43'!
-test01ImportCustomerPersistCorrectDataIntoSession
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 19:42:11'!
+test01ImportSuccessful
 
-	| results validCustomer validAddress |
-	self importCustomers: (self validData).
+	CustomerImporter valueFrom: self validImportData into: session.
+
+	self assertAmountOfCustomersImportedEquals: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 18:48:37'!
+test02LineThatIsNotCustomerNorAddressFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportDataWithInvalidLine into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | self assert: anException messageText equals: CustomerImporter invalidLineTypeErrorMessage. self assertAmountOfCustomersImportedEquals: 0]
+
 	
-	results := session selectAllOfType: Customer.
-	validCustomer := results detect: [ :aCustomer | aCustomer firstNameEquals: 'Pepe' ] ifNone: [ self fail ].
-	validAddress := validCustomer addressAt: 'San Martin' ifNone: [self fail].
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 18:58:02'!
+test03FileWithOnlyNewLineFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportDataWithOnlyNewLineFails into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: CSVImporter emptyLineErrorMessage. 
+			self assertAmountOfCustomersImportedEquals: 0]
+
 	
-	self assert: 2 equals: results size.
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 19:09:12'!
+test04FileStartingWithAddressFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportDataStartingWithAddress into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: AbstractCustomer cannotAddAddressToNullCustomerErrorMessage . 
+			self assertAmountOfCustomersImportedEquals: 0]
+
 	
-	self assertCustomer: validCustomer 
-	withFirstName: 'Pepe' 
-	lastName: 'Sanchez' 
-	identificationType: 'D'  
-	identificationNumber: '22333444' 
-	andNumberOfAddresses: 2.
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 19:21:35'!
+test05FileMissingFieldsInCustomerRecordFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportMissingFieldsInCustomerRecord into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: CustomerImporter badCustomerRecordErrorMessage . 
+			self assertAmountOfCustomersImportedEquals: 0]
+
 	
-	self assertAddress: validAddress 
-	withStreetName: 'San Martin' 
-	streetNumber: 3322 
-	zipCode: 1636 
-	province: 'BsAs' 
-	town: 'Olivos'.
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 19:33:37'!
+test06FileMissingFieldsInAddressRecordFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportMissingFieldsInAddressRecord into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: CustomerImporter badAddressRecordErrorMessage . 
+			self assertAmountOfCustomersImportedEquals: 1]
+
+	
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 20:06:46'!
+test07FileExcedingFieldsInAddressRecordFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportExcedingFieldsInAddressRecord into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: CustomerImporter badAddressRecordErrorMessage . 
+			self assertAmountOfCustomersImportedEquals: 1]
+
+	
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'pdb 11/14/2022 20:07:52'!
+test08FileExcedingFieldsInCustomerRecordFails
+
+	self should: [CustomerImporter valueFrom: self invalidImportExcedingFieldsInCustomerRecord into: session.] 
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [:anException | 
+			self assert: anException messageText equals: CustomerImporter badCustomerRecordErrorMessage . 
+			self assertAmountOfCustomersImportedEquals: 0]
+
 	
 ! !
 
 
-!ImportTest methodsFor: 'assertions' stamp: 'pdb 11/10/2022 21:31:24'!
-assertAddress: validAddress withStreetName: aStreetName streetNumber: aStreetNumber zipCode: aZipCode province: aProvince town: aTown     
+!ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:22:05'!
+assertAddressOf: importedCustomer at: aStreetName hasNumber: aNumber town: aTown zipCode: aZipCode province: aProvince
 
-	self assert: (validAddress streetNameEquals: aStreetName).	
-	self assert: (validAddress streetNumberEquals: aStreetNumber).
-	self assert: (validAddress zipCodeEquals: aZipCode).
-	self assert: (validAddress provinceEquals: aProvince).
-	self assert: (validAddress townEquals: aTown).! !
+	| importedAddress |
 
-!ImportTest methodsFor: 'assertions' stamp: 'pdb 11/10/2022 21:33:53'!
-assertCustomer: validCustomer withFirstName: aFirstName lastName: aLastName identificationType: anIdentificationType identificationNumber: anIdentificationNumber andNumberOfAddresses: aNumberOfAddresses
+	importedAddress := importedCustomer addressAt: aStreetName ifNone: [ self fail ].
+	self assert: aStreetName equals: importedAddress streetName.
+	self assert: aNumber equals: importedAddress streetNumber.
+	self assert: aTown equals: importedAddress town.
+	self assert: aZipCode equals: importedAddress zipCode.
+	self assert: aProvince equals: importedAddress province.
 
-	self assert: (validCustomer firstNameEquals: aFirstName).
-	self assert: (validCustomer lastNameEquals: aLastName).
-	self assert: ( validCustomer identificationTypeEquals:anIdentificationType).
-	self assert: (  validCustomer identificationNumberEquals: anIdentificationNumber).
-	self assert: aNumberOfAddresses equals: validCustomer numberOfAddresses! !
+	! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'pdb 11/14/2022 18:36:51'!
+assertAmountOfCustomersImportedEquals: anAmountOfCustomers
+
+	^ self assert: anAmountOfCustomers equals: (session selectAllOfType: Customer) size! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:27:57'!
+assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: aFirstName lastName: aLastName
+
+	| importedCustomer |
+
+	importedCustomer := self customerWithIdentificationType: anIdType number: anIdNumber.
+
+	self assert: aFirstName equals: importedCustomer firstName.
+	self assert: aLastName equals: importedCustomer lastName.
+	self assert: anIdType equals: importedCustomer identificationType.
+	self assert: anIdNumber equals: importedCustomer identificationNumber.
+
+	^importedCustomer
+
+	! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:45'!
+assertJuanPerezWasImportedCorrectly
+
+	| importedCustomer |
+
+	importedCustomer := self assertCustomerWithIdentificationType: 'C' number: '23-25666777-9' hasFirstName: 'Juan' lastName: 'Perez'.
+	self assertAddressOf: importedCustomer at: 'Alem' hasNumber: 1122 town: 'CABA' zipCode: 1001 province: 'CABA'
+	! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:05'!
+assertPepeSanchezWasImportedCorrecty
+
+	| importedCustomer |
+
+	importedCustomer := self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.
+	self assertAddressOf: importedCustomer at: 'San Martin' hasNumber: 3322 town: 'Olivos' zipCode: 1636 province: 'BsAs'.
+	self assertAddressOf: importedCustomer at: 'Maipu' hasNumber: 888 town: 'Florida' zipCode: 1122 province: 'Buenos Aires'.
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/10/2022 18:26:23'!
+	! !
+
+
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:27:50'!
 setUp
 
 	session := DataBaseSession for: (Array with: Address with: Customer).
-	session beginTransaction! !
+	session beginTransaction.
+! !
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/10/2022 18:26:50'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:28:23'!
 tearDown
 
-	^ session close! !
-
-
-!ImportTest methodsFor: 'support' stamp: 'pdb 11/10/2022 18:43:28'!
-importCustomers: aStream
-	(ImportCustomers from: aStream into: session) value.
-	
+	session commit.
+	session close.
 	! !
 
-!ImportTest methodsFor: 'support' stamp: 'pdb 11/10/2022 18:36:25'!
-validData
 
-	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+!ImportTest methodsFor: 'customer' stamp: 'HAW 5/22/2022 18:14:22'!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 19:00:51'!
+invalidImportDataStartingWithAddress
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+C,Pepe,Sanchez,D,22333444
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 18:39:42'!
+invalidImportDataWithInvalidLine
+		^ ReadStream on:
+'X,Pepe,Sanchez,D,22333444'
+
+
+
+! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 18:51:54'!
+invalidImportDataWithOnlyNewLineFails
+	^ReadStream on: (String with: Character newLineCharacter )! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 20:08:57'!
+invalidImportExcedingFieldsInAddressRecord
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San, Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 20:09:25'!
+invalidImportExcedingFieldsInCustomerRecord
+		^ ReadStream on:
+'C,Pepe, Pepardo,Sanchez,D,22333444
 A,San Martin,3322,Olivos,1636,BsAs
 A,Maipu,888,Florida,1122,Buenos Aires
 C,Juan,Perez,C,23-25666777-9
 A,Alem,1122,CABA,1001,CABA'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 19:33:25'!
+invalidImportMissingFieldsInAddressRecord
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,
+C,Pepe,Bruno,D,223444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 19:22:56'!
+invalidImportMissingFieldsInCustomerRecord
+	^ReadStream on: 'C,'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 19:42:01'!
+invalidImportWithAdjacentCommas
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'pdb 11/14/2022 19:38:29'!
+validImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+
+!classDefinition: #AbstractCustomer category: 'CustomerImporter'!
+Object subclass: #AbstractCustomer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AbstractCustomer class' category: 'CustomerImporter'!
+AbstractCustomer class
+	instanceVariableNames: ''!
+
+!AbstractCustomer class methodsFor: 'error descriptions' stamp: 'pdb 11/14/2022 19:08:52'!
+cannotAddAddressToNullCustomerErrorMessage
+	^'Cannot add address to a null customer'! !
+
+
+!classDefinition: #Customer category: 'CustomerImporter'!
+AbstractCustomer subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
+addAddress: anAddress
+
+	addresses add: anAddress ! !
+
+!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 17:55:17'!
+addressAt: aStreetName ifNone: aNoneBlock
+
+	^addresses detect: [ :address | address isAt: aStreetName ] ifNone: aNoneBlock ! !
+
+!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
+addresses
+
+	^ addresses! !
+
+
+!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
+firstName
+
+	^firstName ! !
+
+!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
+firstName: aName
+
+	firstName := aName! !
+
+!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
+lastName
+
+	^lastName ! !
+
+!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
+lastName: aLastName
+
+	lastName := aLastName
+! !
+
+
+!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
+identificationNumber
+
+	^identificationNumber ! !
+
+!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
+identificationNumber: anIdentificationNumber
+
+	identificationNumber := anIdentificationNumber! !
+
+!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
+identificationType
+
+	^identificationType ! !
+
+!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
+identificationType: anIdentificationType
+
+	identificationType := anIdentificationType! !
+
+
+!Customer methodsFor: 'initialization' stamp: 'HAW 5/22/2022 00:19:29'!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.! !
+
+
+!classDefinition: #NullCustomer category: 'CustomerImporter'!
+AbstractCustomer subclass: #NullCustomer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!NullCustomer methodsFor: 'as yet unclassified' stamp: 'pdb 11/14/2022 19:07:17'!
+addAddress: anAddress
+	
+	self error: super class cannotAddAddressToNullCustomerErrorMessage! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -99,18 +371,11 @@ province: aProvince
 	province := aProvince
 	! !
 
-!Address methodsFor: 'province' stamp: 'pdb 11/10/2022 21:17:40'!
-provinceEquals: aProvince
 
-	^province = aProvince! !
-
-
-!Address methodsFor: 'street' stamp: 'pdb 11/10/2022 19:00:15'!
+!Address methodsFor: 'street' stamp: 'HAW 5/22/2022 17:55:46'!
 isAt: aStreetName
 
-	^streetName = aStreetName 
-	
-	! !
+	^streetName = aStreetName ! !
 
 !Address methodsFor: 'street' stamp: 'HAW 5/22/2022 00:19:29'!
 streetName
@@ -122,11 +387,6 @@ streetName: aStreetName
 
 	streetName := aStreetName ! !
 
-!Address methodsFor: 'street' stamp: 'pdb 11/10/2022 21:18:00'!
-streetNameEquals: aStreetName
-
-	^streetName = aStreetName ! !
-
 !Address methodsFor: 'street' stamp: 'HAW 5/22/2022 00:19:29'!
 streetNumber
 
@@ -137,26 +397,16 @@ streetNumber: aStreetNumber
 
 	streetNumber := aStreetNumber ! !
 
-!Address methodsFor: 'street' stamp: 'pdb 11/10/2022 21:18:12'!
-streetNumberEquals: aStreetNumber
 
-	^streetNumber = aStreetNumber ! !
-
-
-!Address methodsFor: 'town' stamp: 'HAW 5/22/2022 00:19:29'!
+!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
 town
 
 	^town! !
 
-!Address methodsFor: 'town' stamp: 'HAW 5/22/2022 00:19:29'!
+!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
 town: aTown
 
 	town := aTown! !
-
-!Address methodsFor: 'town' stamp: 'pdb 11/10/2022 21:18:30'!
-townEquals: aTown
-
-	^town = aTown! !
 
 
 !Address methodsFor: 'zip code' stamp: 'HAW 5/22/2022 00:19:29'!
@@ -169,108 +419,137 @@ zipCode: aZipCode
 
 	zipCode := aZipCode! !
 
-!Address methodsFor: 'zip code' stamp: 'pdb 11/10/2022 21:18:39'!
-zipCodeEquals: aZipCode
-
-	^zipCode = aZipCode! !
-
 
-!classDefinition: #Customer category: 'CustomerImporter'!
-Object subclass: #Customer
-	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+!classDefinition: #CSVImporter category: 'CustomerImporter'!
+Object subclass: #CSVImporter
+	instanceVariableNames: 'session readStream line record'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
-addAddress: anAddress
+!CSVImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:58:39'!
+createRecord
+	line isEmpty ifTrue: [self error: self class emptyLineErrorMessage ].
+	^ record := line findTokens: $,! !
 
-	addresses add: anAddress ! !
+!CSVImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:20:46'!
+hasNextLine
 
-!Customer methodsFor: 'addresses' stamp: 'pdb 11/10/2022 18:53:33'!
-addressAt: anAddressName ifNone: aNoneBlock
+	line := readStream nextLine.
+	^line notNil! !
 
-	^addresses detect: [ :anAddress | anAddress isAt: anAddressName] ifNone: aNoneBlock.! !
+!CSVImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:21:43'!
+value
 
-!Customer methodsFor: 'addresses' stamp: 'HAW 5/22/2022 00:19:29'!
-addresses
+	[ self hasNextLine ] whileTrue: [
+		self createRecord.
+		self importRecord.
+ 	].
 
-	^ addresses! !
-
-!Customer methodsFor: 'addresses' stamp: 'pdb 11/10/2022 18:55:23'!
-numberOfAddresses
-	^addresses size.! !
+	! !
 
 
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-firstName
+!CSVImporter methodsFor: 'nil' stamp: 'pdb 11/14/2022 18:22:32'!
+importRecord
+	self subclassResponsibility ! !
 
-	^firstName ! !
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-firstName: aName
+!classDefinition: 'CSVImporter class' category: 'CustomerImporter'!
+CSVImporter class
+	instanceVariableNames: ''!
 
-	firstName := aName! !
+!CSVImporter class methodsFor: 'error description' stamp: 'pdb 11/14/2022 18:58:17'!
+emptyLineErrorMessage
+	^'Found empty line'! !
 
-!Customer methodsFor: 'name' stamp: 'pdb 11/10/2022 21:21:14'!
-firstNameEquals: aName
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter'!
+CSVImporter subclass: #CustomerImporter
+	instanceVariableNames: 'newCustomer newAddress'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
 
-	^firstName = aName! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'pdb 11/14/2022 19:07:54'!
+initializeFrom: aReadStream into: aSession
+	session := aSession.
+	readStream := aReadStream.
+	newCustomer := NullCustomer new.! !
 
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-lastName
 
-	^lastName ! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 19:31:02'!
+importAddress
+	(record size = 6) ifFalse: [self error: self class badAddressRecordErrorMessage ].
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
 
-!Customer methodsFor: 'name' stamp: 'HAW 5/22/2022 00:19:29'!
-lastName: aLastName
+!CustomerImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 19:26:39'!
+importCustomer
+	(record size = 5) ifFalse: [self error: self class badCustomerRecordErrorMessage ].
+	newCustomer := Customer new.
+	newCustomer firstName: record second.
+	newCustomer lastName: record third.
+	newCustomer identificationType: record fourth.
+	newCustomer identificationNumber: record fifth.
+	session persist: newCustomer! !
 
-	lastName := aLastName
+!CustomerImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:49:10'!
+importRecord
+
+	self isCustomerRecord ifTrue: [ ^self importCustomer ].
+	self isAddressRecord ifTrue: [ ^self importAddress ].
+	
+	self error: self class invalidLineTypeErrorMessage.
+	
+	! !
+
+!CustomerImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:19:45'!
+isAddressRecord
+
+	^ record first = 'A'! !
+
+!CustomerImporter methodsFor: 'evaluating' stamp: 'pdb 11/14/2022 18:20:03'!
+isCustomerRecord
+	^ record first = 'C'
 ! !
 
-!Customer methodsFor: 'name' stamp: 'pdb 11/10/2022 21:21:22'!
-lastNameEquals: aLastName
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-	^lastName = aLastName
-! !
+!classDefinition: 'CustomerImporter class' category: 'CustomerImporter'!
+CustomerImporter class
+	instanceVariableNames: ''!
 
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationNumber
-
-	^identificationNumber ! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationNumber: anIdentificationNumber
-
-	identificationNumber := anIdentificationNumber! !
-
-!Customer methodsFor: 'identification' stamp: 'pdb 11/10/2022 21:21:32'!
-identificationNumberEquals: anIdentificationNumber
-
-	^identificationNumber = anIdentificationNumber! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationType
-
-	^identificationType ! !
-
-!Customer methodsFor: 'identification' stamp: 'HAW 5/22/2022 00:19:29'!
-identificationType: anIdentificationType
-
-	identificationType := anIdentificationType! !
-
-!Customer methodsFor: 'identification' stamp: 'pdb 11/10/2022 21:21:40'!
-identificationTypeEquals: anIdentificationType
-
-	^identificationType = anIdentificationType! !
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'HAW 5/22/2022 18:06:47'!
+from: aReadStream into: aSession
+	^self new initializeFrom: aReadStream into: aSession! !
 
 
-!Customer methodsFor: 'initialization' stamp: 'HAW 5/22/2022 00:19:29'!
-initialize
+!CustomerImporter class methodsFor: 'importing' stamp: 'HAW 5/22/2022 18:11:27'!
+valueFrom: aReadStream into: aSession
 
-	super initialize.
-	addresses := OrderedCollection new.! !
+	^(self from: aReadStream into: aSession) value! !
+
+
+!CustomerImporter class methodsFor: 'error description' stamp: 'pdb 11/14/2022 19:17:50'!
+badAddressRecordErrorMessage
+	
+	^'Address line has wrong format'! !
+
+!CustomerImporter class methodsFor: 'error description' stamp: 'pdb 11/14/2022 19:17:38'!
+badCustomerRecordErrorMessage
+	
+	^'Customer line has wrong format'! !
+
+!CustomerImporter class methodsFor: 'error description' stamp: 'pdb 11/14/2022 18:49:10'!
+invalidLineTypeErrorMessage
+	
+	^'Formato de linea incorrecto'! !
 
 
 !classDefinition: #DataBaseSession category: 'CustomerImporter'!
@@ -371,56 +650,3 @@ DataBaseSession class
 for: aConfiguration
 
 	^self new initializeFor: aConfiguration! !
-
-
-!classDefinition: #ImportCustomers category: 'CustomerImporter'!
-Object subclass: #ImportCustomers
-	instanceVariableNames: 'session stream'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'CustomerImporter'!
-
-!ImportCustomers methodsFor: 'initialization' stamp: 'pdb 11/10/2022 18:38:50'!
-initializeFrom: anAStream into: aSession
-	session := aSession.
-	stream := anAStream.! !
-
-
-!ImportCustomers methodsFor: 'evaluating' stamp: 'pdb 11/10/2022 19:05:27'!
-value
-
-	| newCustomer line |
-	line := stream nextLine.
-	[ line notNil ] whileTrue: [
-		(line beginsWith: 'C') ifTrue: [ | customerData |
-			customerData := line findTokens: $,.
-			newCustomer := Customer new.
-			newCustomer firstName: customerData second.
-			newCustomer lastName: customerData third.
-			newCustomer identificationType: customerData fourth.
-			newCustomer identificationNumber: customerData fifth.
-			session persist: newCustomer ].
-
-		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
-			addressData := line findTokens: $,.
-			newAddress := Address new.
-			newCustomer addAddress: newAddress.
-			newAddress streetName: addressData second.
-			newAddress streetNumber: addressData third asNumber .
-			newAddress town: addressData fourth.
-			newAddress zipCode: addressData fifth asNumber .
-			newAddress province: addressData sixth ].
-
-		line := stream nextLine. ].
-	session commit.
-stream close! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'ImportCustomers class' category: 'CustomerImporter'!
-ImportCustomers class
-	instanceVariableNames: ''!
-
-!ImportCustomers class methodsFor: 'instance creation' stamp: 'pdb 11/10/2022 18:38:49'!
-from: anAStream into: aSession
-	^self new initializeFrom: anAStream into: aSession! !
