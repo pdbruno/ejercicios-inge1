@@ -179,10 +179,10 @@ shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAs
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/17/2022 20:01:33'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'pdb 11/24/2022 11:47:51'!
 setUp
 
-	system := (Smalltalk at: #ENV) customerSystem.
+	system := Environment current customerSystem.
 	system start.
 ! !
 
@@ -304,12 +304,12 @@ streetNumber: aStreetNumber
 	streetNumber := aStreetNumber ! !
 
 
-!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
+!Address methodsFor: 'town' stamp: 'HAW 5/22/2022 00:19:29'!
 town
 
 	^town! !
 
-!Address methodsFor: 'twon' stamp: 'HAW 5/22/2022 00:19:29'!
+!Address methodsFor: 'town' stamp: 'HAW 5/22/2022 00:19:29'!
 town: aTown
 
 	town := aTown! !
@@ -772,6 +772,16 @@ Object subclass: #Environment
 customerSystem
 
 	self subclassResponsibility ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Environment class' category: 'CustomerImporter'!
+Environment class
+	instanceVariableNames: ''!
+
+!Environment class methodsFor: 'instance accessing' stamp: 'pdb 11/24/2022 11:46:50'!
+current
+	^(Smalltalk at: #ENV)! !
 
 
 !classDefinition: #DevelopmentEnvironment category: 'CustomerImporter'!
